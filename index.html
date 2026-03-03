@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Laporan OOP Dart - Pixel Style</title>
 
-<!-- Pixel Font -->
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
 <style>
@@ -85,62 +84,60 @@ footer {
   font-size: 10px;
   border-top: 6px solid #00ffcc;
 }
+
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  font-family: 'Press Start 2P';
+  font-size: 8px;
+}
+button {
+  background: #ff0080;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  font-family: 'Press Start 2P';
+  font-size: 8px;
+}
 </style>
 </head>
 
 <body>
 
 <header>
-  <h1>OOP DART - OBJECT ORIENTED PROGRAMMING</h1>
-  <p>MUHAMMAD BAGAS PUTRA ANDEZA | NIM: 251410003</p>
+
+<!-- FORUM KOMENTAR -->
+<div style="background:#000; padding:20px; margin-bottom:20px; border:4px solid #00ffcc; box-shadow:6px 6px 0px #ffff00;">
+  <h2 style="font-size:12px; color:#ffff00;">FORUM KOMENTAR</h2>
+
+  <form onsubmit="addComment(event)">
+    <input type="text" id="name" placeholder="Nama..." required>
+    <textarea id="comment" placeholder="Tulis komentar..." required></textarea>
+    <button type="submit">KIRIM</button>
+  </form>
+
+  <div id="comment-list"></div>
+</div>
+
+<h1>OOP DART - OBJECT ORIENTED PROGRAMMING</h1>
+<p>MUHAMMAD BAGAS PUTRA ANDEZA | NIM: 251410003</p>
 </header>
 
 <div class="container">
 
+<!-- 1 -->
 <div class="card">
 <h2>1. PENGERTIAN OOP</h2>
-
-<p>
-Object Oriented Programming (OOP) tidak hanya sekadar teknik pemrograman, 
-tetapi merupakan pendekatan desain sistem yang meniru cara manusia memahami dunia nyata. 
-Dalam kehidupan sehari-hari, kita mengenali entitas sebagai objek yang memiliki 
-karakteristik dan perilaku. OOP mengadopsi konsep ini ke dalam pengembangan 
-perangkat lunak sehingga struktur program menjadi lebih intuitif dan mudah dipahami.
-</p>
-
-<p>
-OOP bertujuan untuk meningkatkan modularitas sistem, yaitu dengan memecah 
-program besar menjadi bagian-bagian kecil yang terorganisir dalam bentuk class. 
-Setiap class bertanggung jawab atas satu konsep atau entitas tertentu, 
-sehingga pengembangan dan pemeliharaan sistem menjadi lebih terstruktur.
-</p>
-
-<p>
-Selain itu, OOP mendukung prinsip <b>reusability</b> atau penggunaan ulang kode. 
-Class yang telah dibuat dapat digunakan kembali dalam proyek lain tanpa perlu 
-menulis ulang logika yang sama. Hal ini sangat penting dalam pengembangan 
-perangkat lunak modern yang menuntut efisiensi waktu dan konsistensi kualitas.
-</p>
-
-<p>
-Dalam praktiknya, OOP memiliki empat pilar utama, yaitu 
-<b>Encapsulation</b>, <b>Abstraction</b>, <b>Inheritance</b>, dan <b>Polymorphism</b>. 
-Keempat prinsip ini memungkinkan sistem menjadi lebih fleksibel, aman, dan 
-mudah dikembangkan. Meskipun pada laporan ini lebih difokuskan pada 
-Encapsulation dan Constructor, Dart sebagai bahasa pemrograman 
-mendukung seluruh pilar tersebut secara native.
-</p>
-
-<p>
-Dengan menerapkan paradigma OOP, pengembang dapat membangun sistem yang 
-<b>scalable</b> (mudah dikembangkan), <b>maintainable</b> (mudah dirawat), 
-dan <b>robust</b> (tahan terhadap kesalahan). Pendekatan ini menjadi fondasi 
-utama dalam pengembangan aplikasi modern, termasuk framework Flutter 
-yang menggunakan Dart sebagai bahasa utamanya.
-</p>
-
+<p>Object Oriented Programming (OOP)...</p>
+<p>OOP bertujuan untuk meningkatkan modularitas sistem...</p>
+<p>Selain itu, OOP mendukung prinsip <b>reusability</b>...</p>
+<p>Empat pilar utama yaitu <b>Encapsulation</b>, <b>Abstraction</b>, <b>Inheritance</b>, dan <b>Polymorphism</b>.</p>
+<p>Paradigma ini menjadi fondasi utama dalam pengembangan aplikasi modern termasuk Flutter.</p>
 </div>
 
+<!-- 2 -->
 <div class="card">
 <h2>2. CLASS DAN OBJECT</h2>
 <pre><code>
@@ -158,9 +155,12 @@ class Car {
 }
 </code></pre>
 
+<p>Class Car memiliki atribut dan method yang menggambarkan objek mobil.</p>
+
 <iframe src="https://dartpad.dev/embed-inline.html?id=8f3627510d64b42cab35e6cd91949b40"></iframe>
 </div>
 
+<!-- 3 -->
 <div class="card">
 <h2>3. CONSTRUCTOR</h2>
 <pre><code>
@@ -176,9 +176,12 @@ class Car {
 }
 </code></pre>
 
+<p>Constructor memberikan nilai awal saat objek dibuat.</p>
+
 <iframe src="https://dartpad.dev/embed-inline.html?id=ab55d3390bcc10e7da6e19bb7dd6b37c"></iframe>
 </div>
 
+<!-- 4 -->
 <div class="card">
 <h2>4. VALIDASI DATA</h2>
 <pre><code>
@@ -195,9 +198,12 @@ class Mahasiswa {
 }
 </code></pre>
 
+<p>Validasi memastikan IPK dalam rentang yang benar.</p>
+
 <iframe src="https://dartpad.dev/embed-inline.html?id=3947e3d1fdf39788ba11363312a67a93"></iframe>
 </div>
 
+<!-- 5 -->
 <div class="card">
 <h2>5. ENCAPSULATION</h2>
 <pre><code>
@@ -217,9 +223,12 @@ class Person {
 }
 </code></pre>
 
+<p>Encapsulation membatasi akses langsung ke data menggunakan getter dan setter.</p>
+
 <iframe src="https://dartpad.dev/embed-inline.html?id=7bc3487bd4fceb57464bf1f25d092a8e"></iframe>
 </div>
 
+<!-- 6 -->
 <div class="card">
 <h2>6. NAMED PARAMETER</h2>
 <pre><code>
@@ -240,12 +249,14 @@ class Produk {
 }
 </code></pre>
 
+<p>Named parameter membuat constructor lebih fleksibel dan aman.</p>
+
 <iframe src="https://dartpad.dev/embed-inline.html?id=c59169f43ea6300d62fa22c8a79cee07"></iframe>
 </div>
 
 <div class="card">
 <h2>7. KESIMPULAN</h2>
-<p>OOP membuat program lebih terstruktur dan mudah dikembangkan.</p>
+<p>OOP membuat program lebih terstruktur, scalable, dan maintainable.</p>
 </div>
 
 </div>
@@ -253,6 +264,24 @@ class Produk {
 <footer>
 © 2026 - PEMROGRAMAN BERORIENTASI OBJEK
 </footer>
+
+<script>
+function addComment(event) {
+  event.preventDefault();
+  const name = document.getElementById("name").value;
+  const comment = document.getElementById("comment").value;
+
+  const div = document.createElement("div");
+  div.style.marginTop = "15px";
+  div.style.borderTop = "2px dashed #00ffcc";
+  div.style.paddingTop = "10px";
+  div.innerHTML = "<strong>" + name + ":</strong><br>" + comment;
+
+  document.getElementById("comment-list").appendChild(div);
+  document.getElementById("name").value = "";
+  document.getElementById("comment").value = "";
+}
+</script>
 
 </body>
 </html>
