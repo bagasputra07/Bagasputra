@@ -3,146 +3,250 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Laporan OOP Dart - Interaktif</title>
+<title>Laporan OOP Dart - Muhammad Bagas Putra Andeza</title>
 
 <style>
-body{
-  font-family: Arial, sans-serif;
-  margin:40px;
-  background:#f4f6f9;
+:root {
+  --primary: #2563eb;
+  --dark: #1e293b;
+  --light: #f8fafc;
+  --card: #ffffff;
 }
 
-h1{
-  color:#2c3e50;
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #e0f2fe, #f8fafc);
+  color: var(--dark);
 }
 
-.section{
-  background:white;
-  padding:25px;
-  border-radius:10px;
-  margin-bottom:30px;
-  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+header {
+  background: var(--primary);
+  color: white;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
-button{
-  padding:10px 18px;
-  background:#007bff;
-  color:white;
-  border:none;
-  border-radius:6px;
-  cursor:pointer;
+header h1 {
+  margin: 0;
 }
 
-button:hover{
-  background:#0056b3;
+header p {
+  margin-top: 10px;
+  font-size: 14px;
+  opacity: 0.9;
 }
 
-/* MODAL */
-.modal{
-  display:none;
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.85);
-  z-index:9999;
+.container {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 20px;
 }
 
-.modal-content{
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  width:95%;
-  max-width:1100px;
-  height:85%;
-  background:white;
-  border-radius:10px;
-  overflow:hidden;
+.card {
+  background: var(--card);
+  padding: 25px;
+  margin-bottom: 30px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  transition: 0.3s;
 }
 
-.modal iframe{
-  width:100%;
-  height:100%;
-  border:none;
+.card:hover {
+  transform: translateY(-5px);
+}
+
+h2 {
+  color: var(--primary);
+  margin-top: 0;
+}
+
+pre {
+  background: #0f172a;
+  color: #22c55e;
+  padding: 20px;
+  border-radius: 10px;
+  overflow-x: auto;
+}
+
+iframe {
+  margin-top: 20px;
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background: var(--dark);
+  color: white;
+  margin-top: 50px;
 }
 </style>
 </head>
 
 <body>
 
-<h1>LAPORAN OBJECT ORIENTED PROGRAMMING (OOP) - DART</h1>
-<p><b>Nama:</b> Muhammad Bagas Putra Andeza<br>
-<b>NIM:</b> 251410003</p>
+<header>
+  <h1>LAPORAN OBJECT ORIENTED PROGRAMMING (OOP) - DART</h1>
+  <p>NAMA: Muhammad Bagas Putra Andeza | NIM: 251410003</p>
+</header>
 
-<div class="section">
-<h2>1. Class & Object (Car)</h2>
-<button onclick="openModal('https://dartpad.dev/8f3627510d64b42cab35e6cd91949b40')">
-Lihat Source & Jalankan
-</button>
+<div class="container">
+
+<!-- 1 -->
+<div class="card">
+<h2>1. Pengertian OOP</h2>
+<p>
+Object Oriented Programming (OOP) adalah paradigma pemrograman yang berorientasi pada objek.
+Objek dibuat dari sebuah class yang berisi atribut (data) dan method (fungsi).
+</p>
+<ul>
+<li>Class dan Object</li>
+<li>Encapsulation</li>
+<li>Constructor</li>
+<li>Method</li>
+</ul>
 </div>
 
-<div class="section">
-<h2>2. Constructor</h2>
-<button onclick="openModal('https://dartpad.dev/ab55d3390bcc10e7da6e19bb7dd6b37c')">
-Lihat Source & Jalankan
-</button>
-</div>
+<!-- 2 -->
+<div class="card">
+<h2>2. Class dan Object</h2>
+<pre><code>
+class Car {
+  String? model;
+  String? color;
 
-<div class="section">
-<h2>3. Validasi Constructor (Mahasiswa)</h2>
-<button onclick="openModal('https://dartpad.dev/3947e3d1fdf39788ba11363312a67a93')">
-Lihat Source & Jalankan
-</button>
-</div>
+  void start() {
+    print('Car started!');
+  }
 
-<div class="section">
-<h2>4. Encapsulation (Person)</h2>
-<button onclick="openModal('https://dartpad.dev/7bc3487bd4fceb57464bf1f25d092a8e')">
-Lihat Source & Jalankan
-</button>
-</div>
-
-<div class="section">
-<h2>5. Named Parameter (Produk)</h2>
-<button onclick="openModal('https://dartpad.dev/c59169f43ea6300d62fa22c8a79cee07')">
-Lihat Source & Jalankan
-</button>
-</div>
-
-<div class="section">
-<h2>6. Inheritance</h2>
-<button onclick="openModal('https://dartpad.dev/b46d62a6f572c3e8b0da7fbe46d7c12d')">
-Lihat Source & Jalankan
-</button>
-</div>
-
-<div class="section">
-<h2>7. Polymorphism</h2>
-<button onclick="openModal('https://dartpad.dev/9994d491f57e635dfcd631521283771f')">
-Lihat Source & Jalankan
-</button>
-</div>
-
-<!-- MODAL -->
-<div class="modal" id="modal" onclick="closeModal()">
-  <div class="modal-content" onclick="event.stopPropagation()">
-    <iframe id="dartFrame"></iframe>
-  </div>
-</div>
-
-<script>
-function openModal(link){
-  document.getElementById("modal").style.display="block";
-  document.getElementById("dartFrame").src = link;
+  void stop() {
+    print('Car stopped!');
+  }
 }
+</code></pre>
 
-function closeModal(){
-  document.getElementById("modal").style.display="none";
-  document.getElementById("dartFrame").src="";
+<iframe 
+src="https://dartpad.dev/embed-inline.html?id=8f3627510d64b42cab35e6cd91949b40"
+width="100%" height="500">
+</iframe>
+</div>
+
+<!-- 3 -->
+<div class="card">
+<h2>3. Constructor</h2>
+<pre><code>
+class Car {
+  String? model;
+  String? color;
+
+  Car(this.model, this.color);
+
+  void start() {
+    print('Car started!');
+  }
 }
-</script>
+</code></pre>
+
+<iframe 
+src="https://dartpad.dev/embed-inline.html?id=ab55d3390bcc10e7da6e19bb7dd6b37c"
+width="100%" height="500">
+</iframe>
+</div>
+
+<!-- 4 -->
+<div class="card">
+<h2>4. Validasi Data (Mahasiswa)</h2>
+<pre><code>
+class Mahasiswa {
+  String nama;
+  String nim;
+  double ipk;
+
+  Mahasiswa(this.nama, this.nim, this.ipk) {
+    if (ipk < 0.0 || ipk > 4.0) {
+      throw ArgumentError('IPK harus 0.0 - 4.0');
+    }
+  }
+}
+</code></pre>
+
+<iframe 
+src="https://dartpad.dev/embed-inline.html?id=3947e3d1fdf39788ba11363312a67a93"
+width="100%" height="500">
+</iframe>
+</div>
+
+<!-- 5 -->
+<div class="card">
+<h2>5. Encapsulation</h2>
+<pre><code>
+class Person {
+  String _name;
+  int age;
+
+  Person(this._name, this.age);
+
+  void setName(String name) {
+    _name = name;
+  }
+
+  String getName() {
+    return _name;
+  }
+}
+</code></pre>
+
+<iframe 
+src="https://dartpad.dev/embed-inline.html?id=7bc3487bd4fceb57464bf1f25d092a8e"
+width="100%" height="500">
+</iframe>
+</div>
+
+<!-- 6 -->
+<div class="card">
+<h2>6. Constructor Named Parameter</h2>
+<pre><code>
+class Produk {
+  final String id;
+  final String nama;
+  final double harga;
+  final int stok;
+  final String kategori;
+
+  Produk({
+    required this.id,
+    required this.nama,
+    required this.harga,
+    this.stok = 0,
+    this.kategori = 'Umum',
+  });
+}
+</code></pre>
+
+<iframe 
+src="https://dartpad.dev/embed-inline.html?id=c59169f43ea6300d62fa22c8a79cee07"
+width="100%" height="500">
+</iframe>
+</div>
+
+<!-- 7 -->
+<div class="card">
+<h2>7. Kesimpulan</h2>
+<p>
+OOP membuat program lebih terstruktur, mudah dikembangkan, dan aman.
+Konsep ini sangat cocok untuk aplikasi skala menengah hingga besar.
+</p>
+</div>
+
+</div>
+
+<footer>
+© 2026 Muhammad Bagas Putra Andeza - Universitas
+</footer>
 
 </body>
 </html>
