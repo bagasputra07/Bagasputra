@@ -135,7 +135,7 @@ function addComment(event) {
 <div class="container">
 
 <div class="card">
-<h2>PENGERTIAN OOP</h2>
+<h2>1. PENGERTIAN OOP</h2>
 
 <p>
 Object Oriented Programming (OOP) tidak hanya sekadar teknik pemrograman, 
@@ -177,14 +177,14 @@ yang menggunakan Dart sebagai bahasa utamanya.
 </p>
 
 </div>
-  
-<div class="card">
-  <p>
+<p>
 Pada source code ini, class <b>Car</b> memiliki dua atribut yaitu model dan color.
 Method <b>start()</b> dan <b>stop()</b> menggambarkan perilaku objek mobil.
 Class ini menunjukkan konsep dasar OOP yaitu pembuatan objek dari sebuah blueprint (class).
 </p>
-<h2>1. CLASS DAN OBJECT</h2>
+  
+<div class="card">
+<h2>2. CLASS DAN OBJECT</h2>
 <pre><code>
 class Car {
   String? model;
@@ -210,7 +210,7 @@ Dengan <b>Car(this.model, this.color)</b>, setiap objek Car
 akan langsung memiliki nilai model dan color ketika diinisialisasi.
 Ini meningkatkan efisiensi dan memastikan data tidak kosong.
 </p>
-<h2>2. CONSTRUCTOR</h2>
+<h2>3. CONSTRUCTOR</h2>
 <pre><code>
 class Car {
   String? model;
@@ -228,12 +228,17 @@ class Car {
 </div>
 
 <div class="card">
-  
-<h2>3. VALIDASI DATA</h2>
   <p>
 Class <b>Mahasiswa</b> menerapkan validasi pada constructor.
 Jika nilai IPK berada di luar rentang 0.0–4.0, program akan menghasilkan error.
 Ini merupakan contoh penerapan kontrol data agar sistem lebih aman dan robust.
+</p>
+<h2>4. VALIDASI DATA</h2>
+  <p>
+Atribut <b>name</b> diawali dengan underscore () yang menandakan 
+bahwa variabel tersebut bersifat private.
+Akses dilakukan melalui method <b>setName()</b> dan <b>getName()</b>.
+Konsep ini disebut Encapsulation, yaitu membatasi akses langsung ke data.
 </p>
 <pre><code>
 class Mahasiswa {
@@ -259,7 +264,7 @@ bahwa variabel tersebut bersifat private.
 Akses dilakukan melalui method <b>setName()</b> dan <b>getName()</b>.
 Konsep ini disebut Encapsulation, yaitu membatasi akses langsung ke data.
 </p>
-<h2>4. ENCAPSULATION</h2>
+<h2>5. ENCAPSULATION</h2>
 <pre><code>
 class Person {
   String _name;
@@ -277,7 +282,7 @@ class Person {
 }
 </code></pre>
 
-<iframe src="https://dartpad.dev/embed-inline.html?id=245ab68b4b9e11728223c9bbca547e17"></iframe>
+<iframe src="https://dartpad.dev/embed-inline.html?id=7bc3487bd4fceb57464bf1f25d092a8e"></iframe>
 </div>
 
 <div class="card">
@@ -287,7 +292,7 @@ Kata kunci <b>required</b> memastikan nilai wajib diisi,
 sementara nilai default seperti stok = 0 dan kategori = 'Umum'
 memberikan keamanan tambahan jika tidak diinput.
 </p>
-<h2>5. NAMED PARAMETER</h2>
+<h2>6. NAMED PARAMETER</h2>
 <pre><code>
 class Produk {
   final String id;
@@ -306,7 +311,7 @@ class Produk {
 }
 </code></pre>
 
-<iframe src="https://dartpad.dev/embed-inline.html?id=245ab68b4b9e11728223c9bbca547e17"></iframe>
+<iframe src="https://dartpad.dev/embed-inline.html?id=c59169f43ea6300d62fa22c8a79cee07"></iframe>
 </div>
 
 <div class="card">
@@ -321,4 +326,4 @@ class Produk {
 </footer>
 
 </body>
-</html
+</html>
