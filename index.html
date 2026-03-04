@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Laporan OOP Dart - Pixel Style</title>
 
-<!-- Pixel Font -->
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
 <style>
@@ -23,15 +22,8 @@ header {
   border-bottom: 6px solid #00ffcc;
 }
 
-header h1 {
-  font-size: 14px;
-  line-height: 1.6;
-}
-
-header p {
-  font-size: 10px;
-  margin-top: 10px;
-}
+header h1 { font-size: 14px; line-height: 1.6; }
+header p { font-size: 10px; margin-top: 10px; }
 
 .container {
   max-width: 1000px;
@@ -47,20 +39,8 @@ header p {
   box-shadow: 8px 8px 0px #ff0080;
 }
 
-h2 {
-  font-size: 12px;
-  color: #ffff00;
-  margin-bottom: 20px;
-}
-
-p, li {
-  font-size: 10px;
-  line-height: 1.8;
-}
-
-ul {
-  padding-left: 20px;
-}
+h2 { font-size: 12px; color: #ffff00; margin-bottom: 20px; }
+p, li { font-size: 10px; line-height: 1.8; }
 
 pre {
   background: black;
@@ -71,11 +51,59 @@ pre {
   border: 3px solid #00ffcc;
 }
 
-iframe {
+/* BUTTON STYLE */
+.open-btn {
   margin-top: 20px;
-  border: 4px solid #ffff00;
+  padding: 12px;
+  background: #ffff00;
+  border: 4px solid #00ffcc;
+  font-family: 'Press Start 2P', cursive;
+  cursor: pointer;
+  font-size: 9px;
+}
+
+.open-btn:hover {
+  background: #ff0080;
+  color: white;
+}
+
+/* MODAL STYLE */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
   width: 100%;
-  height: 500px;
+  height: 100%;
+  background-color: rgba(0,0,0,0.9);
+}
+
+.modal-content {
+  position: relative;
+  margin: 5% auto;
+  width: 90%;
+  height: 80%;
+  background: #111;
+  border: 4px solid #ffff00;
+  padding: 10px;
+}
+
+.modal-content iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.close {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  background: #ff0080;
+  border: 4px solid #00ffcc;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 12px;
 }
 
 footer {
@@ -90,66 +118,17 @@ footer {
 
 <body>
 
-</script>
-  <h1>OOP DART - OBJECT ORIENTED PROGRAMMING</h1>
-  <p>MUHAMMAD BAGAS PUTRA ANDEZA | NIM: 251410003</p>
+<header>
+<h1>OOP DART - OBJECT ORIENTED PROGRAMMING</h1>
+<p>MUHAMMAD BAGAS PUTRA ANDEZA | NIM: 251410003</p>
 </header>
 
 <div class="container">
 
+<!-- CARD 1 -->
 <div class="card">
-<h2>PENGERTIAN OOP</h2>
-
-<p>
-Object Oriented Programming (OOP) tidak hanya sekadar teknik pemrograman, 
-tetapi merupakan pendekatan desain sistem yang meniru cara manusia memahami dunia nyata. 
-Dalam kehidupan sehari-hari, kita mengenali entitas sebagai objek yang memiliki 
-karakteristik dan perilaku. OOP mengadopsi konsep ini ke dalam pengembangan 
-perangkat lunak sehingga struktur program menjadi lebih intuitif dan mudah dipahami.
-</p>
-
-<p>
-OOP bertujuan untuk meningkatkan modularitas sistem, yaitu dengan memecah 
-program besar menjadi bagian-bagian kecil yang terorganisir dalam bentuk class. 
-Setiap class bertanggung jawab atas satu konsep atau entitas tertentu, 
-sehingga pengembangan dan pemeliharaan sistem menjadi lebih terstruktur.
-</p>
-
-<p>
-Selain itu, OOP mendukung prinsip <b>reusability</b> atau penggunaan ulang kode. 
-Class yang telah dibuat dapat digunakan kembali dalam proyek lain tanpa perlu 
-menulis ulang logika yang sama. Hal ini sangat penting dalam pengembangan 
-perangkat lunak modern yang menuntut efisiensi waktu dan konsistensi kualitas.
-</p>
-
-<p>
-Dalam praktiknya, OOP memiliki empat pilar utama, yaitu 
-<b>Encapsulation</b>, <b>Abstraction</b>, <b>Inheritance</b>, dan <b>Polymorphism</b>. 
-Keempat prinsip ini memungkinkan sistem menjadi lebih fleksibel, aman, dan 
-mudah dikembangkan. Meskipun pada laporan ini lebih difokuskan pada 
-Encapsulation dan Constructor, Dart sebagai bahasa pemrograman 
-mendukung seluruh pilar tersebut secara native.
-</p>
-
-<p>
-Dengan menerapkan paradigma OOP, pengembang dapat membangun sistem yang 
-<b>scalable</b> (mudah dikembangkan), <b>maintainable</b> (mudah dirawat), 
-dan <b>robust</b> (tahan terhadap kesalahan). Pendekatan ini menjadi fondasi 
-utama dalam pengembangan aplikasi modern, termasuk framework Flutter 
-yang menggunakan Dart sebagai bahasa utamanya.
-</p>
-
-</div>
-  
-<div class="card">
-  <p>
-Pada source code ini, class <b>Car</b> memiliki dua atribut yaitu model dan color.
-Method <b>start()</b> dan <b>stop()</b> menggambarkan perilaku objek mobil.
-Class ini menunjukkan konsep dasar OOP yaitu pembuatan objek dari sebuah blueprint (class).
-</p>
 <h2>1. CLASS DAN OBJECT</h2>
-<pre><code>
-class Car {
+<pre><code>class Car {
   String? model;
   String? color;
 
@@ -160,22 +139,18 @@ class Car {
   void stop() {
     print('Car stopped!');
   }
-}
-</code></pre>
+}</code></pre>
 
-<iframe src="https://dartpad.dev/4e30c1c7fdbea890a1259ea0f86af817"></iframe>
+<button class="open-btn"
+onclick="openModal('https://dartpad.dev/4e30c1c7fdbea890a1259ea0f86af817')">
+▶ JALANKAN CODE
+</button>
 </div>
 
+<!-- CARD 2 -->
 <div class="card">
-  <p>
-Constructor digunakan untuk memberikan nilai awal saat objek dibuat.
-Dengan <b>Car(this.model, this.color)</b>, setiap objek Car 
-akan langsung memiliki nilai model dan color ketika diinisialisasi.
-Ini meningkatkan efisiensi dan memastikan data tidak kosong.
-</p>
 <h2>2. CONSTRUCTOR</h2>
-<pre><code>
-class Car {
+<pre><code>class Car {
   String? model;
   String? color;
 
@@ -184,22 +159,18 @@ class Car {
   void start() {
     print('Car started!');
   }
-}
-</code></pre>
+}</code></pre>
 
-<iframe src="https://dartpad.dev/4e30c1c7fdbea890a1259ea0f86af817"></iframe>
+<button class="open-btn"
+onclick="openModal('https://dartpad.dev/4e30c1c7fdbea890a1259ea0f86af817')">
+▶ JALANKAN CODE
+</button>
 </div>
 
+<!-- CARD 3 -->
 <div class="card">
-  
 <h2>3. VALIDASI DATA</h2>
-  <p>
-Class <b>Mahasiswa</b> menerapkan validasi pada constructor.
-Jika nilai IPK berada di luar rentang 0.0–4.0, program akan menghasilkan error.
-Ini merupakan contoh penerapan kontrol data agar sistem lebih aman dan robust.
-</p>
-<pre><code>
-class Mahasiswa {
+<pre><code>class Mahasiswa {
   String nama;
   String nim;
   double ipk;
@@ -209,22 +180,18 @@ class Mahasiswa {
       throw ArgumentError('IPK harus 0.0 - 4.0');
     }
   }
-}
-</code></pre>
+}</code></pre>
 
-<iframe src="https://dartpad.dev/ca8dcbc1c8db28b3bb44a99392d1d23a"></iframe>
+<button class="open-btn"
+onclick="openModal('https://dartpad.dev/ca8dcbc1c8db28b3bb44a99392d1d23a')">
+▶ JALANKAN CODE
+</button>
 </div>
 
+<!-- CARD 4 -->
 <div class="card">
-  <p>
-Atribut <b>name</b> diawali dengan underscore () yang menandakan 
-bahwa variabel tersebut bersifat private.
-Akses dilakukan melalui method <b>setName()</b> dan <b>getName()</b>.
-Konsep ini disebut Encapsulation, yaitu membatasi akses langsung ke data.
-</p>
 <h2>4. ENCAPSULATION</h2>
-<pre><code>
-class Person {
+<pre><code>class Person {
   String _name;
   int age;
 
@@ -237,22 +204,18 @@ class Person {
   String getName() {
     return _name;
   }
-}
-</code></pre>
+}</code></pre>
 
-<iframe src="https://dartpad.dev/a17be452782bd4cfd92dcbfdef32b64a"></iframe>
+<button class="open-btn"
+onclick="openModal('https://dartpad.dev/a17be452782bd4cfd92dcbfdef32b64a')">
+▶ JALANKAN CODE
+</button>
 </div>
 
+<!-- CARD 5 -->
 <div class="card">
-  <p>
-Constructor dengan named parameter membuat kode lebih jelas dan fleksibel.
-Kata kunci <b>required</b> memastikan nilai wajib diisi,
-sementara nilai default seperti stok = 0 dan kategori = 'Umum'
-memberikan keamanan tambahan jika tidak diinput.
-</p>
 <h2>5. NAMED PARAMETER</h2>
-<pre><code>
-class Produk {
+<pre><code>class Produk {
   final String id;
   final String nama;
   final double harga;
@@ -266,15 +229,12 @@ class Produk {
     this.stok = 0,
     this.kategori = 'Umum',
   });
-}
-</code></pre>
+}</code></pre>
 
-<iframe src="https://dartpad.dev/376696766fd532a74403d92c6fa200f1"></iframe>
-</div>
-
-<div class="card">
-<h2>6. KESIMPULAN</h2>
-<p>OOP membuat program lebih terstruktur dan mudah dikembangkan.</p>
+<button class="open-btn"
+onclick="openModal('https://dartpad.dev/376696766fd532a74403d92c6fa200f1')">
+▶ JALANKAN CODE
+</button>
 </div>
 
 </div>
@@ -282,6 +242,33 @@ class Produk {
 <footer>
 © 2026 - UNIVERSITAS BINADARMA
 </footer>
+
+<!-- MODAL -->
+<div id="iframeModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">X</span>
+    <iframe id="modalIframe"></iframe>
+  </div>
+</div>
+
+<script>
+function openModal(url) {
+  document.getElementById("iframeModal").style.display = "block";
+  document.getElementById("modalIframe").src = url;
+}
+
+function closeModal() {
+  document.getElementById("iframeModal").style.display = "none";
+  document.getElementById("modalIframe").src = "";
+}
+
+window.onclick = function(event) {
+  const modal = document.getElementById("iframeModal");
+  if (event.target == modal) {
+    closeModal();
+  }
+}
+</script>
 
 </body>
 </html>
