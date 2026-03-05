@@ -125,21 +125,58 @@ footer {
 
 <div class="container">
 
+<div class="card">
+<h2>1. PENGERTIAN OOP</h2>
+
+<p>
+Object Oriented Programming (OOP) tidak hanya sekadar teknik pemrograman, 
+tetapi merupakan pendekatan desain sistem yang meniru cara manusia memahami dunia nyata. 
+Dalam kehidupan sehari-hari, kita mengenali entitas sebagai objek yang memiliki 
+karakteristik dan perilaku. OOP mengadopsi konsep ini ke dalam pengembangan 
+perangkat lunak sehingga struktur program menjadi lebih intuitif dan mudah dipahami.
+</p>
+
+<p>
+OOP bertujuan untuk meningkatkan modularitas sistem, yaitu dengan memecah 
+program besar menjadi bagian-bagian kecil yang terorganisir dalam bentuk class. 
+Setiap class bertanggung jawab atas satu konsep atau entitas tertentu, 
+sehingga pengembangan dan pemeliharaan sistem menjadi lebih terstruktur.
+</p>
+
+<p>
+Selain itu, OOP mendukung prinsip <b>reusability</b> atau penggunaan ulang kode. 
+Class yang telah dibuat dapat digunakan kembali dalam proyek lain tanpa perlu 
+menulis ulang logika yang sama. Hal ini sangat penting dalam pengembangan 
+perangkat lunak modern yang menuntut efisiensi waktu dan konsistensi kualitas.
+</p>
+
+<p>
+Dalam praktiknya, OOP memiliki empat pilar utama, yaitu 
+<b>Encapsulation</b>, <b>Abstraction</b>, <b>Inheritance</b>, dan <b>Polymorphism</b>. 
+Keempat prinsip ini memungkinkan sistem menjadi lebih fleksibel, aman, dan 
+mudah dikembangkan. Meskipun pada laporan ini lebih difokuskan pada 
+Encapsulation dan Constructor, Dart sebagai bahasa pemrograman 
+mendukung seluruh pilar tersebut secara native.
+</p>
+
+<p>
+Dengan menerapkan paradigma OOP, pengembang dapat membangun sistem yang 
+<b>scalable</b> (mudah dikembangkan), <b>maintainable</b> (mudah dirawat), 
+dan <b>robust</b> (tahan terhadap kesalahan). Pendekatan ini menjadi fondasi 
+utama dalam pengembangan aplikasi modern, termasuk framework Flutter 
+yang menggunakan Dart sebagai bahasa utamanya.
+</p>
+
+</div>
+  
 <!-- CARD 1 -->
 <div class="card">
 <h2>1. CLASS DAN OBJECT</h2>
-<pre><code>class Car {
-  String? model;
-  String? color;
-
-  void start() {
-    print('Car started!');
-  }
-
-  void stop() {
-    print('Car stopped!');
-  }
-}</code></pre>
+<pre><code><p>
+Pada source code ini, class <b>Car</b> memiliki dua atribut yaitu model dan color.
+Method <b>start()</b> dan <b>stop()</b> menggambarkan perilaku objek mobil.
+Class ini menunjukkan konsep dasar OOP yaitu pembuatan objek dari sebuah blueprint (class).
+</p>}</code></pre>
 
 <button class="open-btn"
 onclick="openModal('https://dartpad.dev/4e30c1c7fdbea890a1259ea0f86af817')">
@@ -150,15 +187,12 @@ onclick="openModal('https://dartpad.dev/4e30c1c7fdbea890a1259ea0f86af817')">
 <!-- CARD 2 -->
 <div class="card">
 <h2>2. CONSTRUCTOR</h2>
-<pre><code>class Car {
-  String? model;
-  String? color;
-
-  Car(this.model, this.color);
-
-  void start() {
-    print('Car started!');
-  }
+<pre><code><p>
+Constructor digunakan untuk memberikan nilai awal saat objek dibuat.
+Dengan <b>Car(this.model, this.color)</b>, setiap objek Car 
+akan langsung memiliki nilai model dan color ketika diinisialisasi.
+Ini meningkatkan efisiensi dan memastikan data tidak kosong.
+</p>
 }</code></pre>
 
 <button class="open-btn"
@@ -170,15 +204,11 @@ onclick="openModal('https://dartpad.dev/4e30c1c7fdbea890a1259ea0f86af817')">
 <!-- CARD 3 -->
 <div class="card">
 <h2>3. VALIDASI DATA</h2>
-<pre><code>class Mahasiswa {
-  String nama;
-  String nim;
-  double ipk;
-
-  Mahasiswa(this.nama, this.nim, this.ipk) {
-    if (ipk < 0.0 || ipk > 4.0) {
-      throw ArgumentError('IPK harus 0.0 - 4.0');
-    }
+<pre><code><p>
+Class <b>Mahasiswa</b> menerapkan validasi pada constructor.
+Jika nilai IPK berada di luar rentang 0.0–4.0, program akan menghasilkan error.
+Ini merupakan contoh penerapan kontrol data agar sistem lebih aman dan robust.
+</p>
   }
 }</code></pre>
 
@@ -191,15 +221,12 @@ onclick="openModal('https://dartpad.dev/ca8dcbc1c8db28b3bb44a99392d1d23a')">
 <!-- CARD 4 -->
 <div class="card">
 <h2>4. ENCAPSULATION</h2>
-<pre><code>class Person {
-  String _name;
-  int age;
-
-  Person(this._name, this.age);
-
-  void setName(String name) {
-    _name = name;
-  }
+<pre><code><p>
+Atribut <b>name</b> diawali dengan underscore () yang menandakan 
+bahwa variabel tersebut bersifat private.
+Akses dilakukan melalui method <b>setName()</b> dan <b>getName()</b>.
+Konsep ini disebut Encapsulation, yaitu membatasi akses langsung ke data.
+</p>
 
   String getName() {
     return _name;
@@ -215,20 +242,12 @@ onclick="openModal('https://dartpad.dev/a17be452782bd4cfd92dcbfdef32b64a')">
 <!-- CARD 5 -->
 <div class="card">
 <h2>5. NAMED PARAMETER</h2>
-<pre><code>class Produk {
-  final String id;
-  final String nama;
-  final double harga;
-  final int stok;
-  final String kategori;
-
-  Produk({
-    required this.id,
-    required this.nama,
-    required this.harga,
-    this.stok = 0,
-    this.kategori = 'Umum',
-  });
+<pre><code><p>
+Constructor dengan named parameter membuat kode lebih jelas dan fleksibel.
+Kata kunci <b>required</b> memastikan nilai wajib diisi,
+sementara nilai default seperti stok = 0 dan kategori = 'Umum'
+memberikan keamanan tambahan jika tidak diinput.
+</p>);
 }</code></pre>
 
 <button class="open-btn"
