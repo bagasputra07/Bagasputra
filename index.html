@@ -177,6 +177,19 @@ Pada source code ini, class <b>Car</b> memiliki dua atribut yaitu model dan colo
 Method <b>start()</b> dan <b>stop()</b> menggambarkan perilaku objek mobil.
 Class ini menunjukkan konsep dasar OOP yaitu pembuatan objek dari sebuah blueprint (class).
 </p></code></pre>
+  class Car {
+  String? model;
+  String? color;
+
+  void start() {
+    print('Car started!');
+  }
+
+  void stop() {
+    print('Car stopped!');
+  }
+}
+</code></pre>
 
 <button class="open-btn"
 onclick="openModal('https://dartpad.dev/4e30c1c7fdbea890a1259ea0f86af817')">
@@ -194,6 +207,17 @@ akan langsung memiliki nilai model dan color ketika diinisialisasi.
 Ini meningkatkan efisiensi dan memastikan data tidak kosong.
 </p>
 </code></pre>
+  class Car {
+  String? model;
+  String? color;
+
+  Car(this.model, this.color);
+
+  void start() {
+    print('Car started!');
+  }
+}
+</code></pre>
 
 <button class="open-btn"
 onclick="openModal('https://dartpad.dev/4e30c1c7fdbea890a1259ea0f86af817')">
@@ -210,6 +234,18 @@ Jika nilai IPK berada di luar rentang 0.0–4.0, program akan menghasilkan error
 Ini merupakan contoh penerapan kontrol data agar sistem lebih aman dan robust.
 </p>
   </code></pre>
+  class Mahasiswa {
+  String nama;
+  String nim;
+  double ipk;
+
+  Mahasiswa(this.nama, this.nim, this.ipk) {
+    if (ipk < 0.0 || ipk > 4.0) {
+      throw ArgumentError('IPK harus 0.0 - 4.0');
+    }
+  }
+}
+</code></pre>
 
 <button class="open-btn"
 onclick="openModal('https://dartpad.dev/ca8dcbc1c8db28b3bb44a99392d1d23a')">
@@ -226,8 +262,22 @@ bahwa variabel tersebut bersifat private.
 Akses dilakukan melalui method <b>setName()</b> dan <b>getName()</b>.
 Konsep ini disebut Encapsulation, yaitu membatasi akses langsung ke data.
 </p>
-
  </code></pre>
+  class Person {
+  String _name;
+  int age;
+
+  Person(this._name, this.age);
+
+  void setName(String name) {
+    _name = name;
+  }
+
+  String getName() {
+    return _name;
+  }
+}
+</code></pre>
 
 <button class="open-btn"
 onclick="openModal('https://dartpad.dev/a17be452782bd4cfd92dcbfdef32b64a')">
@@ -244,6 +294,22 @@ Kata kunci <b>required</b> memastikan nilai wajib diisi,
 sementara nilai default seperti stok = 0 dan kategori = 'Umum'
 memberikan keamanan tambahan jika tidak diinput.
 </p></code></pre>
+  class Produk {
+  final String id;
+  final String nama;
+  final double harga;
+  final int stok;
+  final String kategori;
+
+  Produk({
+    required this.id,
+    required this.nama,
+    required this.harga,
+    this.stok = 0,
+    this.kategori = 'Umum',
+  });
+}
+  </code></pre>
 
 <button class="open-btn"
 onclick="openModal('https://dartpad.dev/376696766fd532a74403d92c6fa200f1')">
