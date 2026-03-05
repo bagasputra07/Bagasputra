@@ -210,6 +210,7 @@ Dengan <b>Car(this.model, this.color)</b>, setiap objek Car
 akan langsung memiliki nilai model dan color ketika diinisialisasi.
 Ini meningkatkan efisiensi dan memastikan data tidak kosong.
 </p>
+  <div class="card">
 class Car {
   String? model;
   String? color;
@@ -220,6 +221,7 @@ class Car {
     print('Car started!');
   }
 }
+  </div>
  </P>
 </code></pre>
 
@@ -237,6 +239,7 @@ Class <b>Mahasiswa</b> menerapkan validasi pada constructor.
 Jika nilai IPK berada di luar rentang 0.0–4.0, program akan menghasilkan error.
 Ini merupakan contoh penerapan kontrol data agar sistem lebih aman dan robust.
 </p>
+  <div class="card">
   class Mahasiswa {
   String nama;
   String nim;
@@ -248,6 +251,7 @@ Ini merupakan contoh penerapan kontrol data agar sistem lebih aman dan robust.
     }
   }
 }
+  </div>
  </p>     
 </code></pre>
 
@@ -266,6 +270,7 @@ bahwa variabel tersebut bersifat private.
 Akses dilakukan melalui method <b>setName()</b> dan <b>getName()</b>.
 Konsep ini disebut Encapsulation, yaitu membatasi akses langsung ke data.
 </p>
+  <div class="card">
   class Person {
   String _name;
   int age;
@@ -280,6 +285,7 @@ Konsep ini disebut Encapsulation, yaitu membatasi akses langsung ke data.
     return _name;
   }
 }
+  </div>
 </P>
 </code></pre>
 
@@ -298,6 +304,7 @@ Kata kunci <b>required</b> memastikan nilai wajib diisi,
 sementara nilai default seperti stok = 0 dan kategori = 'Umum'
 memberikan keamanan tambahan jika tidak diinput.
   </P>
+  <div class="card">
   class Produk {
   final String id;
   final String nama;
@@ -313,6 +320,7 @@ memberikan keamanan tambahan jika tidak diinput.
     this.kategori = 'Umum',
   });
 }
+  </div>
 </P>  
 </code></pre>
 
