@@ -180,19 +180,30 @@ Class ini menunjukkan konsep dasar OOP yaitu pembuatan objek dari sebuah bluepri
   <div class="card">
   <p>
   // Nama   : Muhammad Bagas putra andeza 
-  // Nim    : 251410003
-  // Kelas  : Si2A
-  class Car {
-  String? model;
-  String? color;
+// Nim    : 251410003
+// Kelas  : Si2A
+class Car {
+  String model; // Properti model
+  String color; // Properti warna
 
+  // Constructor untuk inisialisasi model dan color secara langsung
+  Car(this.model, this.color);
+
+  // Method untuk menyalakan mobil
   void start() {
-    print('Car started!');
+    print('Engine Online: $model'); // Menampilkan pesan dengan nama model
   }
+}
 
-  void stop() {
-    print('Car stopped!');
-  }
+void main() {
+  // Membuat objek myCar dari class Car
+  Car myCar = Car("Ferrari", "Hitam");
+
+  // Menjalankan fungsi start
+  myCar.start();
+
+  // Menampilkan atribut warna
+  print(myCar.color);
 }
   </p>
   </div>
@@ -214,18 +225,31 @@ akan langsung memiliki nilai model dan color ketika diinisialisasi.
 Ini meningkatkan efisiensi dan memastikan data tidak kosong.
 </p>
   <div class="card">
-  // Nama   : Muhammad Bagas putra andeza 
-  // Nim    : 251410003
-  // Kelas  : Si2A
+ // Nama   : Muhammad Bagas putra andeza 
+// Nim    : 251410003
+// Kelas  : Si2A
 class Car {
-  String? model;
-  String? color;
+  String model; // Properti model
+  String color; // Properti warna
 
+  // Constructor untuk inisialisasi model dan color secara langsung
   Car(this.model, this.color);
 
+  // Method untuk menyalakan mobil
   void start() {
-    print('Car started!');
+    print('Engine Online: $model'); // Menampilkan pesan dengan nama model
   }
+}
+
+void main() {
+  // Membuat objek myCar dari class Car
+  Car myCar = Car("Ferrari", "Hitam");
+
+  // Menjalankan fungsi start
+  myCar.start();
+
+  // Menampilkan atribut warna
+  print(myCar.color);
 }
   </div>
  </P>
@@ -284,18 +308,26 @@ Konsep ini disebut Encapsulation, yaitu membatasi akses langsung ke data.
   // Nim    : 251410003
   // Kelas  : Si2A
   class Person {
-  String _name;
-  int age;
+  String _name; // Atribut private (diawali underscore)
+  int age;      // Atribut publik
 
+  // Constructor
   Person(this._name, this.age);
 
-  void setName(String name) {
-    _name = name;
-  }
+  // Setter untuk mengubah nilai _name secara aman
+  void setName(String name) => _name = name;
 
-  String getName() {
-    return _name;
-  }
+  // Getter untuk mengambil nilai _name
+  String getName() => _name;
+}
+
+void main() {
+  // Membuat objek dari class Person
+  Person person = Person("Muhammad bagas putra andeza", 18);
+
+  print(person.age);        // Menampilkan umur
+  person.setName("BAGAS");  // Mengubah nama
+  print(person.getName());  // Menampilkan nama hasil getter
 }
   </div>
 </P>
@@ -320,20 +352,22 @@ memberikan keamanan tambahan jika tidak diinput.
   // Nama   : Muhammad Bagas putra andeza 
   // Nim    : 251410003
   // Kelas  : Si2A
-  class Produk {
-  final String id;
-  final String nama;
-  final double harga;
-  final int stok;
-  final String kategori;
+  // Nama   : Muhammad Bagas putra andeza 
+// Nim    : 251410003
+// Kelas  : Si2A
+class Product {
+  String nama; // Nama produk (contoh: Handphone)
 
-  Produk({
-    required this.id,
-    required this.nama,
-    required this.harga,
-    this.stok = 0,
-    this.kategori = 'Umum',
-  });
+  // Constructor
+  Product(this.nama);
+}
+
+void main() {
+  // Membuat objek produk1 dari class Product
+  Product produk1 = Product("Andeza Website");
+
+  // Menampilkan atribut nama
+  print(produk1.nama);
 }
   </div>
 </P>  
