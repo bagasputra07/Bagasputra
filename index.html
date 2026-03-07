@@ -243,13 +243,10 @@ class Car {
 
 void main() {
   // Membuat objek myCar dari class Car
-  Car myCar = Car("Ferrari", "Hitam");
+  Car myCar = Car("FERRARI", "BLACK");
 
-  // Menjalankan fungsi start
-  myCar.start();
-
-  // Menampilkan atribut warna
-  print(myCar.color);
+  myCar.start();        // Menjalankan fungsi start
+  print(myCar.color);   // Menampilkan atribut warna
 }
   </div>
  </P>
@@ -270,19 +267,30 @@ Jika nilai IPK berada di luar rentang 0.0–4.0, program akan menghasilkan error
 Ini merupakan contoh penerapan kontrol data agar sistem lebih aman dan robust.
 </p>
   <div class="card">
-  // Nama   : Muhammad Bagas putra andeza 
-  // Nim    : 251410003
-  // Kelas  : Si2A
-  class Mahasiswa {
-  String nama;
-  String nim;
-  double ipk;
+ // Nama   : Muhammad Bagas putra andeza 
+// Nim    : 251410003
+// Kelas  : Si2A
+class Mahasiswa {
+  String nama; // nama : Muhammad bagas putra andeza
+  String nim;  // nim  : 251410003
+  double ipk;  // ipk  : 3.80
 
-  Mahasiswa(this.nama, this.nim, this.ipk) {
-    if (ipk < 0.0 || ipk > 4.0) {
-      throw ArgumentError('IPK harus 0.0 - 4.0');
-    }
+  // Constructor Mahasiswa (Menginisialisasi data input)
+  Mahasiswa(this.nama, this.nim, this.ipk);
+
+  // Method untuk menampilkan data mahasiswa ke konsol
+  void tampilkanData() {
+    print('Nama : $nama');
+    print('NIM  : $nim');
+    print('IPK  : $ipk');
   }
+}
+
+void main() {
+  // Membuat objek mhs1 dari class Mahasiswa
+  Mahasiswa mhs1 = Mahasiswa("Muhammad bagas putra andeza", "251410003", 3.80);
+
+  mhs1.tampilkanData(); // Memanggil method tampilkanData
 }
   </div>
  </p>     
@@ -305,9 +313,9 @@ Konsep ini disebut Encapsulation, yaitu membatasi akses langsung ke data.
 </p>
   <div class="card">
   // Nama   : Muhammad Bagas putra andeza 
-  // Nim    : 251410003
-  // Kelas  : Si2A
-  class Person {
+// Nim    : 251410003
+// Kelas  : Si2A
+class Person {
   String _name; // Atribut private (diawali underscore)
   int age;      // Atribut publik
 
@@ -319,6 +327,15 @@ Konsep ini disebut Encapsulation, yaitu membatasi akses langsung ke data.
 
   // Getter untuk mengambil nilai _name
   String getName() => _name;
+}
+
+void main() {
+  // Membuat objek dari class Person
+  Person person = Person("Muhammad bagas putra andeza", 18);
+
+  print(person.age);        // Menampilkan umur
+  person.setName("BAGAS");  // Mengubah nama
+  print(person.getName());  // Menampilkan nama hasil getter
 }
 
 void main() {
@@ -350,9 +367,8 @@ memberikan keamanan tambahan jika tidak diinput.
   </P>
   <div class="card">
   // Nama   : Muhammad Bagas putra andeza 
-  // Nim    : 251410003
-  // Kelas  : Si2A
-  // Nama   : Muhammad Bagas putra andeza 
+// Nim    : 251410003
+// Kelas  : Si2A
 class Product {
   String nama; // Nama produk (contoh: Handphone)
 
@@ -367,6 +383,7 @@ void main() {
   // Menampilkan atribut nama
   print(produk1.nama);
 }
+
   </div>
 </P>  
 </code></pre>
