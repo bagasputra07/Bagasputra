@@ -3,40 +3,91 @@
 <head>
   <meta charset="UTF-8">
   <title>Tugas Generic</title>
+
   <style>
     body {
       font-family: Arial;
       margin: 20px;
       background: #f9f9f9;
     }
+
     h2 {
       color: #2c3e50;
     }
+
     table {
       border-collapse: collapse;
       width: 100%;
       margin-bottom: 20px;
     }
+
     table, th, td {
       border: 1px solid #333;
     }
+
     th, td {
       padding: 10px;
       text-align: center;
     }
+
     button {
       padding: 10px 15px;
       background: #3498db;
       color: white;
       border: none;
       cursor: pointer;
+      margin-right: 10px;
     }
+
     pre {
       background: #eee;
       padding: 10px;
     }
+
+    /* =======================
+       MODAL DARTPAD
+    ======================= */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      width: 90%;
+      max-width: 900px;
+      height: 500px;
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
   </style>
 </head>
+
 <body>
 
 <h2>Slide 14: Generic vs Dynamic vs Object</h2>
@@ -77,6 +128,7 @@
 <h2>Slide 15: Implementasi (Simulasi Generic di JavaScript)</h2>
 
 <button onclick="runDemo()">Jalankan Program</button>
+<button onclick="openModal()">Jalankan Code (DartPad)</button>
 
 <pre id="output"></pre>
 
@@ -88,15 +140,12 @@ class Stack {
   constructor() {
     this.items = [];
   }
-
   push(item) {
     this.items.push(item);
   }
-
   pop() {
     return this.items.pop();
   }
-
   peek() {
     return this.items[this.items.length - 1];
   }
@@ -126,15 +175,12 @@ class Cache {
   constructor() {
     this.storage = {};
   }
-
   set(key, value) {
     this.storage[key] = value;
   }
-
   get(key) {
     return this.storage[key];
   }
-
   remove(key) {
     delete this.storage[key];
   }
@@ -156,7 +202,6 @@ class Product {
 function runDemo() {
   let output = "";
 
-  // STACK
   let stack = new Stack();
   stack.push(10);
   stack.push(20);
@@ -164,19 +209,16 @@ function runDemo() {
   output += "Peek: " + stack.peek() + "\n";
   output += "Pop: " + stack.pop() + "\n\n";
 
-  // MERGE LIST
   output += "MERGE LIST\n";
   let merged = mergeLists([1,2], [3,4]);
   output += merged + "\n\n";
 
-  // RESPONSE
   output += "RESPONSE\n";
   let res1 = new Response("Sukses");
   let res2 = new Response(null, "Error");
   output += "Data: " + res1.data + "\n";
   output += "Error: " + res2.error + "\n\n";
 
-  // CACHE
   output += "CACHE\n";
   let userCache = new Cache();
   userCache.set("name", "Alice");
@@ -189,7 +231,35 @@ function runDemo() {
 
   document.getElementById("output").textContent = output;
 }
+
+// =======================
+// MODAL FUNCTION
+// =======================
+function openModal() {
+  document.getElementById("dartModal").style.display = "flex";
+}
+
+function closeModal() {
+  document.getElementById("dartModal").style.display = "none";
+}
+
+window.onclick = function(event) {
+  let modal = document.getElementById("dartModal");
+  if (event.target === modal) {
+    modal.style.display = "none";
+  }
+}
 </script>
+
+<!-- =======================
+     MODAL DARTPAD
+======================= -->
+<div id="dartModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">✖</span>
+    <iframe src="https://dartpad.dev/embed-inline.html"></iframe>
+  </div>
+</div>
 
 <h2>Slide 16: Ringkasan</h2>
 <ul>
@@ -197,326 +267,6 @@ function runDemo() {
   <li>Dapat digunakan ulang (reusable)</li>
   <li>Digunakan pada class, function, dan collection</li>
 </ul>
-
-</body>
-</html>  border: 4px solid #00ffcc;
-  padding: 5px 10px;
-  cursor: pointer;
-  font-size: 12px;
-}
-
-footer {
-  background: #ff0080;
-  text-align: center;
-  padding: 20px;
-  font-size: 10px;
-  border-top: 6px solid #00ffcc;
-}
-</style>
-</head>
-
-<body>
-
-<header>
-<h1>OOP DART - OBJECT ORIENTED PROGRAMMING</h1>
-<p>MUHAMMAD BAGAS PUTRA ANDEZA | NIM: 251410003</p>
-</header>
-
-<div class="container">
-
-<div class="card">
-<h2>PENGERTIAN OOP</h2>
-
-<p>
-Object Oriented Programming (OOP) tidak hanya sekadar teknik pemrograman, 
-tetapi merupakan pendekatan desain sistem yang meniru cara manusia memahami dunia nyata. 
-Dalam kehidupan sehari-hari, kita mengenali entitas sebagai objek yang memiliki 
-karakteristik dan perilaku. OOP mengadopsi konsep ini ke dalam pengembangan 
-perangkat lunak sehingga struktur program menjadi lebih intuitif dan mudah dipahami.
-</p>
-
-<p>
-OOP bertujuan untuk meningkatkan modularitas sistem, yaitu dengan memecah 
-program besar menjadi bagian-bagian kecil yang terorganisir dalam bentuk class. 
-Setiap class bertanggung jawab atas satu konsep atau entitas tertentu, 
-sehingga pengembangan dan pemeliharaan sistem menjadi lebih terstruktur.
-</p>
-
-<p>
-Selain itu, OOP mendukung prinsip <b>reusability</b> atau penggunaan ulang kode. 
-Class yang telah dibuat dapat digunakan kembali dalam proyek lain tanpa perlu 
-menulis ulang logika yang sama. Hal ini sangat penting dalam pengembangan 
-perangkat lunak modern yang menuntut efisiensi waktu dan konsistensi kualitas.
-</p>
-
-<p>
-Dalam praktiknya, OOP memiliki empat pilar utama, yaitu 
-<b>Encapsulation</b>, <b>Abstraction</b>, <b>Inheritance</b>, dan <b>Polymorphism</b>. 
-Keempat prinsip ini memungkinkan sistem menjadi lebih fleksibel, aman, dan 
-mudah dikembangkan. Meskipun pada laporan ini lebih difokuskan pada 
-Encapsulation dan Constructor, Dart sebagai bahasa pemrograman 
-mendukung seluruh pilar tersebut secara native.
-</p>
-
-<p>
-Dengan menerapkan paradigma OOP, pengembang dapat membangun sistem yang 
-<b>scalable</b> (mudah dikembangkan), <b>maintainable</b> (mudah dirawat), 
-dan <b>robust</b> (tahan terhadap kesalahan). Pendekatan ini menjadi fondasi 
-utama dalam pengembangan aplikasi modern, termasuk framework Flutter 
-yang menggunakan Dart sebagai bahasa utamanya.
-</p>
-
-</div>
-  
-<!-- CARD 1 -->
-<div class="card">
-<h2>1. CLASS DAN OBJECT</h2>
-<pre><code><p>
-Pada source code ini, class <b>Car</b> memiliki dua atribut yaitu model dan color.
-Method <b>start()</b> dan <b>stop()</b> menggambarkan perilaku objek mobil.
-Class ini menunjukkan konsep dasar OOP yaitu pembuatan objek dari sebuah blueprint (class).
-</p>
-  <div class="card">
-  <p>
-// Nama   : Muhammad Bagas putra andeza 
-// Nim    : 251410003
-// Kelas  : Si2A
-class Car {
-  String model; // Properti model
-  String color; // Properti warna
-
-  // Constructor untuk inisialisasi model dan color secara langsung
-  Car(this.model, this.color);
-
-  // Method untuk menyalakan mobil
-  void start() {
-    print('Engine Online: $model'); // Menampilkan pesan dengan nama model
-  }
-}
-
-void main() {
-  // Membuat objek myCar dari class Car
-  Car myCar = Car("Ferrari", "Hitam");
-
-  // Menjalankan fungsi start
-  myCar.start();
-
-  // Menampilkan atribut warna
-  print(myCar.color);
-}
-  </p>
-  </div>
-  </code></pre>
-
-<button class="open-btn"
-onclick="openModal('https://dartpad.dev/4e30c1c7fdbea890a1259ea0f86af817')">
-▶ JALANKAN CODE
-</button>
-</div>
-
-<!-- CARD 2 -->
-<div class="card">
-<h2>2. CONSTRUCTOR</h2>
-<pre><code><p>
-Constructor digunakan untuk memberikan nilai awal saat objek dibuat.
-Dengan <b>Car(this.model, this.color)</b>, setiap objek Car 
-akan langsung memiliki nilai model dan color ketika diinisialisasi.
-Ini meningkatkan efisiensi dan memastikan data tidak kosong.
-</p>
-  <div class="card">
-// Nama   : Muhammad Bagas putra andeza 
-// Nim    : 251410003
-// Kelas  : Si2A
-class Car {
-  String model; // Properti model
-  String color; // Properti warna
-
-  // Constructor untuk inisialisasi model dan color secara langsung
-  Car(this.model, this.color);
-
-  // Method untuk menyalakan mobil
-  void start() {
-    print('Engine Online: $model'); // Menampilkan pesan dengan nama model
-  }
-}
-
-void main() {
-  // Membuat objek myCar dari class Car
-  Car myCar = Car("FERRARI", "BLACK");
-
-  myCar.start();        // Menjalankan fungsi start
-  print(myCar.color);   // Menampilkan atribut warna
-}
-  </div>
- </P>
-</code></pre>
-
-<button class="open-btn"
-onclick="openModal('https://dartpad.dev/362a6699095d6fdb972aab4201caa9ee')">
-▶ JALANKAN CODE
-</button>
-</div>
-
-<!-- CARD 3 -->
-<div class="card">
-<h2>3. VALIDASI DATA</h2>
-<pre><code><p>
-Class <b>Mahasiswa</b> menerapkan validasi pada constructor.
-Jika nilai IPK berada di luar rentang 0.0–4.0, program akan menghasilkan error.
-Ini merupakan contoh penerapan kontrol data agar sistem lebih aman dan robust.
-</p>
-  <div class="card">
- // Nama   : Muhammad Bagas putra andeza 
-// Nim    : 251410003
-// Kelas  : Si2A
-class Mahasiswa {
-  String nama; // nama : Muhammad bagas putra andeza
-  String nim;  // nim  : 251410003
-  double ipk;  // ipk  : 3.80
-
-  // Constructor Mahasiswa (Menginisialisasi data input)
-  Mahasiswa(this.nama, this.nim, this.ipk);
-
-  // Method untuk menampilkan data mahasiswa ke konsol
-  void tampilkanData() {
-    print('Nama : $nama');
-    print('NIM  : $nim');
-    print('IPK  : $ipk');
-  }
-}
-
-void main() {
-  // Membuat objek mhs1 dari class Mahasiswa
-  Mahasiswa mhs1 = Mahasiswa("Muhammad bagas putra andeza", "251410003", 3.80);
-
-  mhs1.tampilkanData(); // Memanggil method tampilkanData
-}
-  </div>
- </p>     
-</code></pre>
-
-<button class="open-btn"
-onclick="openModal('https://dartpad.dev/ca8dcbc1c8db28b3bb44a99392d1d23a')">
-▶ JALANKAN CODE
-</button>
-</div>
-
-<!-- CARD 4 -->
-<div class="card">
-<h2>4. ENCAPSULATION</h2>
-<pre><code><p>
-Atribut <b>name</b> diawali dengan underscore () yang menandakan 
-bahwa variabel tersebut bersifat private.
-Akses dilakukan melalui method <b>setName()</b> dan <b>getName()</b>.
-Konsep ini disebut Encapsulation, yaitu membatasi akses langsung ke data.
-</p>
-  <div class="card">
-  // Nama   : Muhammad Bagas putra andeza 
-// Nim    : 251410003
-// Kelas  : Si2A
-class Person {
-  String _name; // Atribut private (diawali underscore)
-  int age;      // Atribut publik
-
-  // Constructor
-  Person(this._name, this.age);
-
-  // Setter untuk mengubah nilai _name secara aman
-  void setName(String name) => _name = name;
-
-  // Getter untuk mengambil nilai _name
-  String getName() => _name;
-}
-
-void main() {
-  // Membuat objek dari class Person
-  Person person = Person("Muhammad bagas putra andeza", 18);
-
-  print(person.age);        // Menampilkan umur
-  person.setName("BAGAS");  // Mengubah nama
-  print(person.getName());  // Menampilkan nama hasil getter
-}
-
-  </div>
-</P>
-</code></pre>
-
-<button class="open-btn"
-onclick="openModal('https://dartpad.dev/a17be452782bd4cfd92dcbfdef32b64a')">
-▶ JALANKAN CODE
-</button>
-</div>
-
-<!-- CARD 5 -->
-<div class="card">
-<h2>5. NAMED PARAMETER</h2>
-<pre><code><p>
-Constructor dengan named parameter membuat kode lebih jelas dan fleksibel.
-Kata kunci <b>required</b> memastikan nilai wajib diisi,
-sementara nilai default seperti stok = 0 dan kategori = 'Umum'
-memberikan keamanan tambahan jika tidak diinput.
-  </P>
-  <div class="card">
-  // Nama   : Muhammad Bagas putra andeza 
-// Nim    : 251410003
-// Kelas  : Si2A
-class Product {
-  String nama; // Nama produk (contoh: Handphone)
-
-  // Constructor
-  Product(this.nama);
-}
-
-void main() {
-  // Membuat objek produk1 dari class Product
-  Product produk1 = Product("Andeza Website");
-
-  // Menampilkan atribut nama
-  print(produk1.nama);
-}
-
-  </div>
-</P>  
-</code></pre>
-
-<button class="open-btn"
-onclick="openModal('https://dartpad.dev/376696766fd532a74403d92c6fa200f1')">
-▶ JALANKAN CODE
-</button>
-</div>
-
-</div>
-
-<footer>
-© 2026 - UNIVERSITAS BINADARMA
-</footer>
-
-<!-- MODAL -->
-<div id="iframeModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal()">X</span>
-    <iframe id="modalIframe"></iframe>
-  </div>
-</div>
-
-<script>
-function openModal(url) {
-  document.getElementById("iframeModal").style.display = "block";
-  document.getElementById("modalIframe").src = url;
-}
-
-function closeModal() {
-  document.getElementById("iframeModal").style.display = "none";
-  document.getElementById("modalIframe").src = "";
-}
-
-window.onclick = function(event) {
-  const modal = document.getElementById("iframeModal");
-  if (event.target == modal) {
-    closeModal();
-  }
-}
-</script>
 
 </body>
 </html>
