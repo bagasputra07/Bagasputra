@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Belajar Generic Dart | Azriel Miracle Yuandre</title>
+    <title>📦 SESI 6: Generic Dasar - Muhammad Bagas Putra Andeza</title>
     <style>
         * {
             margin: 0;
@@ -14,1543 +14,697 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #333;
-            line-height: 1.6;
+            min-height: 100vh;
             padding: 20px;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            overflow: hidden;
         }
 
-        header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 40px;
+        /* Header */
+        .header {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
             text-align: center;
         }
 
-        header h1 {
+        .header h1 {
             font-size: 2.5em;
+            color: #333;
             margin-bottom: 10px;
         }
 
-        header .subtitle {
-            font-size: 1.2em;
-            opacity: 0.95;
-        }
-
-        .badges {
-            margin-top: 15px;
+        .badge-container {
             display: flex;
             justify-content: center;
             gap: 15px;
+            margin: 20px 0;
             flex-wrap: wrap;
         }
 
         .badge {
-            background: rgba(255,255,255,0.2);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9em;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: bold;
         }
 
         .student-info {
-            background: #f8f9fa;
+            background: #f0f0f0;
             padding: 15px;
-            text-align: center;
-            border-bottom: 1px solid #e0e0e0;
-            font-weight: bold;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        .student-info p {
+            font-size: 1.1em;
+            color: #333;
+        }
+
+        /* Card */
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h2 {
             color: #667eea;
-        }
-
-        .content {
-            padding: 40px;
-        }
-
-        section {
-            margin-bottom: 50px;
-        }
-
-        h2 {
-            color: #667eea;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #667eea;
-            display: inline-block;
-        }
-
-        h3 {
-            color: #764ba2;
-            margin: 25px 0 15px 0;
-        }
-
-        .concept-box {
-            background: #f0f4ff;
+            margin-bottom: 15px;
             border-left: 4px solid #667eea;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 8px;
+            padding-left: 15px;
         }
 
+        .card h3 {
+            color: #555;
+            margin: 15px 0 10px 0;
+        }
+
+        /* Kode block */
         .code-block {
-            background: #2d2d2d;
-            color: #f8f8f2;
+            background: #1e1e1e;
+            color: #d4d4d4;
             padding: 20px;
             border-radius: 10px;
             overflow-x: auto;
-            margin: 15px 0;
             font-family: 'Courier New', monospace;
             font-size: 14px;
-            line-height: 1.5;
-        }
-
-        .code-block .comment {
-            color: #6a9955;
+            margin: 15px 0;
         }
 
         .code-block .keyword {
             color: #569cd6;
         }
-
         .code-block .string {
             color: #ce9178;
         }
-
+        .code-block .comment {
+            color: #6a9955;
+        }
         .code-block .function {
             color: #dcdcaa;
         }
 
-        .output {
-            background: #1e1e1e;
-            color: #d4d4d4;
+        /* Output simulator */
+        .output-sim {
+            background: #2d2d2d;
+            color: #00ff00;
             padding: 15px;
             border-radius: 8px;
-            margin-top: 10px;
             font-family: monospace;
-            border-left: 3px solid #4ec9b0;
+            margin-top: 10px;
         }
 
-        .error-box {
-            background: #ffe6e6;
-            border-left: 4px solid #dc3545;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 8px;
-            color: #721c24;
-        }
-
-        .benefit-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin: 20px 0;
-        }
-
-        .benefit-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            transition: transform 0.3s;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 5px;
+            transition: opacity 0.3s;
         }
 
-        .benefit-card:hover {
-            transform: translateY(-5px);
+        button:hover {
+            opacity: 0.9;
         }
 
-        .benefit-card h4 {
-            font-size: 1.3em;
-            margin-bottom: 10px;
-        }
-
-        table {
+        /* Tabel perbandingan */
+        .comparison-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 20px 0;
+            margin: 15px 0;
         }
 
-        th, td {
+        .comparison-table th, .comparison-table td {
             border: 1px solid #ddd;
             padding: 12px;
             text-align: left;
         }
 
-        th {
+        .comparison-table th {
             background: #667eea;
             color: white;
         }
 
-        tr:nth-child(even) {
+        .comparison-table tr:nth-child(even) {
             background: #f9f9f9;
         }
 
-        .practice-section {
-            background: #f9f9ff;
-            border-radius: 15px;
-            padding: 25px;
-            margin: 30px 0;
+        /* Grid untuk demo */
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
         }
 
-        .btn {
-            background: #667eea;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            margin: 5px;
-            transition: all 0.3s;
-        }
-
-        .btn:hover {
-            background: #764ba2;
-            transform: translateY(-2px);
-        }
-
-        .interactive-demo {
-            background: #fff;
-            border: 2px solid #667eea;
+        .demo-card {
+            background: #f8f9fa;
             border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
+            padding: 15px;
         }
 
-        .demo-result {
-            background: #f0f4ff;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 15px;
-            font-family: monospace;
+        footer {
+            text-align: center;
+            color: white;
+            margin-top: 30px;
+            padding: 20px;
         }
 
         @media (max-width: 768px) {
-            .content {
-                padding: 20px;
-            }
-            
-            header h1 {
-                font-size: 1.8em;
-            }
+            .header h1 { font-size: 1.8em; }
+            .badge-container { gap: 10px; }
+            .badge { padding: 5px 15px; font-size: 12px; }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
+        <!-- Header -->
+        <div class="header">
             <h1>📦 SESI 6: Generic Dasar</h1>
-            <div class="subtitle">Type-Safe • Code Reusability • Compile-Time Checking</div>
-            <div class="badges">
-                <span class="badge">Type Safety</span>
-                <span class="badge">Code Reusability</span>
-                <span class="badge">Compile-Time Checking</span>
+            <div class="badge-container">
+                <span class="badge">✓ Type-Safe</span>
+                <span class="badge">✓ Code Reusability</span>
+                <span class="badge">✓ Compile-Time Checking</span>
             </div>
-        </header>
-
-        <div class="student-info">
-            👨‍🎓 Azriel Miracle Yuandre | NIM: 251410024 | Kelas: SI2A
+            <div class="student-info">
+                <p>👨‍🎓 <strong>Muhammad Bagas Putra Andeza</strong> | NIM: <strong>251410003</strong> | Kelas: SI2A</p>
+            </div>
         </div>
 
-        <div class="content">
-            <!-- Review Sesi 5 -->
-            <section>
-                <h2>📌 Review Sesi 5 – Class Modifiers</h2>
-                <div class="concept-box">
-                    <p><strong>🔹 sealed</strong> → hierarki tertutup, pattern matching</p>
-                    <p><strong>🔹 base</strong> → hanya bisa di-extend, tidak di-implement dari luar</p>
-                    <p><strong>🔹 final</strong> → tidak bisa di-extend/di-implement dari luar</p>
-                    <div class="code-block">
-                        <span class="keyword">sealed class</span> Result {}<br>
-                        <span class="keyword">class</span> Success <span class="keyword">extends</span> Result {}<br>
-                        <span class="keyword">class</span> Failure <span class="keyword">extends</span> Result {}
-                    </div>
-                </div>
-            </section>
-
-            <!-- Pengantar Generic -->
-            <section>
-                <h2>🎯 Pengantar Generic</h2>
-                <p><strong>Apa itu Generic?</strong> Fitur untuk membuat kode yang bekerja dengan berbagai tipe data.</p>
-                <p><strong>Analog:</strong> Kotak penyimpanan yang bisa menampung apa saja, tapi dengan label tipe.</p>
-                
-                <div class="benefit-grid">
-                    <div class="benefit-card">
-                        <h4>✅ Type Safety</h4>
-                        <p>Keamanan tipe data pada saat kompilasi</p>
-                    </div>
-                    <div class="benefit-card">
-                        <h4>✅ Code Reusability</h4>
-                        <p>Penggunaan ulang kode untuk berbagai tipe</p>
-                    </div>
-                    <div class="benefit-card">
-                        <h4>✅ Compile-time Checking</h4>
-                        <p>Error terdeteksi saat kompilasi</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Masalah Tanpa Generic -->
-            <section>
-                <h2>⚠️ Masalah Tanpa Generic</h2>
-                <div class="error-box">
-                    <strong>❌ Kode Bermasalah (Tanpa Generic)</strong>
-                    <div class="code-block" style="margin-top: 10px;">
-                        <span class="keyword">class</span> Box {<br>
-                        &nbsp;&nbsp;<span class="keyword">dynamic</span> data; <span class="comment">// Bisa apa saja - TIDAK AMAN!</span><br>
-                        &nbsp;&nbsp;Box(<span class="keyword">this</span>.data);<br>
-                        }<br><br>
-                        <span class="keyword">void</span> <span class="function">main</span>() {<br>
-                        &nbsp;&nbsp;<span class="keyword">var</span> box = Box(<span class="string">"INI CONTOH SALAH"</span>);<br>
-                        &nbsp;&nbsp;<span class="keyword">int</span> value = box.data; <span class="comment">// Runtime error jika bukan int!</span><br>
-                        &nbsp;&nbsp;print(value);<br>
-                        }
-                    </div>
-                    <p><strong>⚠️ Bahaya:</strong> Tidak ada jaminan tipe data, bisa menyebabkan runtime error.</p>
-                </div>
-
-                <div class="concept-box">
-                    <strong>✅ Contoh Benar dengan Generic</strong>
-                    <div class="code-block">
-                        <span class="keyword">class</span> Box&lt;T&gt; {<br>
-                        &nbsp;&nbsp;T data;<br>
-                        &nbsp;&nbsp;Box(<span class="keyword">this</span>.data);<br>
-                        }<br><br>
-                        <span class="keyword">void</span> <span class="function">main</span>() {<br>
-                        &nbsp;&nbsp;<span class="keyword">var</span> intBox = Box&lt;<span class="keyword">int</span>&gt;(42);<br>
-                        &nbsp;&nbsp;<span class="keyword">var</span> stringBox = Box&lt;String&gt;(<span class="string">'Hello'</span>);<br>
-                        &nbsp;&nbsp;<span class="keyword">int</span> value = intBox.data; <span class="comment">// ✅ Aman, pasti int</span><br>
-                        &nbsp;&nbsp;print(value); <span class="comment">// Output: 42</span><br>
-                        }
-                    </div>
-                    <div class="output">
-                        Output: 42
-                    </div>
-                </div>
-            </section>
-
-            <!-- Sintaks Generic -->
-            <section>
-                <h2>📝 Sintaks Generic Dasar</h2>
-                <p><strong>Type parameter:</strong> &lt;T&gt;, &lt;E&gt;, &lt;K, V&gt;</p>
-                <p><strong>Konvensi:</strong></p>
-                <ul style="margin-left: 30px; margin-bottom: 20px;">
-                    <li><strong>T</strong> = Type</li>
-                    <li><strong>E</strong> = Element (collection)</li>
-                    <li><strong>K, V</strong> = Key, Value</li>
-                    <li><strong>R</strong> = Return type</li>
-                </ul>
-                
-                <div class="code-block">
-                    <span class="keyword">class</span> MyClass&lt;T&gt; {<br>
-                    &nbsp;&nbsp;T data;<br>
-                    &nbsp;&nbsp;MyClass(<span class="keyword">this</span>.data);<br>
-                    &nbsp;&nbsp;T getData() =&gt; data;<br>
-                    }<br><br>
-                    T myFunc&lt;T&gt;(T value) =&gt; value;<br><br>
-                    <span class="keyword">void</span> <span class="function">main</span>() {<br>
-                    &nbsp;&nbsp;<span class="keyword">var</span> myIntClass = MyClass&lt;<span class="keyword">int</span>&gt;(10);<br>
-                    &nbsp;&nbsp;<span class="keyword">var</span> myStringClass = MyClass&lt;String&gt;(<span class="string">"test"</span>);<br>
-                    &nbsp;&nbsp;print(myIntClass.getData()); <span class="comment">// Output: 10</span><br>
-                    &nbsp;&nbsp;print(myStringClass.getData()); <span class="comment">// Output: test</span><br>
-                    }
-                </div>
-            </section>
-
-            <!-- Generic dengan Extends -->
-            <section>
-                <h2>🔒 Generic dengan Extends (Constraints)</h2>
-                <p><strong>📌 Keyword extends</strong> → membatasi tipe data yang dapat digunakan.</p>
-                
-                <div class="code-block">
-                    <span class="keyword">class</span> NumberBox&lt;T <span class="keyword">extends</span> num&gt; {<br>
-                    &nbsp;&nbsp;T value;<br>
-                    &nbsp;&nbsp;NumberBox(<span class="keyword">this</span>.value);<br>
-                    &nbsp;&nbsp;T getValue() =&gt; value;<br>
-                    }<br><br>
-                    <span class="keyword">void</span> <span class="function">main</span>() {<br>
-                    &nbsp;&nbsp;<span class="keyword">var</span> intBox = NumberBox&lt;<span class="keyword">int</span>&gt;(10);  <span class="comment">// ✅ Valid</span><br>
-                    &nbsp;&nbsp;<span class="keyword">var</span> doubleBox = NumberBox&lt;<span class="keyword">double</span>&gt;(3.14);  <span class="comment">// ✅ Valid</span><br>
-                    &nbsp;&nbsp;print(<span class="string">"int box: "</span> + intBox.getValue().toString());<br>
-                    &nbsp;&nbsp;print(<span class="string">"double box: "</span> + doubleBox.getValue().toString());<br>
-                    }
-                </div>
-                <div class="output">
-                    int box: 10<br>
-                    double box: 3.14
-                </div>
-                
-                <div class="error-box">
-                    <strong>❌ ERROR: String bukan turunan dari num</strong>
-                    <div class="code-block" style="margin-top: 10px;">
-                        <span class="comment">// var stringBox = NumberBox&lt;String&gt;("test");</span><br>
-                        <span class="comment">// ERROR: The type 'String' is not a subtype of 'num'</span>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Studi Kasus dan Interaktif -->
-            <section>
-                <h2>🗄️ Studi Kasus: Class Cache&lt;T&gt;</h2>
-                <div class="interactive-demo">
-                    <h3>Demo Cache Generic Interaktif</h3>
-                    <div>
-                        <input type="text" id="cacheKey" placeholder="Key" style="padding: 8px; margin: 5px;">
-                        <input type="text" id="cacheValue" placeholder="Value" style="padding: 8px; margin: 5px;">
-                        <button class="btn" onclick="setCache()">Set Data</button>
-                        <button class="btn" onclick="getCache()">Get Data</button>
-                        <button class="btn" onclick="removeCache()">Remove Data</button>
-                    </div>
-                    <div id="cacheResult" class="demo-result">
-                        Hasil akan ditampilkan di sini...
-                    </div>
-                </div>
-            </section>
-
-            <!-- Perbandingan Generic vs Dynamic vs Object -->
-            <section>
-                <h2>📊 Perbandingan Generic vs Dynamic vs Object</h2>
-                <table>
-                    <thead>
-                        <tr><th>Aspect</th><th>Generic &lt;T&gt;</th><th>dynamic</th><th>Object</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Type Safety</td><td>✅ Compile-time</td><td>❌ Runtime</td><td>✅ Compile-time</td></tr>
-                        <tr><td>Flexibility</td><td>Terbatas (sesuai T)</td><td>Sangat fleksibel</td><td>Terbatas</td></tr>
-                        <tr><td>Performance</td><td>✅ Optimal</td><td>❌ Overhead</td><td>✅ Optimal</td></tr>
-                        <tr><td>Casting</td><td>Tidak perlu</td><td>Tidak perlu</td><td>Perlu casting</td></tr>
-                    </tbody>
-                </table>
-            </section>
-
-            <!-- Latihan Soal -->
-            <section class="practice-section">
-                <h2>💻 Latihan Soal</h2>
-                
-                <h3>Soal 1: Class Repository&lt;T&gt;</h3>
-                <div class="code-block">
-                    <span class="keyword">class</span> Repository&lt;T&gt; {<br>
-                    &nbsp;&nbsp;<span class="keyword">final</span> Map&lt;<span class="keyword">int</span>, T&gt; _data = {};<br>
-                    &nbsp;&nbsp;<span class="keyword">int</span> _nextId = 1;<br><br>
-                    &nbsp;&nbsp;<span class="keyword">void</span> save(T item) {<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;_data[_nextId++] = item;<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;print(<span class="string">'Saved: $item'</span>);<br>
-                    &nbsp;&nbsp;}<br><br>
-                    &nbsp;&nbsp;T? getById(<span class="keyword">int</span> id) {<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> _data[id];<br>
-                    &nbsp;&nbsp;}<br><br>
-                    &nbsp;&nbsp;List&lt;T&gt; getAll() {<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> _data.values.toList();<br>
-                    &nbsp;&nbsp;}<br>
-                    }
-                </div>
-
-                <h3>Soal 2: Fungsi swap&lt;T&gt;</h3>
-                <div class="code-block">
-                    <span class="keyword">void</span> swap&lt;T&gt;(List&lt;T&gt; list, <span class="keyword">int</span> i, <span class="keyword">int</span> j) {<br>
-                    &nbsp;&nbsp;<span class="keyword">if</span> (i == j) <span class="keyword">return</span>;<br>
-                    &nbsp;&nbsp;T temp = list[i];<br>
-                    &nbsp;&nbsp;list[i] = list[j];<br>
-                    &nbsp;&nbsp;list[j] = temp;<br>
-                    }
-                </div>
-
-                <h3>Soal 3: Class Triple&lt;A, B, C&gt;</h3>
-                <div class="code-block">
-                    <span class="keyword">class</span> Triple&lt;A, B, C&gt; {<br>
-                    &nbsp;&nbsp;A first;<br>
-                    &nbsp;&nbsp;B second;<br>
-                    &nbsp;&nbsp;C third;<br><br>
-                    &nbsp;&nbsp;Triple(<span class="keyword">this</span>.first, <span class="keyword">this</span>.second, <span class="keyword">this</span>.third);<br><br>
-                    &nbsp;&nbsp;<span class="keyword">void</span> printTriple() {<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;print(<span class="string">'($first, $second, $third)'</span>);<br>
-                    &nbsp;&nbsp;}<br>
-                    }
-                </div>
-            </section>
-
-            <!-- Challenge dan Ringkasan -->
-            <section>
-                <h2>🏆 Challenge: Sistem Repository Generic</h2>
-                <button class="btn" onclick="runChallenge()">Jalankan Challenge Demo</button>
-                <div id="challengeResult" class="demo-result" style="margin-top: 15px;">
-                    Klik tombol untuk menjalankan demo sistem repository generic...
-                </div>
-            </section>
-
-            <section>
-                <h2>📖 Ringkasan</h2>
-                <div class="concept-box">
-                    <p><strong>🎯 Poin Penting:</strong></p>
-                    <ul style="margin-left: 20px;">
-                        <li>Generic membuat kode type-safe dan reusable</li>
-                        <li>Bisa digunakan di class, fungsi, collections</li>
-                        <li>Type inference memudahkan penggunaan</li>
-                        <li>Constraints (extends) membatasi tipe yang diperbolehkan</li>
-                    </ul>
-                    <p style="margin-top: 15px;"><strong>📌 Best Practice:</strong></p  Box(this.data);
-}
-
-void main() {
-  var box = Box("INI CONTOH SALAH");
-  int value = box.data; // Runtime error jika bukan int!
-  print(value);
-}</code></pre>
-        <p><span class="badge badge-err">❌ Bahaya</span> Tidak ada jaminan tipe data, bisa menyebabkan runtime error. CONTOH ERROR</p>
-
-        <!-- CONTOH BENAR GENERIC -->
-        <h3>✅ CONTOH BENAR</h3>
-        <pre><code class="language-dart">// Nama: Azriel Miracle Yuandre
-// NIM: 251410024
-// KELAS: SI2A  
-class Box&lt;T&gt; {
-  T data;
-  Box(this.data);
-}
-
-void main() {
-  var intBox = Box&lt;int&gt;(42);           // T = int
-  var stringBox = Box&lt;String&gt;('Hello'); // T = String
-
-  int value = intBox.data;              // ✅ Aman, pasti int
-  // stringBox.data = 123;              // ❌ ERROR compile-time (tidak bisa)
-
-  print(intBox.data);   // Output: 42
-  print(stringBox.data); // Output: Hello
-  print(value);          // Output: 42
-}</code></pre>
-        <div class="output-block">✅ OUTPUT</div>
-
-        <!-- SINTAKS GENERIC DASAR -->
-        <h2>📝 Sintaks Generic Dasar</h2>
-        <p>Type parameter: <code>&lt;T&gt;</code>, <code>&lt;E&gt;</code>, <code>&lt;K, V&gt;</code></p>
-        <p><strong>Konvensi:</strong></p>
-        <ul>
-            <li>T = Type</li>
-            <li>E = Element (collection)</li>
-            <li>K = Key, V = Value</li>
-            <li>R = Return type</li>
-        </ul>
-        <h3>✅ Contoh Benar</h3>
-        <pre><code class="language-dart">// Nama: Azriel Miracle Yuandre
-// NIM: 251410024
-// KELAS: SI2A         
-class MyClass&lt;T&gt; {
-  T data;
-  MyClass(this.data);
-  T getData() => data;
-}
-
-T myFunc&lt;T&gt;(T value) => value;
-
-void main() {
-  // Class generic
-  var myIntClass = MyClass&lt;int&gt;(10);
-  var myStringClass = MyClass&lt;String&gt;("test");
-  print(myIntClass.getData());   // Output: 10
-  print(myStringClass.getData()); // Output: test
-
-  // Fungsi generic
-  var intValue = myFunc&lt;int&gt;(100);
-  var stringValue = myFunc&lt;String&gt;("hello");
-  print(intValue);   // Output: 100
-  print(stringValue); // Output: hello
-}</code></pre>
-        <div class="output-block">✅ OUTPUT</div>
-
-        <!-- KELAS BOX<T> -->
-        <h2>📦 Kelas Box&lt;T&gt;</h2>
-        <h3>✅ Contoh Implementasi</h3>
-        <pre><code class="language-dart">// Nama: Azriel Miracle Yuandre
-// NIM: 251410024
-// KELAS: SI2A         
-class Box&lt;T&gt; {
-  T? _value;
-  Box(this._value);
-  T? get value => _value;
-  void setValue(T value) { _value = value; }
-}
-
-void main() {
-  // Box dengan tipe int
-  var intBox = Box&lt;int&gt;(10);
-  print('Int Box: ${intBox.value}'); // Output: Int Box: 10
-  intBox.setValue(20);
-  print('After set: ${intBox.value}'); // Output: After set: 20
-
-  // Box dengan tipe String
-  var stringBox = Box&lt;String&gt;("Hello, Generic!");
-  print('String Box: ${stringBox.value}'); // Output: String Box: Hello, Generic!
-  stringBox.setValue('Hello World');
-  print('After set: ${stringBox.value}'); // Output: After set: Hello World
-
-  // Box dengan tipe double
-  var doubleBox = Box&lt;double&gt;(3.14);
-  print('Double Box: ${doubleBox.value}'); // Output: Double Box: 3.14
-}</code></pre>
-        <h3>❌ Contoh ERROR</h3>
-        <pre><code class="language-dart">// ❌ ERROR: Mencoba memasukkan tipe yang salah
-/*
-var wrongBox = Box&lt;int&gt;("bukan angka");
-// ERROR: The argument type 'String' can't be assigned to parameter type 'int'
-*/</code></pre>
-
-        <!-- PAIR -->
-        <h2>🔑 Kelas Pair&lt;K, V&gt; (Multi Type Parameters)</h2>
-        <h3>✅ Contoh Benar</h3>
-        <pre><code class="language-dart">// Nama: Azriel Miracle Yuandre
-// NIM: 251410024
-// KELAS: SI2A          
-class Pair&lt;K, V&gt; {
-  K key;
-  V value;
-  Pair(this.key, this.value);
-  void printPair() => print('Key: $key, Value: $value');
-}
-
-void main() {
-  // Pair String-int
-  var pair1 = Pair&lt;String, int&gt;('age', 30);
-  pair1.printPair(); // Output: Key: age, Value: 30
-
-  // Pair String-String
-  var pair2 = Pair&lt;String, String&gt;('name', 'Alice');
-  pair2.printPair(); // Output: Key: name, Value: Alice
-
-  // Pair int-double
-  var pair3 = Pair&lt;int, double&gt;(1, 2.71);
-  pair3.printPair(); // Output: Key: 1, Value: 2.71
-}</code></pre>
-
-        <!-- FUNGSI GENERIC COMBINE -->
-        <h2>⚙️ Fungsi Generic combine&lt;T, U&gt;</h2>
-        <h3>✅ Contoh Benar</h3>
-        <pre><code class="language-dart">// Nama: Azriel Miracle Yuandre
-// NIM: 251410024
-// KELAS: SI2A           
-String combine&lt;T, U&gt;(T value1, U value2) {
-  return '$value1, $value2';
-}
-
-void main() {
-  var result1 = combine&lt;String, int&gt;("Number is ", 10);
-  print(result1); // Output: Number is , 10
-
-  var result2 = combine&lt;int, double&gt;(10, 20.5);
-  print(result2); // Output: 10, 20.5
-}</code></pre>
-        <h3>❌ Contoh ERROR</h3>
-        <pre><code class="language-dart">// ❌ ERROR: Tipe tidak kompatibel dengan fungsi
-/*
-var result3 = combine&lt;int, String&gt;(10, 20);
-// Bisa, tapi kurang tepat karena U seharusnya String tapi diisi int
-*/</code></pre>
-
-        <!-- CONSTRAINTS -->
-        <h2>🔒 Generic dengan Extends (Constraints)</h2>
-        <p>📌 Keyword <code>extends</code> → membatasi tipe data yang dapat digunakan.</p>
-        <h3>✅ Contoh Benar</h3>
-        <pre><code class="language-dart">// Nama: Azriel Miracle Yuandre
-// NIM: 251410024
-// KELAS: SI2A          
-class NumberBox&lt;T extends num&gt; {
-  T value;
-  NumberBox(this.value);
-  T getValue() => value;
-}
-
-void main() {
-  // ✅ Valid - int dan double adalah turunan num
-  var intBox = NumberBox&lt;int&gt;(10);
-  print("int box: ${intBox.getValue()}"); // Output: int box: 10
-
-  var doubleBox = NumberBox&lt;double&gt;(3.14);
-  print("double box: ${doubleBox.getValue()}"); // Output: double box: 3.14
-}</code></pre>
-        <h3>❌ Contoh ERROR</h3>
-        <pre><code class="language-dart">// ❌ ERROR: String bukan turunan dari num
-/*
-var stringBox = NumberBox&lt;String&gt;("test");
-// ERROR: The type 'String' is not a subtype of 'num'
-*/</code></pre>
-
-        <!-- TYPE INFERENCE -->
-        <h2>🔍 Type Inference (Inferensi Tipe)</h2>
-        <h3>✅ Contoh Benar</h3>
-        <pre><code class="language-dart">// Nama: Azriel Miracle Yuandre
-// NIM: 251410024
-// KELAS: SI2A           
-T myFunc&lt;T&gt;(T value) => value;
-
-void main() {
-  // Dart menginferensi T secara otomatis
-  var intValue = myFunc(10);
-  print(intValue.runtimeType); // Output: int
-
-  var stringValue = myFunc("test");
-  print(stringValue.runtimeType); // Output: String
-
-  var doubleValue = myFunc(3.14);
-  print(doubleValue.runtimeType); // Output: double
-}</code></pre>
-
-        <!-- PEMBATASAN TIPE -->
-        <h2>📚 Pembatasan Tipe pada Interface dan Class</h2>
-        <h3>✅ Contoh Benar</h3>
-        <pre><code class="language-dart">// Nama: Azriel Miracle Yuandre
-// NIM: 251410024
-// KELAS: SI2A           
-void printIterable&lt;T extends Iterable&gt;(T iterable) {
-  for (var item in iterable) {
-    print(item);
-  }
-}
-
-void main() {
-  printIterable&lt;List&lt;int&gt;&gt;([1, 2, 3]);
-  // Output: 1, 2, 3
-
-  printIterable&lt;Set&lt;String&gt;&gt;({'apple', 'banana'});
-  // Output: apple, banana
-}</code></pre>
-        <h3>❌ Contoh ERROR</h3>
-        <pre><code class="language-dart">// ❌ ERROR: int bukan turunan dari Iterable
-/*
-printIterable&lt;int&gt;(10);
-// ERROR: The type 'int' is not a subtype of 'Iterable&lt;dynamic&gt;'
-*/</code></pre>
-
-        <!-- PRAKTIK 1 -->
-        <h2>Praktik 1 – Generic Class & Fungsi</h2>
-        <pre><code class="language-dart">// Nama: Azriel Miracle Yuandre
-// NIM: 251410024
-// KELAS: SI2A        
-
-// 1. Class Repository&lt;T&gt;
-class Repository&lt;T&gt; {
-  final Map&lt;int, T&gt; _storage = {};
-  int _nextId = 1;
-
-  int save(T item) {
-    int id = _nextId++;
-    _storage[id] = item;
-    print('✅ Saved: ID $id → $item');
-    return id;
-  }
-
-  T? getById(int id) {
-    return _storage[id];
-  }
-
-  List&lt;T&gt; getAll() {
-    return _storage.values.toList();
-  }
-
-  void printAll() {
-    if (_storage.isEmpty) {
-      print('📭 Repository kosong');
-      return;
-    }
-    print('📦 Isi Repository:');
-    _storage.forEach((id, item) => print('   ID $id: $item'));
-  }
-}
-
-// 2. Fungsi swap
-void swap&lt;T&gt;(List&lt;T&gt; list, int i, int j) {
-  if (i &lt; 0 || i &gt;= list.length || j &lt; 0 || j &gt;= list.length) {
-    print('❌ Error: Indeks tidak valid!');
-    return;
-  }
-  if (i == j) return;
-
-  T temp = list[i];
-  list[i] = list[j];
-  list[j] = temp;
-}
-
-// 3. Class Triple
-class Triple&lt;A, B, C&gt; {
-  A first;
-  B second;
-  C third;
-
-  Triple(this.first, this.second, this.third);
-
-  A getFirst() => first;
-  B getSecond() => second;
-  C getThird() => third;
-
-  void setFirst(A value) => first = value;
-  void setSecond(B value) => second = value;
-  void setThird(C value) => third = value;
-
-  void printTriple() {
-    print('($first, $second, $third)');
-  }
-
-  List toList() => [first, second, third];
-}
-
-// 4. Fungsi main() 
-void main() {
-  print('=' * 50);
-  print('PRAKTIK 1 - GENERIC CLASS &amp; FUNGSI');
-  print('=' * 50);
-
-  // Demo Repository
-  print('\n1. REPOSITORY');
-  print('-' * 40);
-  var stringRepo = Repository&lt;String&gt;();
-  stringRepo.save('PRABOWO');
-  stringRepo.save('MULYONO');
-  stringRepo.printAll();
-
-  // Demo swap
-  print('\n2. FUNGSI SWAP');
-  print('-' * 40);
-  var numbers = [10, 20, 30, 40, 50];
-  print('Before: $numbers');
-  swap&lt;int&gt;(numbers, 1, 3);
-  print('After:  $numbers');
-
-  // Demo Triple
-  print('\n3. TRIPLE');
-  print('-' * 40);
-  var triple = Triple&lt;String, int, bool&gt;('PRABOWO', 25, true);
-  triple.printTriple();
-}</code></pre>
-
-        <!-- TABEL PERBANDINGAN -->
-        <h2>📊 Generic vs Dynamic vs Object</h2>
-        <div class="table-wrapper">
-            <table>
-                <thead><tr><th>Aspect</th><th>Generic &lt;T&gt;</th><th>dynamic</th><th>Object</th></tr></thead>
-                <tbody>
-                    <tr><td>Type Safety</td><td>✅ Compile-time</td><td>❌ Runtime</td><td>✅ Compile-time</td></tr>
-                    <tr><td>Flexibility</td><td>Terbatas (sesuai T)</td><td>Sangat fleksibel</td><td>Terbatas</td></tr>
-                    <tr><td>Performance</td><td>✅ Optimal</td><td>❌ Overhead</td><td>✅ Optimal</td></tr>
-                    <tr><td>Casting</td><td>Tidak perlu</td><td>Tidak perlu</td><td>Perlu casting</td></tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- STUDI KASUS CACHE -->
-        <h2>🗄️ Studi Kasus: Class Cache&lt;T&gt;</h2>
-        <h3>✅ Implementasi Cache Generic</h3>
-        <pre><code class="language-dart">// Nama: Azriel Miracle Yuandre
-// NIM: 251410024
-// KELAS: SI2A          
-class Cache&lt;T&gt; {
-  final Map&lt;String, T&gt; _storage = {};
-
-  void set(String key, T value) {
-    _storage[key] = value;
-  }
-
-  T? get(String key) {
-    return _storage[key];
-  }
-
-  void remove(String key) {
-    _storage.remove(key);
-  }
-}
-
-class Product {
-  String name;
-  double price;
-
-  Product(this.name, this.price);
-
-  @override
-  String toString() {
-    return 'Product(name: $name, price: $price)';
-  }
-}
-
-void main() {
-  var userCache = Cache&lt;String&gt;();
-  userCache.set('name', 'Alice');
-  print(userCache.get('name')); 
-
-  var productCache = Cache&lt;Product&gt;();
-  productCache.set('p1', Product('Laptop', 1000));
-  print(productCache.get('p1'));
-}</code></pre>
-
-        <!-- LATIHAN SOAL -->
-        <h2>📝 Latihan Soal</h2>
-        <h3>💻 Soal 1: Buat class <code>Repository&lt;T&gt;</code> dengan method: <code>save(T item), T getById(int id), List&lt;T&gt; getAll()</code></h3>
-        <h4>✅ Jawaban</h4>
-        <pre><code class="language-dart">// Nama: Azriel Miracle Yuandre
-// NIM: 251410024
-// KELAS: SI2A           
-class Repository&lt;T&gt; {
-  final Map&lt;int, T&gt; _data = {};
-  int _nextId = 1;
-
-  void save(T item) {
-    _data[_nextId++] = item;
-    print('Saved: $item');
-  }
-
-  T? getById(int id) {
-    return _data[id];
-  }
-
-  List&lt;T&gt; getAll() {
-    return _data.values.toList();
-  }
-
-  void printAll() {
-    _data.forEach((id, item) => print('ID $id: $item'));
-  }
-}
-
-void main() {
-  var userRepo = Repository&lt;String&gt;();
-  userRepo.save("Alice");
-  userRepo.save("Bob");
-  print("User ID 1: ${userRepo.getById(1)}");
-  print("All users: ${userRepo.getAll()}");
-}</code></pre>
-
-        <h3>💻 Soal 2: Fungsi generic <code>swap&lt;T&gt;(List&lt;T&gt; list, int i, int j)</code></h3>
-        <h4>✅ Jawaban</h4>
-        <pre><code class="language-dart">// Nama: Azriel Miracle Yuandre
-// NIM: 251410024
-// KELAS: SI2A          
-void swap&lt;T&gt;(List&lt;T&gt; list, int i, int j) {
-  if (i == j) return;
-  T temp = list[i];
-  list[i] = list[j];
-  list[j] = temp;
-}
-
-void main() {
-  var numbers = [1, 2, 3, 4, 5];
-  print("Before swap: $numbers");
-  swap&lt;int&gt;(numbers, 1, 3);
-  print("After swap: $numbers"); // Output: [1, 4, 3, 2, 5]
-}</code></pre>
-
-        <h3>💻 Soal 3: Class <code>Triple&lt;A, B, C&gt;</code> dengan 3 field</h3>
-        <h4>✅ Jawaban</h4>
-        <pre><code class="language-dart">// Nama: Azriel Miracle Yuandre
-// NIM: 251410024
-// KELAS: SI2A           
-class Triple&lt;A, B, C&gt; {
-  A first;
-  B second;
-  C third;
-
-  Triple(this.first, this.second, this.third);
-
-  void printTriple() {
-    print('($first, $second, $third)');
-  }
-}
-
-void main() {
-  var triple1 = Triple&lt;String, int, bool&gt;("Alice", 25, true);
-  triple1.printTriple(); // Output: (Alice, 25, true)
-
-  var triple2 = Triple&lt;int, double, String&gt;(1, 3.14, "Pi");
-  triple2.printTriple(); // Output: (1, 3.14, Pi)
-}</code></pre>
-
-        <!-- CHALLENGE -->
-        <h2>🏆 Challenge: Sistem Repository Generic</h2>
-        <h3>✅ Solusi</h3>
-        <pre><code class="language-dart">// Nama: Azriel Miracle Yuandre
-// NIM: 251410024
-// KELAS: SI2A           
-class Product {
-  final int id;
-  final String name;
-  final double price;
-  Product(this.id, this.name, this.price);
-  @override
-  String toString() => 'Product($id, $name, $price)';
-}
-
-class User {
-  final int id;
-  final String username;
-  User(this.id, this.username);
-  @override
-  String toString() => 'User($id, $username)';
-}
-
-class GenericRepository&lt;T&gt; {
-  final Map&lt;int, T&gt; _items = {};
-  int _nextId = 1;
-
-  T? create(T item) {
-    _items[_nextId] = item;
-    return item;
-  }
-
-  T? read(int id) {
-    return _items[id];
-  }
-
-  T? update(int id, T item) {
-    if (_items.containsKey(id)) {
-      _items[id] = item;
-      return item;
-    }
-    return null;
-  }
-
-  bool delete(int id) {
-    return _items.remove(id) != null;
-  }
-
-  List&lt;T&gt; readAll() {
-    return _items.values.toList();
-  }
-
-  void printAll() {
-    _items.forEach((id, item) => print('ID $id: $item'));
-  }
-}
-
-void main() {
-  var productRepo = GenericReposit}
-
-void main() {
-  var box = Box("INI CONTOH SALAH");
-  int value = box.data; // Runtime error jika bukan int!
-  print(value);
-}</code></pre>
-        <p><span class="badge badge-err">❌ Bahaya</span> Tidak ada jaminan tipe data, bisa menyebabkan runtime error.</p>
-
-        <!-- CONTOH BENAR GENERIC -->
-        <h3>✅ Contoh Benar</h3>
-        <pre><code class="language-dart">// Nama: Azriel Miracle Yuandre
-// NIM: 251410024
-// KELAS: SI2A  
-class Box<T> {
-  T data;
-  Box(this.data);
-}
-
-void main() {
-  var intBox = Box(42);           // T = int
-  var stringBox = Box('Hello'); // T = String
-
-  int value = intBox.data;              // ✅ Aman, pasti int
-  // stringBox.data = 123;              // ❌ ERROR compile-time
-
-  print(intBox.data);   // Output: 42
-  print(stringBox.data); // Output: Hello
-  print(value);          // Output: 42
-}</code></pre>
-
-        <!-- SINTAKS GENERIC DASAR -->
-        <h2>📝 Sintaks Generic Dasar</h2>
-        <p>Type parameter: <code>&lt;T&gt;</code>, <code>&lt;E&gt;</code>, <code>&lt;K, V&gt;</code></p>
-        <p><strong>Konvensi:</strong> T = Type, E = Element, K = Key / V = Value, R = Return type</p>
-        <pre><code class="language-dart">// Nama: Azriel Miracle Yuandre | NIM: 251410024 | KELAS: SI2A         
-class MyClass<T> {
-  T data;
-  MyClass(this.data);
-  T getData() => data;
-}
-
-T myFunc<T>(T value) => value;
-
-void main() {
-  var myIntClass = MyClass<int>(10);
-  var myStringClass = MyClass<String>("test");
-  print(myIntClass.getData());   // 10
-  print(myStringClass.getData()); // test
-
-  var intValue = myFunc<int>(100);
-  var stringValue = myFunc<String>("hello");
-  print(intValue);   // 100
-  print(stringValue); // hello
-}</code></pre>
-
-        <!-- KELAS BOX<T> -->
-        <h2>📦 Kelas Box&lt;T&gt;</h2>
-        <pre><code class="language-dart">// Nama: Azriel Miracle Yuandre | NIM: 251410024 | KELAS: SI2A         
-class Box<T> {
-  T? _value;
-  Box(this._value);
-  T? get value => _value;
-  void setValue(T value) { _value = value; }
-}
-
-void main() {
-  var intBox = Box<int>(10);
-  print('Int Box: ${intBox.value}'); // 10
-  intBox.setValue(20);
-  print('After set: ${intBox.value}'); // 20
-
-  var stringBox = Box<String>("Hello, Generic!");
-  print('String Box: ${stringBox.value}'); // Hello, Generic!
-  stringBox.setValue('Hello World');
-  print('After set: ${stringBox.value}'); // Hello World
-
-  var doubleBox = Box<double>(3.14);
-  print('Double Box: ${doubleBox.value}'); // 3.14
-}</code></pre>
-
-        <!-- PAIR -->
-        <h2>🔑 Kelas Pair&lt;K, V&gt; (Multi Type Parameters)</h2>
-        <pre><code class="language-dart">// Nama: Azriel Miracle Yuandre | NIM: 251410024 | KELAS: SI2A          
-class Pair<K, V> {
-  K key;
-  V value;
-  Pair(this.key, this.value);
-  void printPair() => print('Key: $key, Value: $value');
-}
-
-void main() {
-  var pair1 = Pair<String, int>('age', 30);
-  pair1.printPair(); // Key: age, Value: 30
-
-  var pair2 = Pair<String, String>('name', 'Alice');
-  pair2.printPair(); // Key: name, Value: Alice
-
-  var pair3 = Pair<int, double>(1, 2.71);
-  pair3.printPair(); // Key: 1, Value: 2.71
-}</code></pre>
-
-        <!-- FUNGSI GENERIC COMBINE -->
-        <h2>⚙️ Fungsi Generic combine&lt;T, U&gt;</h2>
-        <pre><code class="language-dart">// Nama: Azriel Miracle Yuandre | NIM: 251410024 | KELAS: SI2A           
-String combine<T, U>(T value1, U value2) => '$value1, $value2';
-
-void main() {
-  print(combine<String, int>("Number is ", 10)); // Number is , 10
-  print(combine<int, double>(10, 20.5));          // 10, 20.5
-}</code></pre>
-
-        <!-- CONSTRAINTS -->
-        <h2>🔒 Generic dengan Extends (Constraints)</h2>
-        <pre><code class="language-dart">// Nama: Azriel Miracle Yuandre | NIM: 251410024 | KELAS: SI2A          
-class NumberBox<T extends num> {
-  T value;
-  NumberBox(this.value);
-  T getValue() => value;
-}
-
-void main() {
-  var intBox = NumberBox<int>(10);
-  print("int box: ${intBox.getValue()}"); // 10
-  var doubleBox = NumberBox<double>(3.14);
-  print("double box: ${doubleBox.getValue()}"); // 3.14
-  // var stringBox = NumberBox<String>("test"); ❌ ERROR
-}</code></pre>
-
-        <!-- TYPE INFERENCE -->
-        <h2>🔍 Type Inference (Inferensi Tipe)</h2>
-        <pre><code class="language-dart">// Nama: Azriel Miracle Yuandre | NIM: 251410024 | KELAS: SI2A           
-T myFunc<T>(T value) => value;
-
-void main() {
-  print(myFunc(10).runtimeType);   // int
-  print(myFunc("test").runtimeType); // String
-  print(myFunc(3.14).runtimeType);  // double
-}</code></pre>
-
-        <!-- PEMBATASAN TIPE -->
-        <h2>📚 Pembatasan Tipe pada Interface dan Class</h2>
-        <pre><code class="language-dart">// Nama: Azriel Miracle Yuandre | NIM: 251410024 | KELAS: SI2A           
-void printIterable<T extends Iterable>(T iterable) {
-  for (var item in iterable) { print(item); }
-}
-
-void main() {
-  printIterable([1, 2, 3]);           // 1, 2, 3
-  printIterable({'apple', 'banana'}); // apple, banana
-  // printIterable(10); ❌ ERROR
-}</code></pre>
-
-        <!-- PRAKTIK 1 -->
-        <h2>🧪 Praktik 1 – Generic Class & Fungsi</h2>
-        <pre><code class="language-dart">// Nama: Azriel Miracle Yuandre | NIM: 251410024 | KELAS: SI2A        
-
-// 1. Class Repository
-class Repository<T> {
-  final Map<int, T> _storage = {};
-  int _nextId = 1;
-
-  int save(T item) {
-    int id = _nextId++;
-    _storage[id] = item;
-    print('✅ Saved: ID $id → $item');
-    return id;
-  }
-  T? getById(int id) => _storage[id];
-  List<T> getAll() => _storage.values.toList();
-  void printAll() {
-    if (_storage.isEmpty) { print('📭 Repository kosong'); return; }
-    print('📦 Isi Repository:');
-    _storage.forEach((id, item) => print('   ID $id: $item'));
-  }
-}
-
-// 2. Fungsi swap
-void swap<T>(List<T> list, int i, int j) {
-  if (i < 0 || i >= list.length || j < 0 || j >= list.length) {
-    print('❌ Error: Indeks tidak valid!'); return;
-  }
-  if (i == j) return;
-  T temp = list[i];
-  list[i] = list[j];
-  list[j] = temp;
-}
-
-// 3. Class Triple
-class Triple<A, B, C> {
-  A first; B second; C third;
-  Triple(this.first, this.second, this.third);
-  void printTriple() => print('($first, $second, $third)');
-}
-
-// 4. main()
-void main() {
-  // Demo Repository
-  var stringRepo = Repository<String>();
-  stringRepo.save('PRABOWO'); stringRepo.save('MULYONO');
-  stringRepo.printAll();
-
-  // Demo swap
-  var numbers = [10, 20, 30, 40, 50];
-  print('Before: $numbers');
-  swap(numbers, 1, 3);
-  print('After:  $numbers');
-
-  // Demo Triple
-  var triple = Triple('PRABOWO', 25, true);
-  triple.printTriple();
-}</code></pre>
-
-        <!-- TABEL PERBANDINGAN -->
-        <h2>📊 Generic vs Dynamic vs Object</h2>
-        <div class="table-wrapper">
-            <table>
-                <thead><tr><th>Aspect</th><th>Generic &lt;T&gt;</th><th>dynamic</th><th>Object</th></tr></thead>
-                <tbody>
-                    <tr><td>Type Safety</td><td>✅ Compile-time</td><td>❌ Runtime</td><td>✅ Compile-time</td></tr>
-                    <tr><td>Flexibility</td><td>Terbatas (sesuai T)</td><td>Sangat fleksibel</td><td>Terbatas</td></tr>
-                    <tr><td>Performance</td><td>✅ Optimal</td><td>❌ Overhead</td><td>✅ Optimal</td></tr>
-                    <tr><td>Casting</td><td>Tidak perlu</td><td>Tidak perlu</td><td>Perlu casting</td></tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- STUDI KASUS CACHE -->
-        <h2>🗄️ Studi Kasus: Class Cache&lt;T&gt;</h2>
-        <pre><code class="language-dart">// Nama: Azriel Miracle Yuandre | NIM: 251410024 | KELAS: SI2A          
-class Cache<T> {
-  final Map<String, T> _storage = {};
-  void set(String key, T value) => _storage[key] = value;
-  T? get(String key) => _storage[key];
-  void remove(String key) => _storage.remove(key);
-}
-
-class Product {
-  String name; double price;
-  Product(this.name, this.price);
-  @override String toString() => 'Product(name: $name, price: $price)';
-}
-
-void main() {
-  var userCache = Cache<String>();
-  userCache.set('name', 'Alice');
-  print(userCache.get('name')); 
-
-  var productCache = Cache<Product>();
-  productCache.set('p1', Product('Laptop', 1000));
-  print(productCache.get('p1'));
-}</code></pre>
-
-        <!-- LATIHAN SOAL -->
-        <h2>📝 Latihan Soal</h2>
-        <h3>💻 Soal 1: Repository&lt;T&gt;</h3>
-        <pre><code class="language-dart">// Nama: Azriel Miracle Yuandre | NIM: 251410024 | KELAS: SI2A           
-class Repository<T> {
-  final Map<int, T> _data = {};
-  int _nextId = 1;
-  void save(T item) { _data[_nextId++] = item; print('Saved: $item'); }
-  T? getById(int id) => _data[id];
-  List<T> getAll() => _data.values.toList();
-}
-
-void main() {
-  var userRepo = Repository<String>();
-  userRepo.save("Alice"); userRepo.save("Bob");
-  print("User ID 1: ${userRepo.getById(1)}");
-  print("All users: ${userRepo.getAll()}");
-}</code></pre>
-
-        <h3>💻 Soal 2: swap&lt;T&gt;</h3>
-        <pre><code class="language-dart">// Nama: Azriel Miracle Yuandre | NIM: 251410024 | KELAS: SI2A          
-void swap<T>(List<T> list, int i, int j) {
-  if (i == j) return;
-  T temp = list[i];
-  list[i] = list[j];
-  list[j] = temp;
-}
-
-void main() {
-  var numbers = [1, 2, 3, 4, 5];
-  print("Before swap: $numbers");
-  swap<int>(numbers, 1, 3);
-  print("After swap: $numbers"); // [1, 4, 3, 2, 5]
-}</code></pre>
-
-        <h3>💻 Soal 3: Triple&lt;A, B, C&gt;</h3>
-        <pre><code class="language-dart">// Nama: Azriel Miracle Yuandre | NIM: 251410024 | KELAS: SI2A           
-class Triple<A, B, C> {
-  A first; B second; C third;
-  Triple(this.first, this.second, this.third);
-  void printTriple() => print('($first, $second, $third)');
-}
-
-void main() {
-  Triple<String, int, bool>("Alice", 25, true).printTriple(); // (Alice, 25, true)
-  Triple<int, double, String>(1, 3.14, "Pi").printTriple();   // (1, 3.14, Pi)
-}</code></pre>
-
-        <!-- CHALLENGE -->
-        <h2>🏆 Challenge: Sistem Repository Generic</h2>
-        <pre><code class="language-dart">// Nama: Azriel Miracle Yuandre | NIM: 251410024 | KELAS: SI2A           
-class Product {
-  final int id; final String name; final double price;
-  Product(this.id, this.name, this.price);
-  @override String toString() => 'Product($id, $name, $price)';
-}
-
-class User {
-  final int id; final String username;
-  User(this.id, this.username);
-  @override String toString() => 'User($id, $username)';
-}
-
-class GenericRepository<T> {
-  final Map<int, T> _items = {};
-  int _nextId = 1;
-
-  T? create(T item) { _items[_nextId] = item; return item; }
-  T? read(int id) => _items[id];
-  T? update(int id, T item) { if (_items.containsKey(id)) { _items[id] = item; return item; } return null; }
-  bool delete(int id) => _items.remove(id) != null;
-  List<T> readAll() => _items.values.toList();
-}
-
-void main() {
-  var productRepo = GenericRepository<Product>();
-  productRepo.create(Product(1, 'Laptop', 15000000));
-  productRepo.create(Product(2, 'Mouse', 250000));
-  print('Products: ${productRepo.readAll()}');
-
-  var userRepo = GenericRepository<User>();
-  userRepo.create(User(1, 'PRABOWO'));
-  userRepo.create(User(2, 'GIBRAN'));
-  print('Users: ${userRepo.readAll()}');
-}</code></pre>
-
-        <!-- RINGKASAN -->
-        <h2>📖 Ringkasan</h2>
+        <!-- Review Sesi 5 -->
         <div class="card">
+            <h2>📌 Review Sesi 5 – Class Modifiers</h2>
+            <div class="code-block">
+                <span class="keyword">sealed</span> class Result {} <span class="comment">// hierarki tertutup, pattern matching</span><br>
+                <span class="keyword">base</span> class Result {} <span class="comment">// hanya bisa di-extend, tidak diimplement dari luar</span><br>
+                <span class="keyword">final</span> class Result {} <span class="comment">// tidak bisa di-extend/diimplement dari luar</span>
+            </div>
+        </div>
+
+        <!-- Pengantar Generic -->
+        <div class="card">
+            <h2>🎯 Pengantar Generic</h2>
+            <p><strong>Apa itu Generic?</strong> Fitur untuk membuat kode yang bekerja dengan berbagai tipe data.</p>
+            <p><strong>Analog:</strong> Kotak penyimpanan yang bisa menampung apa saja, tapi dengan label tipe.</p>
+            <div class="badge-container" style="justify-content: flex-start; margin-top: 15px;">
+                <span class="badge">✅ Type Safety</span>
+                <span class="badge">✅ Code Reusability</span>
+                <span class="badge">✅ Compile-time Checking</span>
+            </div>
+        </div>
+
+        <!-- Masalah Tanpa Generic -->
+        <div class="card">
+            <h2>⚠️ Masalah Tanpa Generic</h2>
+            <div class="code-block">
+                <span class="comment">// ❌ Kode Bermasalah (Tanpa Generic)</span><br>
+                <span class="keyword">class</span> Box {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">dynamic</span> data; <span class="comment">// Bisa apa saja - TIDAK AMAN!</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;Box(<span class="keyword">this</span>.data);<br>
+                }<br><br>
+                <span class="keyword">void</span> <span class="function">main</span>() {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">var</span> box = Box(<span class="string">"INI CONTOH SALAH"</span>);<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">int</span> value = box.data; <span class="comment">// Runtime error jika bukan int!</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(value);<br>
+                }<br>
+                <span class="comment">// ⚠️ Bahaya: Tidak ada jaminan tipe data, bisa menyebabkan runtime error.</span>
+            </div>
+        </div>
+
+        <!-- Contoh Benar dengan Generic -->
+        <div class="card">
+            <h2>✅ Contoh Benar dengan Generic</h2>
+            <div class="code-block">
+                <span class="comment">// Nama: Muhammad Bagas Putra Andeza</span><br>
+                <span class="comment">// NIM: 251410003</span><br>
+                <span class="comment">// KELAS: SI2A</span><br>
+                <span class="keyword">class</span> Box&lt;T&gt; {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;T data;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;Box(<span class="keyword">this</span>.data);<br>
+                }<br><br>
+                <span class="keyword">void</span> <span class="function">main</span>() {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">var</span> intBox = Box&lt;<span class="keyword">int</span>&gt;(42);<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">var</span> stringBox = Box&lt;String&gt;(<span class="string">'Hello'</span>);<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">int</span> value = intBox.data; <span class="comment">// ✅ Aman, pasti int</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(value); <span class="comment">// Output: 42</span><br>
+                }
+            </div>
+            <button onclick="runDemo1()">▶ Jalankan Demo Box&lt;T&gt;</button>
+            <div id="demo1-output" class="output-sim" style="display: none;"></div>
+        </div>
+
+        <!-- Sintaks Generic Dasar -->
+        <div class="card">
+            <h2>📝 Sintaks Generic Dasar</h2>
+            <p><strong>Type parameter:</strong> &lt;T&gt;, &lt;E&gt;, &lt;K, V&gt;</p>
+            <p><strong>Konvensi:</strong> T = Type, E = Element (collection), K, V = Key, Value, R = Return type</p>
+            <div class="code-block">
+                <span class="keyword">class</span> MyClass&lt;T&gt; {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;T data;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;MyClass(<span class="keyword">this</span>.data);<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;T <span class="function">getData</span>() => data;<br>
+                }<br><br>
+                T <span class="function">myFunc</span>&lt;T&gt;(T value) => value;
+            </div>
+            <button onclick="runDemo2()">▶ Jalankan Demo MyClass&lt;T&gt;</button>
+            <div id="demo2-output" class="output-sim" style="display: none;"></div>
+        </div>
+
+        <!-- Generic dengan Extends (Constraints) -->
+        <div class="card">
+            <h2>🔒 Generic dengan Extends (Constraints)</h2>
+            <p>📌 Keyword <strong>extends</strong> → membatasi tipe data yang dapat digunakan.</p>
+            <div class="code-block">
+                <span class="keyword">class</span> NumberBox&lt;T extends num&gt; {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;T value;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;NumberBox(<span class="keyword">this</span>.value);<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;T <span class="function">getValue</span>() => value;<br>
+                }<br><br>
+                <span class="keyword">void</span> <span class="function">main</span>() {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">var</span> intBox = NumberBox&lt;<span class="keyword">int</span>&gt;(10); <span class="comment">// ✅ Valid</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">var</span> doubleBox = NumberBox&lt;<span class="keyword">double</span>&gt;(3.14); <span class="comment">// ✅ Valid</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// var stringBox = NumberBox&lt;String&gt;("test"); ❌ ERROR</span><br>
+                }
+            </div>
+            <button onclick="runDemo3()">▶ Jalankan Demo NumberBox&lt;T&gt;</button>
+            <div id="demo3-output" class="output-sim" style="display: none;"></div>
+        </div>
+
+        <!-- Perbandingan Generic vs Dynamic vs Object -->
+        <div class="card">
+            <h2>📊 Perbandingan Generic vs Dynamic vs Object</h2>
+            <table class="comparison-table">
+                <thead>
+                    <tr><th>Aspect</th><th>Generic &lt;T&gt;</th><th>dynamic</th><th>Object</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Type Safety</td><td>✅ Compile-time</td><td>❌ Runtime</td><td>✅ Compile-time</td></tr>
+                    <tr><td>Flexibility</td><td>Terbatas (sesuai T)</td><td>Sangat fleksibel</td><td>Terbatas</td></tr>
+                    <tr><td>Performance</td><td>✅ Optimal</td><td>❌ Overhead</td><td>✅ Optimal</td></tr>
+                    <tr><td>Casting</td><td>Tidak perlu</td><td>Tidak perlu</td><td>Perlu casting</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Studi Kasus: Cache<T> -->
+        <div class="card">
+            <h2>🗄️ Studi Kasus: Class Cache&lt;T&gt;</h2>
+            <div class="code-block">
+                <span class="keyword">class</span> Cache&lt;T&gt; {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">final</span> Map&lt;String, T&gt; _storage = {};<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">void</span> <span class="function">set</span>(String key, T value) => _storage[key] = value;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;T? <span class="function">get</span>(String key) => _storage[key];<br>
+                }
+            </div>
+            <div class="demo-grid">
+                <div class="demo-card">
+                    <h3>Cache&lt;String&gt; - User Data</h3>
+                    <button onclick="runCacheString()">Simpan & Ambil Data User</button>
+                    <div id="cache-string-output" class="output-sim" style="display: none; margin-top: 10px;"></div>
+                </div>
+                <div class="demo-card">
+                    <h3>Cache&lt;Product&gt; - Product Data</h3>
+                    <button onclick="runCacheProduct()">Simpan & Ambil Data Product</button>
+                    <div id="cache-product-output" class="output-sim" style="display: none; margin-top: 10px;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Latihan Soal 1: Repository<T> -->
+        <div class="card">
+            <h2>💻 Soal 1: Class Repository&lt;T&gt;</h2>
+            <div class="code-block">
+                <span class="keyword">class</span> Repository&lt;T&gt; {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">final</span> Map&lt;<span class="keyword">int</span>, T&gt; _data = {};<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">int</span> _nextId = 1;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">void</span> <span class="function">save</span>(T item) { _data[_nextId++] = item; <span class="function">print</span>(<span class="string">'Saved: $item'</span>); }<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;T? <span class="function">getById</span>(<span class="keyword">int</span> id) => _data[id];<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;List&lt;T&gt; <span class="function">getAll</span>() => _data.values.toList();<br>
+                }
+            </div>
+            <button onclick="runRepository()">▶ Demo Repository&lt;String&gt;</button>
+            <div id="repository-output" class="output-sim" style="display: none;"></div>
+        </div>
+
+        <!-- Latihan Soal 2: swap<T> -->
+        <div class="card">
+            <h2>💻 Soal 2: Fungsi swap&lt;T&gt;</h2>
+            <div class="code-block">
+                <span class="keyword">void</span> <span class="function">swap</span>&lt;T&gt;(List&lt;T&gt; list, <span class="keyword">int</span> i, <span class="keyword">int</span> j) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span> (i == j) <span class="keyword">return</span>;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;T temp = list[i];<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;list[i] = list[j];<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;list[j] = temp;<br>
+                }
+            </div>
+            <button onclick="runSwap()">▶ Demo swap angka</button>
+            <div id="swap-output" class="output-sim" style="display: none;"></div>
+        </div>
+
+        <!-- Latihan Soal 3: Triple<A,B,C> -->
+        <div class="card">
+            <h2>💻 Soal 3: Class Triple&lt;A, B, C&gt;</h2>
+            <div class="code-block">
+                <span class="keyword">class</span> Triple&lt;A, B, C&gt; {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;A first; B second; C third;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;Triple(<span class="keyword">this</span>.first, <span class="keyword">this</span>.second, <span class="keyword">this</span>.third);<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">void</span> <span class="function">printTriple</span>() => <span class="function">print</span>(<span class="string">'($first, $second, $third)'</span>);<br>
+                }
+            </div>
+            <button onclick="runTriple()">▶ Demo Triple</button>
+            <div id="triple-output" class="output-sim" style="display: none;"></div>
+        </div>
+
+        <!-- Challenge: Sistem Repository Generic -->
+        <div class="card">
+            <h2>🏆 Challenge: Sistem Repository Generic</h2>
+            <div class="demo-grid">
+                <div class="demo-card">
+                    <h3>Product Repository</h3>
+                    <button onclick="runProductRepo()">Tambah & Tampilkan Product</button>
+                    <div id="product-repo-output" class="output-sim" style="display: none; margin-top: 10px;"></div>
+                </div>
+                <div class="demo-card">
+                    <h3>User Repository</h3>
+                    <button onclick="runUserRepo()">Tambah & Tampilkan User</button>
+                    <div id="user-repo-output" class="output-sim" style="display: none; margin-top: 10px;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ringkasan -->
+        <div class="card">
+            <h2>📖 Ringkasan</h2>
             <p><strong>🎯 Poin Penting:</strong></p>
-            <ol>
-                <li>Generic membuat kode <em>type-safe</em> dan <em>reusable</em></li>
+            <ul style="margin-left: 25px; margin-top: 10px;">
+                <li>Generic membuat kode type-safe dan reusable</li>
                 <li>Bisa digunakan di class, fungsi, collections</li>
                 <li>Type inference memudahkan penggunaan</li>
-                <li>Constraints (<code>extends</code>) membatasi tipe yang diperbolehkan</li>
-            </ol>
-            <p style="margin-top:1rem;"><strong>📌 Best Practice:</strong></p>
-            <ul>
-                <li>Gunakan generic untuk menghindari <code>dynamic</code></li>
-                <li>Gunakan <code>extends</code> untuk membatasi tipe</li>
+                <li>Constraints (extends) membatasi tipe yang diperbolehkan</li>
+            </ul>
+            <p style="margin-top: 15px;"><strong>📌 Best Practice:</strong></p>
+            <ul style="margin-left: 25px;">
+                <li>Gunakan generic untuk menghindari dynamic</li>
+                <li>Gunakan extends untuk membatasi tipe</li>
                 <li>Manfaatkan type inference untuk kode lebih bersih</li>
             </ul>
         </div>
+
+        <footer>
+            <p>© 2025 - Muhammad Bagas Putra Andeza (NIM: 251410003) | Generic Dasar Dart</p>
+        </footer>
     </div>
 
-    <script>hljs.highlightAll();</script>
-</body>
-  </html>    <td>Type Safety</td>
-    <td>Compile-time</td>
-    <td>Runtime</td>
-    <td>Compile-time</td>
-  </tr>
-  <tr>
-    <td>Flexibility</td>
-    <td>Terbatas</td>
-    <td>Sangat fleksibel</td>
-    <td>Terbatas</td>
-  </tr>
-  <tr>
-    <td>Performance</td>
-    <td>Optimal</td>
-    <td>Overhead</td>
-    <td>Optimal</td>
-  </tr>
-  <tr>
-    <td>Casting</td>
-    <td>Tidak perlu</td>
-    <td>Tidak perlu</td>
-    <td>Perlu</td>
-  </tr>
-</table>
+    <script>
+        // Fungsi untuk menampilkan output
+        function showOutput(elementId, lines) {
+            const el = document.getElementById(elementId);
+            el.style.display = 'block';
+            el.innerHTML = lines.map(line => `> ${line}`).join('<br>');
+        }
 
-<h2>Slide 15: Implementasi (Simulasi Generic di JavaScript)</h2>
+        // Demo 1: Box<T>
+        function runDemo1() {
+            class Box {
+                constructor(data) {
+                    this.data = data;
+                }
+            }
+            const intBox = new Box(42);
+            const stringBox = new Box('Hello');
+            const output = [
+                "=== Demo Box<T> ===",
+                `intBox.data: ${intBox.data}`,
+                `stringBox.data: ${stringBox.data}`,
+                "✅ Type-safe: intBox.data pasti bertipe int",
+                "✅ Hello, Generic!"
+            ];
+            showOutput('demo1-output', output);
+        }
 
-<button onclick="runDemo()">Jalankan Program</button>
-<button onclick="openModal()">Jalankan Code (DartPad)</button>
+        // Demo 2: MyClass<T>
+        function runDemo2() {
+            class MyClass {
+                constructor(data) {
+                    this.data = data;
+                }
+                getData() { return this.data; }
+            }
+            function myFunc(value) { return value; }
+            
+            const myIntClass = new MyClass(10);
+            const myStringClass = new MyClass("test");
+            const intValue = myFunc(100);
+            const stringValue = myFunc("hello");
+            
+            const output = [
+                "=== Demo MyClass<T> ===",
+                `myIntClass.getData(): ${myIntClass.getData()}`,
+                `myStringClass.getData(): ${myStringClass.getData()}`,
+                `myFunc<int>(100): ${intValue}`,
+                `myFunc<String>("hello"): ${stringValue}`
+            ];
+            showOutput('demo2-output', output);
+        }
 
-<pre id="output"></pre>
+        // Demo 3: NumberBox
+        function runDemo3() {
+            class NumberBox {
+                constructor(value) {
+                    if (typeof value !== 'number') throw new Error('Harus number!');
+                    this.value = value;
+                }
+                getValue() { return this.value; }
+            }
+            
+            const intBox = new NumberBox(10);
+            const doubleBox = new NumberBox(3.14);
+            
+            const output = [
+                "=== Demo NumberBox<T extends num> ===",
+                `intBox.getValue(): ${intBox.getValue()}`,
+                `doubleBox.getValue(): ${doubleBox.getValue()}`,
+                "✅ int dan double adalah turunan num",
+                "❌ String tidak bisa digunakan (akan error)"
+            ];
+            showOutput('demo3-output', output);
+        }
 
-<script>
-// =======================
-// STACK
-// =======================
-class Stack {
-  constructor() {
-    this.items = [];
-  }
-  push(item) {
-    this.items.push(item);
-  }
-  pop() {
-    return this.items.pop();
-  }
-  peek() {
-    return this.items[this.items.length - 1];
-  }
-}
+        // Cache String Demo
+        function runCacheString() {
+            class Cache {
+                constructor() { this.storage = {}; }
+                set(key, value) { this.storage[key] = value; }
+                get(key) { return this.storage[key]; }
+            }
+            
+            const userCache = new Cache();
+            userCache.set('name', 'Alice');
+            userCache.set('age', 25);
+            
+            const output = [
+                "=== Cache<String> - User Data ===",
+                `userCache.get('name'): ${userCache.get('name')}`,
+                `userCache.get('age'): ${userCache.get('age')}`,
+                "✅ Data tersimpan dengan type safety"
+            ];
+            showOutput('cache-string-output', output);
+        }
 
-// =======================
-// MERGE LIST
-// =======================
-function mergeLists(a, b) {
-  return [...a, ...b];
-}
+        // Cache Product Demo
+        function runCacheProduct() {
+            class Product {
+                constructor(name, price) {
+                    this.name = name;
+                    this.price = price;
+                }
+                toString() { return `Product(name: ${this.name}, price: ${this.price})`; }
+            }
+            
+            class Cache {
+                constructor() { this.storage = {}; }
+                set(key, value) { this.storage[key] = value; }
+                get(key) { return this.storage[key]; }
+            }
+            
+            const productCache = new Cache();
+            productCache.set('p1', new Product('Laptop', 15000000));
+            productCache.set('p2', new Product('Mouse', 250000));
+            
+            const output = [
+                "=== Cache<Product> - Product Data ===",
+                `productCache.get('p1'): ${productCache.get('p1').toString()}`,
+                `productCache.get('p2'): ${productCache.get('p2').toString()}`,
+                "✅ Generic memungkinkan tipe data berbeda dengan aman"
+            ];
+            showOutput('cache-product-output', output);
+        }
 
-// =======================
-// RESPONSE
-// =======================
-class Response {
-  constructor(data = null, error = null) {
-    this.data = data;
-    this.error = error;
-  }
-}
+        // Repository Demo
+        function runRepository() {
+            class Repository {
+                constructor() {
+                    this.data = {};
+                    this.nextId = 1;
+                }
+                save(item) {
+                    const id = this.nextId++;
+                    this.data[id] = item;
+                    return id;
+                }
+                getById(id) { return this.data[id]; }
+                getAll() { return Object.values(this.data); }
+            }
+            
+            const stringRepo = new Repository();
+            stringRepo.save("Alice");
+            stringRepo.save("Bob");
+            stringRepo.save("Charlie");
+            
+            const output = [
+                "=== Repository<String> Demo ===",
+                `getById(1): ${stringRepo.getById(1)}`,
+                `getById(2): ${stringRepo.getById(2)}`,
+                `Semua data: ${stringRepo.getAll().join(', ')}`
+            ];
+            showOutput('repository-output', output);
+        }
 
-// =======================
-// CACHE
-// =======================
-class Cache {
-  constructor() {
-    this.storage = {};
-  }
-  set(key, value) {
-    this.storage[key] = value;
-  }
-  get(key) {
-    return this.storage[key];
-  }
-  remove(key) {
-    delete this.storage[key];
-  }
-}
+        // Swap Demo
+        function runSwap() {
+            function swap(list, i, j) {
+                if (i === j) return;
+                const temp = list[i];
+                list[i] = list[j];
+                list[j] = temp;
+            }
+            
+            const numbers = [10, 20, 30, 40, 50];
+            const before = [...numbers];
+            swap(numbers, 1, 3);
+            
+            const output = [
+                "=== Fungsi swap<T> Demo ===",
+                `Before swap: [${before.join(', ')}]`,
+                `After swap (swap index 1 dan 3): [${numbers.join(', ')}]`,
+                "✅ Elemen berhasil ditukar dengan type-safe"
+            ];
+            showOutput('swap-output', output);
+        }
 
-// =======================
-// PRODUCT
-// =======================
-class Product {
-  constructor(name, price) {
-    this.name = name;
-    this.price = price;
-  }
-}
+        // Triple Demo
+        function runTriple() {
+            class Triple {
+                constructor(first, second, third) {
+                    this.first = first;
+                    this.second = second;
+                    this.third = third;
+                }
+                printTriple() { return `(${this.first}, ${this.second}, ${this.third})`; }
+            }
+            
+            const triple1 = new Triple("Alice", 25, true);
+            const triple2 = new Triple(1, 3.14, "Pi");
+            
+            const output = [
+                "=== Class Triple<A,B,C> Demo ===",
+                `triple1: ${triple1.printTriple()}`,
+                `triple2: ${triple2.printTriple()}`,
+                "✅ Triple dapat menyimpan 3 tipe data berbeda"
+            ];
+            showOutput('triple-output', output);
+        }
 
-// =======================
-// MAIN DEMO
-// =======================
-function runDemo() {
-  let output = "";
+        // Product Repository Challenge
+        function runProductRepo() {
+            class Product {
+                constructor(id, name, price) {
+                    this.id = id;
+                    this.name = name;
+                    this.price = price;
+                }
+                toString() { return `Product(${this.id}, ${this.name}, ${this.price})`; }
+            }
+            
+            class GenericRepository {
+                constructor() {
+                    this.items = {};
+                    this.nextId = 1;
+                }
+                create(item) {
+                    const id = this.nextId++;
+                    this.items[id] = item;
+                    return item;
+                }
+                readAll() { return Object.values(this.items); }
+            }
+            
+            const productRepo = new GenericRepository();
+            productRepo.create(new Product(1, 'Laptop', 15000000));
+            productRepo.create(new Product(2, 'Mouse', 250000));
+            productRepo.create(new Product(3, 'Keyboard', 500000));
+            
+            const output = [
+                "=== Product Repository (Generic) ===",
+                ...productRepo.readAll().map(p => `  ${p.toString()}`),
+                "✅ Semua produk tersimpan dengan type-safe"
+            ];
+            showOutput('product-repo-output', output);
+        }
 
-  let stack = new Stack();
-  stack.push(10);
-  stack.push(20);
-  output += "STACK\n";
-  output += "Peek: " + stack.peek() + "\n";
-  output += "Pop: " + stack.pop() + "\n\n";
-
-  output += "MERGE LIST\n";
-  let merged = mergeLists([1,2], [3,4]);
-  output += merged + "\n\n";
-
-  output += "RESPONSE\n";
-  let res1 = new Response("Sukses");
-  let res2 = new Response(null, "Error");
-  output += "Data: " + res1.data + "\n";
-  output += "Error: " + res2.error + "\n\n";
-
-  output += "CACHE\n";
-  let userCache = new Cache();
-  userCache.set("name", "Alice");
-  output += "User: " + userCache.get("name") + "\n";
-
-  let productCache = new Cache();
-  productCache.set("p1", new Product("Laptop", 1000));
-  let p = productCache.get("p1");
-  output += "Product: " + p.name + " - " + p.price + "\n";
-
-  document.getElementById("output").textContent = output;
-}
-
-// =======================
-// MODAL FUNCTION
-// =======================
-function openModal() {
-  document.getElementById("dartModal").style.display = "flex";
-}
-
-function closeModal() {
-  document.getElementById("dartModal").style.display = "none";
-}
-
-window.onclick = function(event) {
-  let modal = document.getElementById("dartModal");
-  if (event.target === modal) {
-    modal.style.display = "none";
-  }
-}
-</script>
-
-<!-- =======================
-     MODAL DARTPAD
-======================= -->
-<div id="dartModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal()">✖</span>
-    <iframe src="https://dartpad.dev/embed-inline.html"></iframe>
-  </div>
-</div>
-
-<h2>Slide 16: Ringkasan</h2>
-<ul>
-  <li>Generic membuat kode lebih aman (type-safe)</li>
-  <li>Dapat digunakan ulang (reusable)</li>
-  <li>Digunakan pada class, function, dan collection</li>
-</ul>
-
+        // User Repository Challenge
+        function runUserRepo() {
+            class User {
+                constructor(id, username) {
+                    this.id = id;
+                    this.username = username;
+                }
+                toString() { return `User(${this.id}, ${this.username})`; }
+            }
+            
+            class GenericRepository {
+                constructor() {
+                    this.items = {};
+                    this.nextId = 1;
+                }
+                create(item) {
+                    const id = this.nextId++;
+                    this.items[id] = item;
+                    return item;
+                }
+                readAll() { return Object.values(this.items); }
+            }
+            
+            const userRepo = new GenericRepository();
+            userRepo.create(new User(1, 'Muhammad Bagas Putra Andeza'));
+            userRepo.create(new User(2, 'Admin'));
+            userRepo.create(new User(3, 'User123'));
+            
+            const output = [
+                "=== User Repository (Generic) ===",
+                ...userRepo.readAll().map(u => `  ${u.toString()}`),
+                "✅ Generic memungkinkan repository digunakan untuk berbagai tipe data!"
+            ];
+            showOutput('user-repo-output', output);
+        }
+    </script>
 </body>
 </html>
