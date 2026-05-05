@@ -61,6 +61,7 @@
         .badge-err { background: #3a1a1a; color: var(--danger); }
         .card { background: var(--code-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.2rem; margin: 1.5rem 0; }
         hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+        .output-block { background: #0d1117; border-left: 3px solid var(--success); padding: 0.8rem 1.2rem; margin: 0.8rem 0; color: var(--success); font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; }
         @media (max-width: 768px) {
             body { padding: 1rem; }
             .container { padding: 1.5rem; }
@@ -77,7 +78,7 @@
         <h2>📌 Review Sesi 5 – Class Modifiers</h2>
         <p>🔹 <code>sealed</code> → hierarki tertutup, <em>pattern matching</em></p>
         <p>🔹 <code>base</code> → hanya bisa di-<em>extend</em>, tidak di-<em>implement</em> dari luar</p>
-        <p>🔹 <code>final</code> → tidak bisa di-<em>extend/di-implement</em> dari luar</p>
+        <p>🔹 <code>final</code> → tidak bisa di-<em>extend</em>/di-<em>implement</em> dari luar</p>
         <div class="card"><strong>Contoh Cepat</strong>
             <pre><code class="language-dart">sealed class Result {}
 class Success extends Result {}
@@ -101,6 +102,535 @@ class Box {
   dynamic data; // Bisa apa saja - TIDAK AMAN!
   Box(this.data);
 }
+
+void main() {
+  var box = Box("INI CONTOH SALAH");
+  int value = box.data; // Runtime error jika bukan int!
+  print(value);
+}</code></pre>
+        <p><span class="badge badge-err">❌ Bahaya</span> Tidak ada jaminan tipe data, bisa menyebabkan runtime error. CONTOH ERROR</p>
+
+        <!-- CONTOH BENAR GENERIC -->
+        <h3>✅ CONTOH BENAR</h3>
+        <pre><code class="language-dart">// Nama: Azriel Miracle Yuandre
+// NIM: 251410024
+// KELAS: SI2A  
+class Box&lt;T&gt; {
+  T data;
+  Box(this.data);
+}
+
+void main() {
+  var intBox = Box&lt;int&gt;(42);           // T = int
+  var stringBox = Box&lt;String&gt;('Hello'); // T = String
+
+  int value = intBox.data;              // ✅ Aman, pasti int
+  // stringBox.data = 123;              // ❌ ERROR compile-time (tidak bisa)
+
+  print(intBox.data);   // Output: 42
+  print(stringBox.data); // Output: Hello
+  print(value);          // Output: 42
+}</code></pre>
+        <div class="output-block">✅ OUTPUT</div>
+
+        <!-- SINTAKS GENERIC DASAR -->
+        <h2>📝 Sintaks Generic Dasar</h2>
+        <p>Type parameter: <code>&lt;T&gt;</code>, <code>&lt;E&gt;</code>, <code>&lt;K, V&gt;</code></p>
+        <p><strong>Konvensi:</strong></p>
+        <ul>
+            <li>T = Type</li>
+            <li>E = Element (collection)</li>
+            <li>K = Key, V = Value</li>
+            <li>R = Return type</li>
+        </ul>
+        <h3>✅ Contoh Benar</h3>
+        <pre><code class="language-dart">// Nama: Azriel Miracle Yuandre
+// NIM: 251410024
+// KELAS: SI2A         
+class MyClass&lt;T&gt; {
+  T data;
+  MyClass(this.data);
+  T getData() => data;
+}
+
+T myFunc&lt;T&gt;(T value) => value;
+
+void main() {
+  // Class generic
+  var myIntClass = MyClass&lt;int&gt;(10);
+  var myStringClass = MyClass&lt;String&gt;("test");
+  print(myIntClass.getData());   // Output: 10
+  print(myStringClass.getData()); // Output: test
+
+  // Fungsi generic
+  var intValue = myFunc&lt;int&gt;(100);
+  var stringValue = myFunc&lt;String&gt;("hello");
+  print(intValue);   // Output: 100
+  print(stringValue); // Output: hello
+}</code></pre>
+        <div class="output-block">✅ OUTPUT</div>
+
+        <!-- KELAS BOX<T> -->
+        <h2>📦 Kelas Box&lt;T&gt;</h2>
+        <h3>✅ Contoh Implementasi</h3>
+        <pre><code class="language-dart">// Nama: Azriel Miracle Yuandre
+// NIM: 251410024
+// KELAS: SI2A         
+class Box&lt;T&gt; {
+  T? _value;
+  Box(this._value);
+  T? get value => _value;
+  void setValue(T value) { _value = value; }
+}
+
+void main() {
+  // Box dengan tipe int
+  var intBox = Box&lt;int&gt;(10);
+  print('Int Box: ${intBox.value}'); // Output: Int Box: 10
+  intBox.setValue(20);
+  print('After set: ${intBox.value}'); // Output: After set: 20
+
+  // Box dengan tipe String
+  var stringBox = Box&lt;String&gt;("Hello, Generic!");
+  print('String Box: ${stringBox.value}'); // Output: String Box: Hello, Generic!
+  stringBox.setValue('Hello World');
+  print('After set: ${stringBox.value}'); // Output: After set: Hello World
+
+  // Box dengan tipe double
+  var doubleBox = Box&lt;double&gt;(3.14);
+  print('Double Box: ${doubleBox.value}'); // Output: Double Box: 3.14
+}</code></pre>
+        <h3>❌ Contoh ERROR</h3>
+        <pre><code class="language-dart">// ❌ ERROR: Mencoba memasukkan tipe yang salah
+/*
+var wrongBox = Box&lt;int&gt;("bukan angka");
+// ERROR: The argument type 'String' can't be assigned to parameter type 'int'
+*/</code></pre>
+
+        <!-- PAIR -->
+        <h2>🔑 Kelas Pair&lt;K, V&gt; (Multi Type Parameters)</h2>
+        <h3>✅ Contoh Benar</h3>
+        <pre><code class="language-dart">// Nama: Azriel Miracle Yuandre
+// NIM: 251410024
+// KELAS: SI2A          
+class Pair&lt;K, V&gt; {
+  K key;
+  V value;
+  Pair(this.key, this.value);
+  void printPair() => print('Key: $key, Value: $value');
+}
+
+void main() {
+  // Pair String-int
+  var pair1 = Pair&lt;String, int&gt;('age', 30);
+  pair1.printPair(); // Output: Key: age, Value: 30
+
+  // Pair String-String
+  var pair2 = Pair&lt;String, String&gt;('name', 'Alice');
+  pair2.printPair(); // Output: Key: name, Value: Alice
+
+  // Pair int-double
+  var pair3 = Pair&lt;int, double&gt;(1, 2.71);
+  pair3.printPair(); // Output: Key: 1, Value: 2.71
+}</code></pre>
+
+        <!-- FUNGSI GENERIC COMBINE -->
+        <h2>⚙️ Fungsi Generic combine&lt;T, U&gt;</h2>
+        <h3>✅ Contoh Benar</h3>
+        <pre><code class="language-dart">// Nama: Azriel Miracle Yuandre
+// NIM: 251410024
+// KELAS: SI2A           
+String combine&lt;T, U&gt;(T value1, U value2) {
+  return '$value1, $value2';
+}
+
+void main() {
+  var result1 = combine&lt;String, int&gt;("Number is ", 10);
+  print(result1); // Output: Number is , 10
+
+  var result2 = combine&lt;int, double&gt;(10, 20.5);
+  print(result2); // Output: 10, 20.5
+}</code></pre>
+        <h3>❌ Contoh ERROR</h3>
+        <pre><code class="language-dart">// ❌ ERROR: Tipe tidak kompatibel dengan fungsi
+/*
+var result3 = combine&lt;int, String&gt;(10, 20);
+// Bisa, tapi kurang tepat karena U seharusnya String tapi diisi int
+*/</code></pre>
+
+        <!-- CONSTRAINTS -->
+        <h2>🔒 Generic dengan Extends (Constraints)</h2>
+        <p>📌 Keyword <code>extends</code> → membatasi tipe data yang dapat digunakan.</p>
+        <h3>✅ Contoh Benar</h3>
+        <pre><code class="language-dart">// Nama: Azriel Miracle Yuandre
+// NIM: 251410024
+// KELAS: SI2A          
+class NumberBox&lt;T extends num&gt; {
+  T value;
+  NumberBox(this.value);
+  T getValue() => value;
+}
+
+void main() {
+  // ✅ Valid - int dan double adalah turunan num
+  var intBox = NumberBox&lt;int&gt;(10);
+  print("int box: ${intBox.getValue()}"); // Output: int box: 10
+
+  var doubleBox = NumberBox&lt;double&gt;(3.14);
+  print("double box: ${doubleBox.getValue()}"); // Output: double box: 3.14
+}</code></pre>
+        <h3>❌ Contoh ERROR</h3>
+        <pre><code class="language-dart">// ❌ ERROR: String bukan turunan dari num
+/*
+var stringBox = NumberBox&lt;String&gt;("test");
+// ERROR: The type 'String' is not a subtype of 'num'
+*/</code></pre>
+
+        <!-- TYPE INFERENCE -->
+        <h2>🔍 Type Inference (Inferensi Tipe)</h2>
+        <h3>✅ Contoh Benar</h3>
+        <pre><code class="language-dart">// Nama: Azriel Miracle Yuandre
+// NIM: 251410024
+// KELAS: SI2A           
+T myFunc&lt;T&gt;(T value) => value;
+
+void main() {
+  // Dart menginferensi T secara otomatis
+  var intValue = myFunc(10);
+  print(intValue.runtimeType); // Output: int
+
+  var stringValue = myFunc("test");
+  print(stringValue.runtimeType); // Output: String
+
+  var doubleValue = myFunc(3.14);
+  print(doubleValue.runtimeType); // Output: double
+}</code></pre>
+
+        <!-- PEMBATASAN TIPE -->
+        <h2>📚 Pembatasan Tipe pada Interface dan Class</h2>
+        <h3>✅ Contoh Benar</h3>
+        <pre><code class="language-dart">// Nama: Azriel Miracle Yuandre
+// NIM: 251410024
+// KELAS: SI2A           
+void printIterable&lt;T extends Iterable&gt;(T iterable) {
+  for (var item in iterable) {
+    print(item);
+  }
+}
+
+void main() {
+  printIterable&lt;List&lt;int&gt;&gt;([1, 2, 3]);
+  // Output: 1, 2, 3
+
+  printIterable&lt;Set&lt;String&gt;&gt;({'apple', 'banana'});
+  // Output: apple, banana
+}</code></pre>
+        <h3>❌ Contoh ERROR</h3>
+        <pre><code class="language-dart">// ❌ ERROR: int bukan turunan dari Iterable
+/*
+printIterable&lt;int&gt;(10);
+// ERROR: The type 'int' is not a subtype of 'Iterable&lt;dynamic&gt;'
+*/</code></pre>
+
+        <!-- PRAKTIK 1 -->
+        <h2>Praktik 1 – Generic Class & Fungsi</h2>
+        <pre><code class="language-dart">// Nama: Azriel Miracle Yuandre
+// NIM: 251410024
+// KELAS: SI2A        
+
+// 1. Class Repository&lt;T&gt;
+class Repository&lt;T&gt; {
+  final Map&lt;int, T&gt; _storage = {};
+  int _nextId = 1;
+
+  int save(T item) {
+    int id = _nextId++;
+    _storage[id] = item;
+    print('✅ Saved: ID $id → $item');
+    return id;
+  }
+
+  T? getById(int id) {
+    return _storage[id];
+  }
+
+  List&lt;T&gt; getAll() {
+    return _storage.values.toList();
+  }
+
+  void printAll() {
+    if (_storage.isEmpty) {
+      print('📭 Repository kosong');
+      return;
+    }
+    print('📦 Isi Repository:');
+    _storage.forEach((id, item) => print('   ID $id: $item'));
+  }
+}
+
+// 2. Fungsi swap
+void swap&lt;T&gt;(List&lt;T&gt; list, int i, int j) {
+  if (i &lt; 0 || i &gt;= list.length || j &lt; 0 || j &gt;= list.length) {
+    print('❌ Error: Indeks tidak valid!');
+    return;
+  }
+  if (i == j) return;
+
+  T temp = list[i];
+  list[i] = list[j];
+  list[j] = temp;
+}
+
+// 3. Class Triple
+class Triple&lt;A, B, C&gt; {
+  A first;
+  B second;
+  C third;
+
+  Triple(this.first, this.second, this.third);
+
+  A getFirst() => first;
+  B getSecond() => second;
+  C getThird() => third;
+
+  void setFirst(A value) => first = value;
+  void setSecond(B value) => second = value;
+  void setThird(C value) => third = value;
+
+  void printTriple() {
+    print('($first, $second, $third)');
+  }
+
+  List toList() => [first, second, third];
+}
+
+// 4. Fungsi main() 
+void main() {
+  print('=' * 50);
+  print('PRAKTIK 1 - GENERIC CLASS &amp; FUNGSI');
+  print('=' * 50);
+
+  // Demo Repository
+  print('\n1. REPOSITORY');
+  print('-' * 40);
+  var stringRepo = Repository&lt;String&gt;();
+  stringRepo.save('PRABOWO');
+  stringRepo.save('MULYONO');
+  stringRepo.printAll();
+
+  // Demo swap
+  print('\n2. FUNGSI SWAP');
+  print('-' * 40);
+  var numbers = [10, 20, 30, 40, 50];
+  print('Before: $numbers');
+  swap&lt;int&gt;(numbers, 1, 3);
+  print('After:  $numbers');
+
+  // Demo Triple
+  print('\n3. TRIPLE');
+  print('-' * 40);
+  var triple = Triple&lt;String, int, bool&gt;('PRABOWO', 25, true);
+  triple.printTriple();
+}</code></pre>
+
+        <!-- TABEL PERBANDINGAN -->
+        <h2>📊 Generic vs Dynamic vs Object</h2>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>Aspect</th><th>Generic &lt;T&gt;</th><th>dynamic</th><th>Object</th></tr></thead>
+                <tbody>
+                    <tr><td>Type Safety</td><td>✅ Compile-time</td><td>❌ Runtime</td><td>✅ Compile-time</td></tr>
+                    <tr><td>Flexibility</td><td>Terbatas (sesuai T)</td><td>Sangat fleksibel</td><td>Terbatas</td></tr>
+                    <tr><td>Performance</td><td>✅ Optimal</td><td>❌ Overhead</td><td>✅ Optimal</td></tr>
+                    <tr><td>Casting</td><td>Tidak perlu</td><td>Tidak perlu</td><td>Perlu casting</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- STUDI KASUS CACHE -->
+        <h2>🗄️ Studi Kasus: Class Cache&lt;T&gt;</h2>
+        <h3>✅ Implementasi Cache Generic</h3>
+        <pre><code class="language-dart">// Nama: Azriel Miracle Yuandre
+// NIM: 251410024
+// KELAS: SI2A          
+class Cache&lt;T&gt; {
+  final Map&lt;String, T&gt; _storage = {};
+
+  void set(String key, T value) {
+    _storage[key] = value;
+  }
+
+  T? get(String key) {
+    return _storage[key];
+  }
+
+  void remove(String key) {
+    _storage.remove(key);
+  }
+}
+
+class Product {
+  String name;
+  double price;
+
+  Product(this.name, this.price);
+
+  @override
+  String toString() {
+    return 'Product(name: $name, price: $price)';
+  }
+}
+
+void main() {
+  var userCache = Cache&lt;String&gt;();
+  userCache.set('name', 'Alice');
+  print(userCache.get('name')); 
+
+  var productCache = Cache&lt;Product&gt;();
+  productCache.set('p1', Product('Laptop', 1000));
+  print(productCache.get('p1'));
+}</code></pre>
+
+        <!-- LATIHAN SOAL -->
+        <h2>📝 Latihan Soal</h2>
+        <h3>💻 Soal 1: Buat class <code>Repository&lt;T&gt;</code> dengan method: <code>save(T item), T getById(int id), List&lt;T&gt; getAll()</code></h3>
+        <h4>✅ Jawaban</h4>
+        <pre><code class="language-dart">// Nama: Azriel Miracle Yuandre
+// NIM: 251410024
+// KELAS: SI2A           
+class Repository&lt;T&gt; {
+  final Map&lt;int, T&gt; _data = {};
+  int _nextId = 1;
+
+  void save(T item) {
+    _data[_nextId++] = item;
+    print('Saved: $item');
+  }
+
+  T? getById(int id) {
+    return _data[id];
+  }
+
+  List&lt;T&gt; getAll() {
+    return _data.values.toList();
+  }
+
+  void printAll() {
+    _data.forEach((id, item) => print('ID $id: $item'));
+  }
+}
+
+void main() {
+  var userRepo = Repository&lt;String&gt;();
+  userRepo.save("Alice");
+  userRepo.save("Bob");
+  print("User ID 1: ${userRepo.getById(1)}");
+  print("All users: ${userRepo.getAll()}");
+}</code></pre>
+
+        <h3>💻 Soal 2: Fungsi generic <code>swap&lt;T&gt;(List&lt;T&gt; list, int i, int j)</code></h3>
+        <h4>✅ Jawaban</h4>
+        <pre><code class="language-dart">// Nama: Azriel Miracle Yuandre
+// NIM: 251410024
+// KELAS: SI2A          
+void swap&lt;T&gt;(List&lt;T&gt; list, int i, int j) {
+  if (i == j) return;
+  T temp = list[i];
+  list[i] = list[j];
+  list[j] = temp;
+}
+
+void main() {
+  var numbers = [1, 2, 3, 4, 5];
+  print("Before swap: $numbers");
+  swap&lt;int&gt;(numbers, 1, 3);
+  print("After swap: $numbers"); // Output: [1, 4, 3, 2, 5]
+}</code></pre>
+
+        <h3>💻 Soal 3: Class <code>Triple&lt;A, B, C&gt;</code> dengan 3 field</h3>
+        <h4>✅ Jawaban</h4>
+        <pre><code class="language-dart">// Nama: Azriel Miracle Yuandre
+// NIM: 251410024
+// KELAS: SI2A           
+class Triple&lt;A, B, C&gt; {
+  A first;
+  B second;
+  C third;
+
+  Triple(this.first, this.second, this.third);
+
+  void printTriple() {
+    print('($first, $second, $third)');
+  }
+}
+
+void main() {
+  var triple1 = Triple&lt;String, int, bool&gt;("Alice", 25, true);
+  triple1.printTriple(); // Output: (Alice, 25, true)
+
+  var triple2 = Triple&lt;int, double, String&gt;(1, 3.14, "Pi");
+  triple2.printTriple(); // Output: (1, 3.14, Pi)
+}</code></pre>
+
+        <!-- CHALLENGE -->
+        <h2>🏆 Challenge: Sistem Repository Generic</h2>
+        <h3>✅ Solusi</h3>
+        <pre><code class="language-dart">// Nama: Azriel Miracle Yuandre
+// NIM: 251410024
+// KELAS: SI2A           
+class Product {
+  final int id;
+  final String name;
+  final double price;
+  Product(this.id, this.name, this.price);
+  @override
+  String toString() => 'Product($id, $name, $price)';
+}
+
+class User {
+  final int id;
+  final String username;
+  User(this.id, this.username);
+  @override
+  String toString() => 'User($id, $username)';
+}
+
+class GenericRepository&lt;T&gt; {
+  final Map&lt;int, T&gt; _items = {};
+  int _nextId = 1;
+
+  T? create(T item) {
+    _items[_nextId] = item;
+    return item;
+  }
+
+  T? read(int id) {
+    return _items[id];
+  }
+
+  T? update(int id, T item) {
+    if (_items.containsKey(id)) {
+      _items[id] = item;
+      return item;
+    }
+    return null;
+  }
+
+  bool delete(int id) {
+    return _items.remove(id) != null;
+  }
+
+  List&lt;T&gt; readAll() {
+    return _items.values.toList();
+  }
+
+  void printAll() {
+    _items.forEach((id, item) => print('ID $id: $item'));
+  }
+}
+
+void main() {
+  var productRepo = GenericReposit}
 
 void main() {
   var box = Box("INI CONTOH SALAH");
