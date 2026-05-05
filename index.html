@@ -217,6 +217,12 @@
                 <span class="keyword">base</span> class Result {} <span class="comment">// hanya bisa di-extend, tidak diimplement dari luar</span><br>
                 <span class="keyword">final</span> class Result {} <span class="comment">// tidak bisa di-extend/diimplement dari luar</span>
             </div>
+            <div class="code-block">
+                <span class="comment">// Contoh Cepat</span><br>
+                <span class="keyword">sealed</span> class Result {}<br>
+                <span class="keyword">class</span> Success <span class="keyword">extends</span> Result {}<br>
+                <span class="keyword">class</span> Failure <span class="keyword">extends</span> Result {}
+            </div>
         </div>
 
         <!-- Pengantar Generic -->
@@ -225,9 +231,9 @@
             <p><strong>Apa itu Generic?</strong> Fitur untuk membuat kode yang bekerja dengan berbagai tipe data.</p>
             <p><strong>Analog:</strong> Kotak penyimpanan yang bisa menampung apa saja, tapi dengan label tipe.</p>
             <div class="badge-container" style="justify-content: flex-start; margin-top: 15px;">
-                <span class="badge">✅ Type Safety</span>
-                <span class="badge">✅ Code Reusability</span>
-                <span class="badge">✅ Compile-time Checking</span>
+                <span class="badge">✅ Type safety</span>
+                <span class="badge">✅ Code reusability</span>
+                <span class="badge">✅ Compile-time checking</span>
             </div>
         </div>
 
@@ -235,7 +241,10 @@
         <div class="card">
             <h2>⚠️ Masalah Tanpa Generic</h2>
             <div class="code-block">
-                <span class="comment">// ❌ Kode Bermasalah (Tanpa Generic)</span><br>
+                <span class="comment">// ❌ Kode Bermasalah</span><br>
+                <span class="comment">// Nama: Muhammad Bagas Putra Andeza</span><br>
+                <span class="comment">// NIM: 251410003</span><br>
+                <span class="comment">// KELAS: SI2A</span><br>
                 <span class="keyword">class</span> Box {<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">dynamic</span> data; <span class="comment">// Bisa apa saja - TIDAK AMAN!</span><br>
                 &nbsp;&nbsp;&nbsp;&nbsp;Box(<span class="keyword">this</span>.data);<br>
@@ -245,7 +254,7 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">int</span> value = box.data; <span class="comment">// Runtime error jika bukan int!</span><br>
                 &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(value);<br>
                 }<br>
-                <span class="comment">// ⚠️ Bahaya: Tidak ada jaminan tipe data, bisa menyebabkan runtime error.</span>
+                <span class="comment">// ❌ Bahaya: Tidak ada jaminan tipe data, bisa menyebabkan runtime error.</span>
             </div>
         </div>
 
@@ -264,7 +273,9 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">var</span> intBox = Box&lt;<span class="keyword">int</span>&gt;(42);<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">var</span> stringBox = Box&lt;String&gt;(<span class="string">'Hello'</span>);<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">int</span> value = intBox.data; <span class="comment">// ✅ Aman, pasti int</span><br>
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(value); <span class="comment">// Output: 42</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(intBox.data);   <span class="comment">// Output: 42</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(stringBox.data); <span class="comment">// Output: Hello</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(value);          <span class="comment">// Output: 42</span><br>
                 }
             </div>
             <button onclick="runDemo1()">▶ Jalankan Demo Box&lt;T&gt;</button>
@@ -275,37 +286,112 @@
         <div class="card">
             <h2>📝 Sintaks Generic Dasar</h2>
             <p><strong>Type parameter:</strong> &lt;T&gt;, &lt;E&gt;, &lt;K, V&gt;</p>
-            <p><strong>Konvensi:</strong> T = Type, E = Element (collection), K, V = Key, Value, R = Return type</p>
+            <p><strong>Konvensi:</strong></p>
+            <ul style="margin-left: 25px; margin-bottom: 15px;">
+                <li>T = Type</li>
+                <li>E = Element (collection)</li>
+                <li>K = Key, V = Value</li>
+                <li>R = Return type</li>
+            </ul>
             <div class="code-block">
+                <span class="comment">// Nama: Muhammad Bagas Putra Andeza</span><br>
+                <span class="comment">// NIM: 251410003</span><br>
+                <span class="comment">// KELAS: SI2A</span><br>
                 <span class="keyword">class</span> MyClass&lt;T&gt; {<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;T data;<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;MyClass(<span class="keyword">this</span>.data);<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;T <span class="function">getData</span>() => data;<br>
                 }<br><br>
-                T <span class="function">myFunc</span>&lt;T&gt;(T value) => value;
+                T <span class="function">myFunc</span>&lt;T&gt;(T value) => value;<br><br>
+                <span class="keyword">void</span> <span class="function">main</span>() {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">var</span> myIntClass = MyClass&lt;<span class="keyword">int</span>&gt;(10);<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">var</span> myStringClass = MyClass&lt;String&gt;(<span class="string">"test"</span>);<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(myIntClass.getData());   <span class="comment">// Output: 10</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(myStringClass.getData()); <span class="comment">// Output: test</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">var</span> intValue = myFunc&lt;<span class="keyword">int</span>&gt;(100);<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">var</span> stringValue = myFunc&lt;String&gt;(<span class="string">"hello"</span>);<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(intValue);   <span class="comment">// Output: 100</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(stringValue); <span class="comment">// Output: hello</span><br>
+                }
             </div>
             <button onclick="runDemo2()">▶ Jalankan Demo MyClass&lt;T&gt;</button>
             <div id="demo2-output" class="output-sim" style="display: none;"></div>
         </div>
 
-        <!-- Generic dengan Extends (Constraints) -->
+        <!-- Kelas Box<T> -->
+        <div class="card">
+            <h2>📦 Kelas Box&lt;T&gt;</h2>
+            <div class="code-block">
+                <span class="comment">// Nama: Muhammad Bagas Putra Andeza</span><br>
+                <span class="comment">// NIM: 251410003</span><br>
+                <span class="comment">// KELAS: SI2A</span><br>
+                <span class="keyword">class</span> Box&lt;T&gt; {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;T? _value;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;Box(<span class="keyword">this</span>._value);<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;T? <span class="keyword">get</span> value => _value;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">void</span> <span class="function">setValue</span>(T value) { _value = value; }<br>
+                }<br><br>
+                <span class="keyword">void</span> <span class="function">main</span>() {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">var</span> intBox = Box&lt;<span class="keyword">int</span>&gt;(10);<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(<span class="string">'Int Box: ${intBox.value}'</span>); <span class="comment">// Output: Int Box: 10</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;intBox.setValue(20);<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(<span class="string">'After set: ${intBox.value}'</span>); <span class="comment">// Output: After set: 20</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">var</span> stringBox = Box&lt;String&gt;(<span class="string">"Hello, Generic!"</span>);<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(<span class="string">'String Box: ${stringBox.value}'</span>); <span class="comment">// Output: String Box: Hello, Generic!</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">var</span> doubleBox = Box&lt;<span class="keyword">double</span>&gt;(3.14);<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(<span class="string">'Double Box: ${doubleBox.value}'</span>); <span class="comment">// Output: Double Box: 3.14</span><br>
+                }
+            </div>
+            <button onclick="runBoxDemo()">▶ Jalankan Demo Box&lt;T&gt; Lengkap</button>
+            <div id="box-demo-output" class="output-sim" style="display: none;"></div>
+        </div>
+
+        <!-- Kelas Pair<K, V> -->
+        <div class="card">
+            <h2>🔑 Kelas Pair&lt;K, V&gt; (Multi Type Parameters)</h2>
+            <div class="code-block">
+                <span class="comment">// Nama: Muhammad Bagas Putra Andeza</span><br>
+                <span class="comment">// NIM: 251410003</span><br>
+                <span class="comment">// KELAS: SI2A</span><br>
+                <span class="keyword">class</span> Pair&lt;K, V&gt; {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;K key;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;V value;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;Pair(<span class="keyword">this</span>.key, <span class="keyword">this</span>.value);<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">void</span> <span class="function">printPair</span>() => <span class="function">print</span>(<span class="string">'Key: $key, Value: $value'</span>);<br>
+                }<br><br>
+                <span class="keyword">void</span> <span class="function">main</span>() {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">var</span> pair1 = Pair&lt;String, <span class="keyword">int</span>&gt;(<span class="string">'age'</span>, 30);<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;pair1.printPair(); <span class="comment">// Output: Key: age, Value: 30</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">var</span> pair2 = Pair&lt;String, String&gt;(<span class="string">'name'</span>, <span class="string">'Alice'</span>);<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;pair2.printPair(); <span class="comment">// Output: Key: name, Value: Alice</span><br>
+                }
+            </div>
+            <button onclick="runPairDemo()">▶ Jalankan Demo Pair&lt;K,V&gt;</button>
+            <div id="pair-demo-output" class="output-sim" style="display: none;"></div>
+        </div>
+
+        <!-- Generic dengan Extends -->
         <div class="card">
             <h2>🔒 Generic dengan Extends (Constraints)</h2>
             <p>📌 Keyword <strong>extends</strong> → membatasi tipe data yang dapat digunakan.</p>
             <div class="code-block">
+                <span class="comment">// Nama: Muhammad Bagas Putra Andeza</span><br>
+                <span class="comment">// NIM: 251410003</span><br>
+                <span class="comment">// KELAS: SI2A</span><br>
                 <span class="keyword">class</span> NumberBox&lt;T extends num&gt; {<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;T value;<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;NumberBox(<span class="keyword">this</span>.value);<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;T <span class="function">getValue</span>() => value;<br>
                 }<br><br>
                 <span class="keyword">void</span> <span class="function">main</span>() {<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">var</span> intBox = NumberBox&lt;<span class="keyword">int</span>&gt;(10); <span class="comment">// ✅ Valid</span><br>
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">var</span> doubleBox = NumberBox&lt;<span class="keyword">double</span>&gt;(3.14); <span class="comment">// ✅ Valid</span><br>
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// var stringBox = NumberBox&lt;String&gt;("test"); ❌ ERROR</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">var</span> intBox = NumberBox&lt;<span class="keyword">int</span>&gt;(10);<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(<span class="string">"int box: ${intBox.getValue()}"</span>); <span class="comment">// Output: int box: 10</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">var</span> doubleBox = NumberBox&lt;<span class="keyword">double</span>&gt;(3.14);<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="function">print</span>(<span class="string">"double box: ${doubleBox.getValue()}"</span>); <span class="comment">// Output: double box: 3.14</span><br>
                 }
             </div>
-            <button onclick="runDemo3()">▶ Jalankan Demo NumberBox&lt;T&gt;</button>
-            <div id="demo3-output" class="output-sim" style="display: none;"></div>
+            <button onclick="runNumberBoxDemo()">▶ Jalankan Demo NumberBox&lt;T&gt;</button>
+            <div id="numberbox-demo-output" class="output-sim" style="display: none;"></div>
         </div>
 
         <!-- Perbandingan Generic vs Dynamic vs Object -->
@@ -327,13 +413,6 @@
         <!-- Studi Kasus: Cache<T> -->
         <div class="card">
             <h2>🗄️ Studi Kasus: Class Cache&lt;T&gt;</h2>
-            <div class="code-block">
-                <span class="keyword">class</span> Cache&lt;T&gt; {<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">final</span> Map&lt;String, T&gt; _storage = {};<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">void</span> <span class="function">set</span>(String key, T value) => _storage[key] = value;<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;T? <span class="function">get</span>(String key) => _storage[key];<br>
-                }
-            </div>
             <div class="demo-grid">
                 <div class="demo-card">
                     <h3>Cache&lt;String&gt; - User Data</h3>
@@ -348,18 +427,27 @@
             </div>
         </div>
 
+        <!-- Praktik 1 - Generic Class & Fungsi -->
+        <div class="card">
+            <h2>🧪 Praktik 1 – Generic Class & Fungsi</h2>
+            <div class="code-block">
+                <span class="comment">// Nama: Muhammad Bagas Putra Andeza</span><br>
+                <span class="comment">// NIM: 251410003</span><br>
+                <span class="comment">// KELAS: SI2A</span><br><br>
+                <span class="comment">// 1. Class Repository&lt;T&gt;</span><br>
+                <span class="keyword">class</span> Repository&lt;T&gt; { ... }<br><br>
+                <span class="comment">// 2. Fungsi swap</span><br>
+                <span class="keyword">void</span> <span class="function">swap</span>&lt;T&gt;(List&lt;T&gt; list, <span class="keyword">int</span> i, <span class="keyword">int</span> j) { ... }<br><br>
+                <span class="comment">// 3. Class Triple&lt;A, B, C&gt;</span><br>
+                <span class="keyword">class</span> Triple&lt;A, B, C&gt; { ... }
+            </div>
+            <button onclick="runPraktik1()">▶ Jalankan Praktik 1 Lengkap</button>
+            <div id="praktik1-output" class="output-sim" style="display: none;"></div>
+        </div>
+
         <!-- Latihan Soal 1: Repository<T> -->
         <div class="card">
             <h2>💻 Soal 1: Class Repository&lt;T&gt;</h2>
-            <div class="code-block">
-                <span class="keyword">class</span> Repository&lt;T&gt; {<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">final</span> Map&lt;<span class="keyword">int</span>, T&gt; _data = {};<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">int</span> _nextId = 1;<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">void</span> <span class="function">save</span>(T item) { _data[_nextId++] = item; <span class="function">print</span>(<span class="string">'Saved: $item'</span>); }<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;T? <span class="function">getById</span>(<span class="keyword">int</span> id) => _data[id];<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;List&lt;T&gt; <span class="function">getAll</span>() => _data.values.toList();<br>
-                }
-            </div>
             <button onclick="runRepository()">▶ Demo Repository&lt;String&gt;</button>
             <div id="repository-output" class="output-sim" style="display: none;"></div>
         </div>
@@ -367,14 +455,6 @@
         <!-- Latihan Soal 2: swap<T> -->
         <div class="card">
             <h2>💻 Soal 2: Fungsi swap&lt;T&gt;</h2>
-            <div class="code-block">
-                <span class="keyword">void</span> <span class="function">swap</span>&lt;T&gt;(List&lt;T&gt; list, <span class="keyword">int</span> i, <span class="keyword">int</span> j) {<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span> (i == j) <span class="keyword">return</span>;<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;T temp = list[i];<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;list[i] = list[j];<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;list[j] = temp;<br>
-                }
-            </div>
             <button onclick="runSwap()">▶ Demo swap angka</button>
             <div id="swap-output" class="output-sim" style="display: none;"></div>
         </div>
@@ -382,13 +462,6 @@
         <!-- Latihan Soal 3: Triple<A,B,C> -->
         <div class="card">
             <h2>💻 Soal 3: Class Triple&lt;A, B, C&gt;</h2>
-            <div class="code-block">
-                <span class="keyword">class</span> Triple&lt;A, B, C&gt; {<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;A first; B second; C third;<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;Triple(<span class="keyword">this</span>.first, <span class="keyword">this</span>.second, <span class="keyword">this</span>.third);<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">void</span> <span class="function">printTriple</span>() => <span class="function">print</span>(<span class="string">'($first, $second, $third)'</span>);<br>
-                }
-            </div>
             <button onclick="runTriple()">▶ Demo Triple</button>
             <div id="triple-output" class="output-sim" style="display: none;"></div>
         </div>
@@ -441,7 +514,7 @@
             el.innerHTML = lines.map(line => `> ${line}`).join('<br>');
         }
 
-        // Demo 1: Box<T>
+        // Demo 1: Box<T> sederhana
         function runDemo1() {
             class Box {
                 constructor(data) {
@@ -455,7 +528,6 @@
                 `intBox.data: ${intBox.data}`,
                 `stringBox.data: ${stringBox.data}`,
                 "✅ Type-safe: intBox.data pasti bertipe int",
-                "✅ Hello, Generic!"
             ];
             showOutput('demo1-output', output);
         }
@@ -485,8 +557,53 @@
             showOutput('demo2-output', output);
         }
 
-        // Demo 3: NumberBox
-        function runDemo3() {
+        // Demo Box<T> lengkap
+        function runBoxDemo() {
+            class Box {
+                constructor(value) {
+                    this._value = value;
+                }
+                get value() { return this._value; }
+                setValue(value) { this._value = value; }
+            }
+            
+            const intBox = new Box(10);
+            const stringBox = new Box("Hello, Generic!");
+            const doubleBox = new Box(3.14);
+            
+            const output = [
+                "=== Kelas Box<T> Demo ===",
+                `Int Box: ${intBox.value}`,
+                `After setValue(20): ${(intBox.setValue(20), intBox.value)}`,
+                `String Box: ${stringBox.value}`,
+                `Double Box: ${doubleBox.value}`
+            ];
+            showOutput('box-demo-output', output);
+        }
+
+        // Demo Pair<K,V>
+        function runPairDemo() {
+            class Pair {
+                constructor(key, value) {
+                    this.key = key;
+                    this.value = value;
+                }
+                printPair() { return `Key: ${this.key}, Value: ${this.value}`; }
+            }
+            
+            const pair1 = new Pair('age', 30);
+            const pair2 = new Pair('name', 'Alice');
+            
+            const output = [
+                "=== Kelas Pair<K,V> Demo ===",
+                pair1.printPair(),
+                pair2.printPair()
+            ];
+            showOutput('pair-demo-output', output);
+        }
+
+        // Demo NumberBox
+        function runNumberBoxDemo() {
             class NumberBox {
                 constructor(value) {
                     if (typeof value !== 'number') throw new Error('Harus number!');
@@ -499,13 +616,12 @@
             const doubleBox = new NumberBox(3.14);
             
             const output = [
-                "=== Demo NumberBox<T extends num> ===",
-                `intBox.getValue(): ${intBox.getValue()}`,
-                `doubleBox.getValue(): ${doubleBox.getValue()}`,
-                "✅ int dan double adalah turunan num",
-                "❌ String tidak bisa digunakan (akan error)"
+                "=== NumberBox<T extends num> Demo ===",
+                `int box: ${intBox.getValue()}`,
+                `double box: ${doubleBox.getValue()}`,
+                "✅ int dan double adalah turunan num"
             ];
-            showOutput('demo3-output', output);
+            showOutput('numberbox-demo-output', output);
         }
 
         // Cache String Demo
@@ -556,6 +672,75 @@
                 "✅ Generic memungkinkan tipe data berbeda dengan aman"
             ];
             showOutput('cache-product-output', output);
+        }
+
+        // Praktik 1 Lengkap
+        function runPraktik1() {
+            // Simulasi Repository
+            class Repository {
+                constructor() {
+                    this.storage = {};
+                    this.nextId = 1;
+                }
+                save(item) {
+                    const id = this.nextId++;
+                    this.storage[id] = item;
+                    return id;
+                }
+                getById(id) { return this.storage[id]; }
+                getAll() { return Object.values(this.storage); }
+                printAll() {
+                    const items = [];
+                    for (const [id, item] of Object.entries(this.storage)) {
+                        items.push(`ID ${id}: ${item}`);
+                    }
+                    return items;
+                }
+            }
+            
+            // Simulasi swap
+            function swap(list, i, j) {
+                if (i === j) return;
+                const temp = list[i];
+                list[i] = list[j];
+                list[j] = temp;
+            }
+            
+            // Simulasi Triple
+            class Triple {
+                constructor(first, second, third) {
+                    this.first = first;
+                    this.second = second;
+                    this.third = third;
+                }
+                printTriple() { return `(${this.first}, ${this.second}, ${this.third})`; }
+            }
+            
+            const stringRepo = new Repository();
+            stringRepo.save('PRABOWO');
+            stringRepo.save('MULYONO');
+            
+            const numbers = [10, 20, 30, 40, 50];
+            const beforeSwap = [...numbers];
+            swap(numbers, 1, 3);
+            
+            const triple = new Triple('PRABOWO', 25, true);
+            
+            const output = [
+                "=== PRAKTIK 1 - GENERIC CLASS & FUNGSI ===",
+                "",
+                "1. REPOSITORY",
+                "📦 Isi Repository:",
+                ...stringRepo.printAll(),
+                "",
+                "2. FUNGSI SWAP",
+                `Before: [${beforeSwap.join(', ')}]`,
+                `After:  [${numbers.join(', ')}]`,
+                "",
+                "3. TRIPLE",
+                triple.printTriple()
+            ];
+            showOutput('praktik1-output', output);
         }
 
         // Repository Demo
