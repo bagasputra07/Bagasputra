@@ -1,3 +1,5 @@
+Berikut adalah hasil modifikasi kode HTML dengan perubahan objek, variabel, dan border yang disesuaikan dengan tema St. Patrick's Day, sambil mempertahankan semua konten kode.
+```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -78,7 +80,7 @@
       box-shadow: 0 2px 5px rgba(118, 151, 62, 0.3);
     }
 
-    /* Cards dengan sentuhan shamrock */
+    /* Cards dengan sentuhan shamrock - border baru mengikuti tema */
     .card {
       background: rgba(255, 255, 245, 0.94);
       backdrop-filter: blur(4px);
@@ -87,19 +89,31 @@
       margin-bottom: 32px;
       overflow: hidden;
       transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-      border: 1px solid rgba(190, 215, 140, 0.8);
+      border: 2px solid #88b04b; /* Tema shamrock: border hijau keemasan */
+      position: relative;
+    }
+
+    .card::before {
+      content: "☘️";
+      position: absolute;
+      top: -12px;
+      right: 24px;
+      font-size: 28px;
+      opacity: 0.3;
+      pointer-events: none;
     }
 
     .card:hover {
       transform: translateY(-5px);
       box-shadow: 0 20px 32px -12px rgba(60, 100, 35, 0.4);
       background: #fffff0;
+      border-color: #d4af37;
     }
 
     .card-header {
       background: #fef9e3;
       padding: 18px 28px;
-      border-bottom: 2px solid #c5e0b4;
+      border-bottom: 3px solid #b0d18b; /* border bawah lebih tebal tema shamrock */
     }
 
     .card-header h2 {
@@ -131,8 +145,8 @@
       font-size: 13px;
       line-height: 1.5;
       margin: 18px 0;
-      border: 1px solid #b9d48b;
-      box-shadow: inset 0 0 0 1px rgba(190, 215, 140, 0.3);
+      border: 2px solid #b9d48b; /* border ganda shamrock */
+      box-shadow: inset 0 0 0 1px rgba(190, 215, 140, 0.5), 0 4px 10px rgba(0,0,0,0.1);
     }
 
     .code-title {
@@ -152,17 +166,20 @@
       border-radius: 30px;
       font-size: 11px;
       font-weight: 600;
+      border: 1px solid #b6d48b;
     }
 
     .code-title .tag-error {
       background: #ffe6e6;
       color: #b34e4e;
+      border: 1px solid #e6b422;
     }
 
     /* Error card versi shamrock (merah elegan) */
     .error-card {
-      border-left: 6px solid #e6b422;
+      border-left: 8px solid #e6b422;
       background: #fffae9;
+      border-radius: 24px;
     }
 
     .error-card .card-header {
@@ -176,8 +193,9 @@
       padding: 16px 22px;
       border-radius: 24px;
       margin: 18px 0;
-      border-left: 5px solid #88b04b;
+      border-left: 6px solid #88b04b;
       color: #2c482c;
+      box-shadow: 0 2px 6px rgba(100,130,60,0.1);
     }
 
     .info-box strong {
@@ -193,6 +211,7 @@
       border-radius: 20px;
       overflow: hidden;
       box-shadow: 0 2px 8px rgba(100, 130, 60, 0.1);
+      border: 1px solid #c2dc9a;
     }
 
     th, td {
@@ -250,7 +269,7 @@
       text-align: center;
       padding: 30px 20px;
       color: #598b3a;
-      border-top: 1px solid #cbe3b0;
+      border-top: 2px solid #cbe3b0;
       margin-top: 50px;
       font-size: 0.9rem;
       font-weight: 500;
@@ -298,8 +317,8 @@
     <h1>📦 SESI 6: Generic Dasar</h1>
     <p class="subtitle">Type-Safe • Code Reusability • Compile-Time Checking</p>
     <div>
-      <span class="badge">Esti Anggraini</span>
-      <span class="badge">251410031</span>
+      <span class="badge">Muhammad Bagas Putra Andeza</span>
+      <span class="badge">251410003</span>
       <span class="badge">SI2A</span>
     </div>
   </div>
@@ -513,16 +532,16 @@ class Pair&lt;K, V&gt; {
 
 void main() {
   // Pair String-int
-  var pair1 = Pair&lt;String, int&gt;('age', 30);
-  pair1.printPair(); // Output: Key: age, Value: 30
+  var pair1 = Pair&lt;String, int&gt;('umur', 25);
+  pair1.printPair(); // Output: Key: umur, Value: 25
 
   // Pair String-String
-  var pair2 = Pair&lt;String, String&gt;('name', 'Alice');
-  pair2.printPair(); // Output: Key: name, Value: Alice
+  var pair2 = Pair&lt;String, String&gt;('hobi', 'Coding');
+  pair2.printPair(); // Output: Key: hobi, Value: Coding
 
   // Pair int-double
-  var pair3 = Pair&lt;int, double&gt;(1, 2.71);
-  pair3.printPair(); // Output: Key: 1, Value: 2.71
+  var pair3 = Pair&lt;int, double&gt;(2, 3.14159);
+  pair3.printPair(); // Output: Key: 2, Value: 3.14159
 }
       </pre>
 <img src="tugas76.png" alt="gambar" style="max-width:100%; margin-top:10px;">       
@@ -545,11 +564,11 @@ String combine&lt;T, U&gt;(T value1, U value2) {
 }
 
 void main() {
-  var result1 = combine&lt;String, int&gt;("Number is ", 10);
-  print(result1); // Output: Number is , 10
+  var result1 = combine&lt;String, int&gt;("Skor: ", 100);
+  print(result1); // Output: Skor: , 100
 
-  var result2 = combine&lt;int, double&gt;(10, 20.5);
-  print(result2); // Output: 10, 20.5
+  var result2 = combine&lt;int, double&gt;(42, 3.1416);
+  print(result2); // Output: 42, 3.1416
 }
       </pre>
 <img src="tugas77.png" alt="gambar" style="max-width:100%; margin-top:10px;">          
@@ -557,7 +576,7 @@ void main() {
       <pre>
 // ❌ ERROR: Tipe tidak kompatibel dengan fungsi
 /*
-var result3 = combine&lt;int, String&gt;(10, 20);
+var result3 = combine&lt;int, String&gt;(50, 100);
 // Bisa, tapi kurang tepat karena U seharusnya String tapi diisi int
 */
       </pre>
@@ -587,11 +606,11 @@ class NumberBox&lt;T extends num&gt; {
 
 void main() {
   // ✅ Valid - int dan double adalah turunan num
-  var intBox = NumberBox&lt;int&gt;(10);
-  print("int box: ${intBox.getValue()}"); // Output: int box: 10
+  var intBox = NumberBox&lt;int&gt;(100);
+  print("int box: ${intBox.getValue()}"); // Output: int box: 100
 
-  var doubleBox = NumberBox&lt;double&gt;(3.14);
-  print("double box: ${doubleBox.getValue()}"); // Output: double box: 3.14
+  var doubleBox = NumberBox&lt;double&gt;(2.71828);
+  print("double box: ${doubleBox.getValue()}"); // Output: double box: 2.71828
 }
       </pre>
 <img src="tugas79.png" alt="gambar" style="max-width:100%; margin-top:10px;"> 
@@ -623,13 +642,13 @@ T myFunc&lt;T&gt;(T value) => value;
 
 void main() {
   // Dart menginferensi T secara otomatis
-  var intValue = myFunc(10);
+  var intValue = myFunc(100);
   print(intValue.runtimeType); // Output: int
 
-  var stringValue = myFunc("test");
+  var stringValue = myFunc("St. Patrick");
   print(stringValue.runtimeType); // Output: String
 
-  var doubleValue = myFunc(3.14);
+  var doubleValue = myFunc(2.718);
   print(doubleValue.runtimeType); // Output: double
 }
       </pre>
@@ -655,11 +674,11 @@ void printIterable<T extends Iterable<dynamic>>(T iterable) {
 }
 
 void main() {
-  printIterable<List<int>>([1, 2, 3]);
-  // Output: 1, 2, 3
+  printIterable<List<int>>([7, 8, 9]);
+  // Output: 7, 8, 9
 
-  printIterable<Set<String>>({'apple', 'banana'});
-  // Output: apple, banana
+  printIterable<Set<String>>({'clover', 'gold'});
+  // Output: clover, gold
 }
       </pre>
  <img src="tugas712.png" alt="gambar" style="max-width:100%; margin-top:10px;">         
@@ -870,11 +889,11 @@ class Product {
 
 void main() {
   var userCache = Cache<String>();
-  userCache.set('name', 'Alice');
-  print(userCache.get('name')); 
+  userCache.set('username', 'BudiShamrock');
+  print(userCache.get('username')); 
 
   var productCache = Cache<Product>();
-  productCache.set('p1', Product('Laptop', 1000));
+  productCache.set('p1', Product('GreenBook', 777));
   print(productCache.get('p1'));
 }
       </pre>
@@ -921,8 +940,8 @@ class Repository&lt;T&gt; {
 
 void main() {
   var userRepo = Repository&lt;String&gt;();
-  userRepo.save("Alice");
-  userRepo.save("Bob");
+  userRepo.save("Clover");
+  userRepo.save("Lucky");
   print("User ID 1: ${userRepo.getById(1)}");
   print("All users: ${userRepo.getAll()}");
 }
@@ -946,10 +965,10 @@ void swap&lt;T&gt;(List&lt;T&gt; list, int i, int j) {
 }
 
 void main() {
-  var numbers = [1, 2, 3, 4, 5];
+  var numbers = [5, 6, 7, 8, 9];
   print("Before swap: $numbers");
-  swap&lt;int&gt;(numbers, 1, 3);
-  print("After swap: $numbers"); // Output: [1, 4, 3, 2, 5]
+  swap&lt;int&gt;(numbers, 0, 4);
+  print("After swap: $numbers"); // Output: [9, 6, 7, 8, 5]
 }
       </pre>
 <img src="tugas717.png" alt="gambar" style="max-width:100%; margin-top:10px;">
@@ -976,11 +995,11 @@ class Triple&lt;A, B, C&gt; {
 }
 
 void main() {
-  var triple1 = Triple&lt;String, int, bool&gt;("Alice", 25, true);
-  triple1.printTriple(); // Output: (Alice, 25, true)
+  var triple1 = Triple&lt;String, int, bool&gt;("Leprechaun", 100, false);
+  triple1.printTriple(); // Output: (Leprechaun, 100, false)
 
-  var triple2 = Triple&lt;int, double, String&gt;(1, 3.14, "Pi");
-  triple2.printTriple(); // Output: (1, 3.14, Pi)
+  var triple2 = Triple&lt;int, double, String&gt;(3, 1.618, "Golden Ratio");
+  triple2.printTriple(); // Output: (3, 1.618, Golden Ratio)
 }
       </pre>
 <img src="tugas718.png" alt="gambar" style="max-width:100%; margin-top:10px;">      
@@ -1051,8 +1070,8 @@ class GenericRepository&lt;T&gt; {
 
 void main() {
   var productRepo = GenericRepository&lt;Product&gt;();
-  productRepo.create(Product(1, 'Laptop', 15000000));
-  productRepo.create(Product(2, 'Mouse', 250000));
+  productRepo.create(Product(1, 'Emerald Laptop', 17500000));
+  productRepo.create(Product(2, 'Shamrock Mouse', 350000));
   print('Products: ${productRepo.readAll()}');
 
   var userRepo = GenericRepository&lt;User&gt;();
@@ -1096,3 +1115,4 @@ void main() {
 </div>
 </body>
 </html>
+```
