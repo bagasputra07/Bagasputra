@@ -779,8 +779,8 @@ void main() {
   print('\n1. REPOSITORY<String>');
   print('-' * 40);
   var stringRepo = Repository<String>();
-  stringRepo.save('PRABOWO');
-  stringRepo.save('MULYONO');
+  stringRepo.save('WIDODO');
+  stringRepo.save('HABIBIE');
   stringRepo.printAll();
 
   // Demo swap
@@ -794,7 +794,7 @@ void main() {
   // Demo Triple
   print('\n3. TRIPLE<A, B, C>');
   print('-' * 40);
-  var triple = Triple<String, int, bool>('PRABOWO', 25, true);
+  var triple = Triple<String, int, bool>('WIDODO', 25, true);
   triple.printTriple();
 }
       </pre>
@@ -1073,8 +1073,8 @@ void main() {
   print('Products: ${productRepo.readAll()}');
 
   var userRepo = GenericRepository&lt;User&gt;();
-  userRepo.create(User(1, 'PRABOWO'));
-  userRepo.create(User(2, 'GIBRAN'));
+  userRepo.create(User(1, 'WIDODO'));
+  userRepo.create(User(2, 'HABIBIE'));
   print('Users: ${userRepo.readAll()}');
 }
       </pre>
