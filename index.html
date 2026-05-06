@@ -383,7 +383,7 @@ void main() {
       <div class="info-box">
         <strong>❌ Bahaya:</strong> Tidak ada jaminan tipe data, bisa menyebabkan runtime error.
         <strong> CONTOH ERROR</strong>
-        <img src="tugas71p.png" alt="gambar" style="max-width:100%; margin-top:10px;">
+        <img src="Screenshot 2026-05-06 135918.png" alt="gambar" style="max-width:100%; margin-top:10px;">
         <p>  
         <strong>✅CONTOH BENAR</strong>
          <pre>
@@ -455,7 +455,8 @@ void main() {
 }
       </pre>
 <strong>✅OUTPUT</strong>
-       <img src="tugas73.png" alt="gambar" style="max-width:100%; margin-top:10px;">
+       <img src="Screenshot 2026-05-06 140327.png
+" alt="gambar" style="max-width:100%; margin-top:10px;">
     </div>
   </div>
 
@@ -495,7 +496,7 @@ void main() {
   print('Double Box: ${doubleBox.value}'); // Output: Double Box: 3.14
 }
       </pre>
-  <img src="tugas74.png" alt="gambar" style="max-width:100%; margin-top:10px;">     
+  <img src="Screenshot 2026-05-06 140653.png" alt="gambar" style="max-width:100%; margin-top:10px;">     
     </div>
     <div class="card-body error-card" style="border-left: 4px solid #dc2626; margin-top: 0;">
       <div class="code-title"><span class="tag tag-error">❌ Contoh ERROR</span></div>
@@ -506,7 +507,7 @@ var wrongBox = Box&lt;int&gt;("bukan angka");
 // ERROR: The argument type 'String' can't be assigned to parameter type 'int'
 */
       </pre>
- <img src="tugas75.png" alt="gambar" style="max-width:100%; margin-top:10px;">      
+ <img src="Screenshot 2026-05-06 141449.png" alt="gambar" style="max-width:100%; margin-top:10px;">      
     </div>
   </div>
 
@@ -542,7 +543,7 @@ void main() {
   pair3.printPair(); // Output: Key: 2, Value: 3.14159
 }
       </pre>
-<img src="tugas76.png" alt="gambar" style="max-width:100%; margin-top:10px;">       
+<img src="Screenshot 2026-05-06 141715.png" alt="gambar" style="max-width:100%; margin-top:10px;">       
     </div>
   </div>
 
@@ -569,7 +570,7 @@ void main() {
   print(result2); // Output: 42, 3.1416
 }
       </pre>
-<img src="tugas77.png" alt="gambar" style="max-width:100%; margin-top:10px;">          
+<img src="Screenshot 2026-05-06 141854.png" alt="gambar" style="max-width:100%; margin-top:10px;">          
       <div class="code-title"><span class="tag tag-error">❌ Contoh ERROR</span></div>
       <pre>
 // ❌ ERROR: Tipe tidak kompatibel dengan fungsi
@@ -578,7 +579,7 @@ var result3 = combine&lt;int, String&gt;(50, 100);
 // Bisa, tapi kurang tepat karena U seharusnya String tapi diisi int
 */
       </pre>
-<img src="tugas78.png" alt="gambar" style="max-width:100%; margin-top:10px;">       
+<img src="Screenshot 2026-05-06 142112.png" alt="gambar" style="max-width:100%; margin-top:10px;">       
     </div>
   </div>
 
@@ -611,7 +612,7 @@ void main() {
   print("double box: ${doubleBox.getValue()}"); // Output: double box: 2.71828
 }
       </pre>
-<img src="tugas79.png" alt="gambar" style="max-width:100%; margin-top:10px;"> 
+<img src="Screenshot 2026-05-06 142320.png" alt="gambar" style="max-width:100%; margin-top:10px;"> 
       
       <div class="code-title"><span class="tag tag-error">❌ Contoh ERROR</span></div>
       <pre>
@@ -621,7 +622,7 @@ var stringBox = NumberBox&lt;String&gt;("test");
 // ERROR: The type 'String' is not a subtype of 'num'
 */
       </pre>
- <img src="tugas710.png" alt="gambar" style="max-width:100%; margin-top:10px;">     
+ <img src="Screenshot 2026-05-06 142513.png" alt="gambar" style="max-width:100%; margin-top:10px;">     
     </div>
   </div>
 
@@ -650,7 +651,7 @@ void main() {
   print(doubleValue.runtimeType); // Output: double
 }
       </pre>
-  <img src="tugas711.png" alt="gambar" style="max-width:100%; margin-top:10px;">     
+  <img src="Screenshot 2026-05-06 142643.png" alt="gambar" style="max-width:100%; margin-top:10px;">     
     </div>
   </div>
 
@@ -665,21 +666,21 @@ void main() {
 // Nama: Muhammad Bagas Putra Andeza
 // NIM: 251410003
 // KELAS: SI2A          
-void printIterable<T extends Iterable<dynamic>>(T iterable) {
+void printIterable>(T iterable) {
   for (var item in iterable) {
     print(item);
   }
 }
 
 void main() {
-  printIterable<List<int>>([7, 8, 9]);
-  // Output: 7, 8, 9
+  printIterable>([1, 2, 3]);
+  // Output: 1, 2, 3
 
-  printIterable<Set<String>>({'clover', 'gold'});
-  // Output: clover, gold
+  printIterable>({'apple', 'banana'});
+  // Output: apple, banana
 }
       </pre>
- <img src="tugas712.png" alt="gambar" style="max-width:100%; margin-top:10px;">         
+ <img src="Screenshot 2026-05-06 143709.png" alt="gambar" style="max-width:100%; margin-top:10px;">         
       <div class="code-title"><span class="tag tag-error">❌ Contoh ERROR</span></div>
       <pre>
 // ❌ ERROR: int bukan turunan dari Iterable
@@ -688,7 +689,7 @@ printIterable&lt;int&gt;(10);
 // ERROR: The type 'int' is not a subtype of 'Iterable&lt;dynamic&gt;'
 */
       </pre>
-<img src="tugas713.png" alt="gambar" style="max-width:100%; margin-top:10px;">    
+<img src="Screenshot 2026-05-06 143908.png" alt="gambar" style="max-width:100%; margin-top:10px;">    
     </div>
   </div>
 
@@ -703,9 +704,9 @@ printIterable&lt;int&gt;(10);
 // NIM: 251410003
 // KELAS: SI2A      
 
-// 1. Class Repository<T>
-class Repository<T> {
-  final Map<int, T> _storage = {};
+// 1. Class Repository
+class Repository {
+  final Map _storage = {};
   int _nextId = 1;
 
   int save(T item) {
@@ -719,7 +720,7 @@ class Repository<T> {
     return _storage[id];
   }
 
-  List<T> getAll() {
+  List getAll() {
     return _storage.values.toList();
   }
 
@@ -733,8 +734,8 @@ class Repository<T> {
   }
 }
 
-// 2. Fungsi swap<T>
-void swap<T>(List<T> list, int i, int j) {
+// 2. Fungsi swap
+void swap(List list, int i, int j) {
   if (i < 0 || i >= list.length || j < 0 || j >= list.length) {
     print('❌ Error: Indeks tidak valid!');
     return;
@@ -746,8 +747,8 @@ void swap<T>(List<T> list, int i, int j) {
   list[j] = temp;
 }
 
-// 3. Class Triple<A, B, C>
-class Triple<A, B, C> {
+// 3. Class Triple
+class Triple {
   A first;
   B second;
   C third;
@@ -766,7 +767,7 @@ class Triple<A, B, C> {
     print('($first, $second, $third)');
   }
 
-  List<dynamic> toList() => [first, second, third];
+  List toList() => [first, second, third];
 }
 
 // 4. Fungsi main() 
@@ -775,30 +776,30 @@ void main() {
   print('PRAKTIK 1 - GENERIC CLASS & FUNGSI');
   print('=' * 50);
 
-  // Demo Repository<String>
-  print('\n1. REPOSITORY<String>');
+  // Demo Repository
+  print('\n1. REPOSITORY');
   print('-' * 40);
-  var stringRepo = Repository<String>();
-  stringRepo.save('WIDODO');
-  stringRepo.save('HABIBIE');
+  var stringRepo = Repository();
+  stringRepo.save('PRABOWO');
+  stringRepo.save('MULYONO');
   stringRepo.printAll();
 
   // Demo swap
-  print('\n2. FUNGSI SWAP<T>');
+  print('\n2. FUNGSI SWAP');
   print('-' * 40);
   var numbers = [10, 20, 30, 40, 50];
   print('Before: $numbers');
-  swap<int>(numbers, 1, 3);
+  swap(numbers, 1, 3);
   print('After:  $numbers');
 
   // Demo Triple
-  print('\n3. TRIPLE<A, B, C>');
+  print('\n3. TRIPLE');
   print('-' * 40);
-  var triple = Triple<String, int, bool>('WIDODO', 25, true);
+  var triple = Triple('PRABOWO', 25, true);
   triple.printTriple();
 }
       </pre>
-        <img src="tugas714.png" alt="gambar" style="max-width:100%; margin-top:10px;">
+        <img src="Screenshot 2026-05-06 144527.png" alt="gambar" style="max-width:100%; margin-top:10px;">
           </p>
       </div>
     </div>
@@ -858,8 +859,8 @@ void main() {
 // Nama: Muhammad Bagas Putra Andeza
 // NIM: 251410003
 // KELAS: SI2A         
-class Cache<T> {
-  final Map<String, T> _storage = {};
+class Cache {
+  final Map _storage = {};
 
   void set(String key, T value) {
     _storage[key] = value;
@@ -886,16 +887,16 @@ class Product {
 }
 
 void main() {
-  var userCache = Cache<String>();
-  userCache.set('username', 'BudiShamrock');
-  print(userCache.get('username')); 
+  var userCache = Cache();
+  userCache.set('name', 'Alice');
+  print(userCache.get('name')); 
 
-  var productCache = Cache<Product>();
-  productCache.set('p1', Product('GreenBook', 777));
+  var productCache = Cache();
+  productCache.set('p1', Product('Laptop', 1000));
   print(productCache.get('p1'));
 }
       </pre>
-<img src="tugas715.png" alt="gambar" style="max-width:100%; margin-top:10px;">    
+<img src="Screenshot 2026-05-06 144930.png" alt="gambar" style="max-width:100%; margin-top:10px;">    
     </div>
   </div>
 
@@ -944,7 +945,7 @@ void main() {
   print("All users: ${userRepo.getAll()}");
 }
       </pre>
-<img src="tugas716.png" alt="gambar" style="max-width:100%; margin-top:10px;"> 
+<img src="Screenshot 2026-05-06 145227.png" alt="gambar" style="max-width:100%; margin-top:10px;"> 
       <hr>
 
       <div class="info-box">
@@ -969,7 +970,7 @@ void main() {
   print("After swap: $numbers"); // Output: [9, 6, 7, 8, 5]
 }
       </pre>
-<img src="tugas717.png" alt="gambar" style="max-width:100%; margin-top:10px;">
+<img src="Screenshot 2026-05-06 145436.png" alt="gambar" style="max-width:100%; margin-top:10px;">
       <hr>
 
       <div class="info-box">
@@ -1000,7 +1001,7 @@ void main() {
   triple2.printTriple(); // Output: (3, 1.618, Golden Ratio)
 }
       </pre>
-<img src="tugas718.png" alt="gambar" style="max-width:100%; margin-top:10px;">      
+<img src="Screenshot 2026-05-06 145629.png" alt="gambar" style="max-width:100%; margin-top:10px;">      
     </div>
   </div>
 
@@ -1078,7 +1079,7 @@ void main() {
   print('Users: ${userRepo.readAll()}');
 }
       </pre>
-<img src="tugas719p.png" alt="gambar" style="max-width:100%; margin-top:10px;">      
+<img src="Screenshot 2026-05-06 145829.png" alt="gambar" style="max-width:100%; margin-top:10px;">      
     </div>
   </div>
 
